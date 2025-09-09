@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2024.12.15)  9 SEP 2025 09:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2024.12.15)  9 SEP 2025 10:48
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -700,7 +700,7 @@ Overfull \hbox (70.05147pt too wide) has occurred while \output is active
 [1
 
 {/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/map/pdftex/pdftex.map}]
-Overfull \hbox (70.05147pt too wide) in paragraph at lines 24--24
+Overfull \hbox (70.05147pt too wide) in paragraph at lines 33--33
  [][][][]  
  []
 
@@ -714,7 +714,7 @@ Overfull \hbox (70.05147pt too wide) has occurred while \output is active
 [2
 
 ]
-Overfull \hbox (70.05147pt too wide) in paragraph at lines 36--36
+Overfull \hbox (70.05147pt too wide) in paragraph at lines 45--45
  [][][][]  
  []
 
@@ -728,11 +728,22 @@ Overfull \hbox (70.05147pt too wide) has occurred while \output is active
 [3
 
 ]
-Overfull \hbox (70.05147pt too wide) in paragraph at lines 48--48
+Overfull \hbox (70.05147pt too wide) in paragraph at lines 57--57
  [][][][]  
  []
 
-
+LaTeX Font Info:    Trying to load font information for U+msa on input line 57.
+(/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 57.
+ (/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 57.
+ (/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/sansmathaccent/ot1mathkerncmss.fd
+File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mathkerncmss.
+)
 
 
 Overfull \hbox (70.05147pt too wide) has occurred while \output is active
@@ -760,17 +771,17 @@ Package rerunfilecheck Info: File `draft_proposal.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 21708 strings out of 473682
- 438643 string characters out of 5703553
- 786279 words of memory out of 5000000
- 44353 multiletter control sequences out of 15000+600000
- 560493 words of font info for 44 fonts, out of 8000000 for 9000
+ 21793 strings out of 473682
+ 440857 string characters out of 5703553
+ 787389 words of memory out of 5000000
+ 44415 multiletter control sequences out of 15000+600000
+ 566081 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,15n,123p,483b,589s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmss10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmss12.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmss8.pfb>
-Output written on draft_proposal.pdf (4 pages, 78085 bytes).
+ 128i,16n,123p,483b,597s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmss10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmss12.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmss8.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmssi10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on draft_proposal.pdf (4 pages, 110115 bytes).
 PDF statistics:
- 184 PDF objects out of 1000 (max. 8388607)
+ 199 PDF objects out of 1000 (max. 8388607)
  9 named destinations out of 1000 (max. 500000)
  169 words of extra memory for PDF output out of 10000 (max. 10000000)
 
