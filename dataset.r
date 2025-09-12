@@ -1,10 +1,7 @@
-
-###1.1.This is just to simulate the data and see if seeting a seed
+###1.1. This is just to simulate the data and see if seeting a seed
 rm(list=ls())
 gc()
 library(MASS)
-
-
 
 ##Define the variables first.
 n<-1000
@@ -19,16 +16,11 @@ ystar <- theta * x + epsilon
 yl <- ystar + v * (v < 0)    
 yu <- ystar + v * (v >= 0)   
 
-
 theta_grid <- seq(1, 3, by = 0.01)
-theta_grid_fine <- seq(1, 3, by = 0.005)
-
 
 ##exercise 2
 yc<-0.5*(yl+yu)
 delta<-(yu-yl)/2
-
-critical_value_qui<-qchisq(0.95, df=2)
 
 # Combine the relevant data in a dataframe
 data_full <- data.frame(
@@ -46,25 +38,56 @@ m2_vec <- function(yc, delta, X, theta){
   return( theta * X^2 - yc * X - abs(X) * delta )
 }
 
+# Calculate moment matrices from data
 moment_matrix_1<-sapply(theta_grid,function(theta_sim) m1_vec(yc, delta, x, theta_sim))
-
 moment_matrix_2<-sapply(theta_grid,function(theta_sim) m2_vec(yc, delta, x, theta_sim))
 
-#estimate moments
+# Estimate moments
 mbar1 <-colMeans(moment_matrix_1)
 mbar2 <-colMeans(moment_matrix_2)
 s2_1 <- apply(moment_matrix_1, 2, var)
 s2_2 <- apply(moment_matrix_2, 2, var)
 
+# Calculate the full-sample test statistic
 tn <- n*((pmax(mbar1, 0)^2)/s2_1 + (pmax(mbar2, 0)^2)/s2_2)
-# Find the confidence set using logical indexing
-confidence_set_1 <- theta_grid[tn <= critical_value_qui]
-
-# Define the final identified set
-identified_set_1 <- c(min(confidence_set_1), max(confidence_set_1))
 
 
-###Subsampling
+## PA Method 
+
+# Simulate B draws from a standard multivariate normal distribution
+B <- 1000 
+J <- 2    
+Z <- mvrnorm(n = B, mu = rep(0, J), Sigma = diag(J))
+
+# Matrix to store the simulated test statistics for each theta
+s_matrix <- matrix(NA, nrow = B, ncol = length(theta_grid))
+
+# Combine the loops for covariance estimation and simulation
+for (j in 1:length(theta_grid)) {
+  moment_vectors <- cbind(moment_matrix_1[, j], moment_matrix_2[, j])
+
+  sigma <- cov(moment_vectors)
+
+  
+  D_hat_inv_sqrt <- diag(diag(sigma)^(-0.5))
+  omega <- D_hat_inv_sqrt %*% sigma %*% D_hat_inv_sqrt
+
+  for (b in 1:B) {
+    simulated_moments <- chol(omega) %*% Z[b, ]
+    s_b <- sum(pmax(simulated_moments, 0)^2)
+    s_matrix[b, j] <- s_b
+  }
+}
+
+# Find the critical value (95th percentile) for each theta
+pa_critical_value <- apply(s_matrix, 2, quantile, probs = 0.95, na.rm = TRUE)
+
+# Construct the confidence set
+confidence_set_pa <- theta_grid[tn <= pa_critical_value]
+identified_set_pa <- c(min(confidence_set_pa), max(confidence_set_pa))
+
+
+###3. Subsampling
 #we define sample size and number of draws
 
 b<- round(sqrt(n))
