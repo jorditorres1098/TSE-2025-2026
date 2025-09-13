@@ -1,8 +1,8 @@
 rm(list=ls())
 gc()
 library(MASS)
-
-##Define the variables first.
+#-----------------------------------------------------------------------------------
+##1.-Define the variables first and the main functions i will use throughout. 
 n<-1000
 set.seed(1234)
 
@@ -17,7 +17,6 @@ yu <- ystar + v * (v >= 0)
 
 theta_grid <- seq(1, 3, by = 0.01)
 
-##exercise 2
 yc<-0.5*(yl+yu)
 delta<-(yu-yl)/2
 
@@ -48,10 +47,13 @@ mbar2 <-colMeans(moment_matrix_2)
 s2_1 <- apply(moment_matrix_1, 2, var)
 s2_2 <- apply(moment_matrix_2, 2, var)
 
-# --- FIX 1: use standard deviations (sqrt of variances) ---
+
+# Estimate t-statistic
 tn <- n*(pmax(mbar1/sqrt(s2_1), 0)^2 + pmax(mbar2/sqrt(s2_2), 0)^2)
 
-## PA Method 
+#-----------------------------------------------------------------------------------
+
+## Exercise 2: PA Method 
 B <- 1000 
 J <- 2    
 Z <- mvrnorm(n = B, mu = rep(0, J), Sigma = diag(J))
@@ -77,8 +79,9 @@ pa_critical_value <- apply(s_matrix, 2, quantile, probs = 0.95, na.rm = TRUE)
 confidence_set_pa <- theta_grid[tn <= pa_critical_value]
 identified_set_pa <- c(min(confidence_set_pa), max(confidence_set_pa))
 
+#-----------------------------------------------------------------------------------
 
-###3. Subsampling
+##Exercise 3. Subsampling
 #we define sample size and number of draws
 
 b<- round(sqrt(n))
@@ -110,19 +113,19 @@ for (i in 1:k) {
     Tn_b_matrix[i, ] <- Tn_b_vec
 }
 
-##find critical value
+#find critical value
 critical_value_subsampling <- apply(Tn_b_matrix, 2, quantile, probs = 0.95)
 
+#identified set
 confidence_set_subsampling <- theta_grid[tn <= critical_value_subsampling]
 identified_set_subsampling <- c(min(confidence_set_subsampling), max(confidence_set_subsampling))
 
 
+#-----------------------------------------------------------------------------------
+##Exercise 4. MMS method
 
-###3. MMS method
 
-#Kappa is determined in a data-drive way, mostly. 
-
-# Matrix to store the simulated test statistics for each theta
+# Matrix to store the simulated test statistics for each theta agaaain, need to find a more efficient and smart way to code in R and detach from Stataism
 skappa_matrix <- matrix(NA, nrow = B, ncol = length(theta_grid))
 
 kappa <- sqrt(2 * log(log(n))) ##recommended but need to find a way as proposed in the paper mentioned; data driven way is always possible 
@@ -150,12 +153,13 @@ for (j in 1:length(theta_grid)) {
 # Find the critical value (95th percentile) for each theta
 gms_critical_value <- apply(skappa_matrix, 2, quantile, probs = 0.95, na.rm = TRUE)
 
-# Construct the confidence set
+# Cconfidence set
 confidence_set_gms <- theta_grid[tn <= gms_critical_value]
 identified_set_gms <- c(min(confidence_set_gms), max(confidence_set_gms))
 
+#-----------------------------------------------------------------------------------
 
-###CHK method. 
+##Exercise 5. CHK method
 alpha=0.05
 p=2
 
@@ -163,11 +167,7 @@ cck=-qnorm(alpha/p)/sqrt(1-qnorm(alpha/p)^2/n)
 
 tn_cck <- pmax(sqrt(n)*(mbar1/sqrt(s2_1)), sqrt(n)*(mbar2/sqrt(s2_2)))
 
-
-
 confidence_set_cck <- theta_grid[tn_cck <= cck]
 identified_set_cck <- c(min(confidence_set_cck), max(confidence_set_cck))
 
-
-
-###########################EOF 
+#-----------------------------------------------------------------------------------EOF 
