@@ -68,7 +68,7 @@ s_matrix <- matrix(NA, nrow = B, ncol = length(theta_grid))
 for (j in 1:length(theta_grid)) {
   moment_vectors <- cbind(moment_matrix_1[, j], moment_matrix_2[, j])
   sigma <- cov(moment_vectors)
-  D_hat_inv_sqrt <- diag(diag(sigma)^(-0.5))
+  D_hat_inv_sqrt <- diag(diag(sigma)^(-0.5)) #####WRONG!!! correct asap
   omega <- D_hat_inv_sqrt %*% sigma %*% D_hat_inv_sqrt
 
   for (b in 1:B) {

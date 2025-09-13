@@ -61,7 +61,7 @@ tn <- n*(pmax(mbar1/sqrt(s2_1), 0)^2 + pmax(mbar2/sqrt(s2_2), 0)^2)
 ##Exercise 2: PA Method -->aproximate the distribution of the T to have the right critical values. 
 B <- 1000 #ad hoc?
 J <- 2 #two moments
-Z <- mvrnorm(n = B, mu = rep(0, J), Sigma = diag(J))
+Z <- mvrnorm(n = B, mu = rep(0, J), Sigma=diag(rep(1,J)))
 
 s_matrix <- matrix(NA, nrow = B, ncol = length(theta_grid))
 
@@ -89,7 +89,7 @@ bounds_set_pa <- c(min(confidence_set_pa), max(confidence_set_pa))
 ##Exercise 3. Subsampling-->another way to determine the critical values.
 #we define sample size and number of draws
 b<- round(sqrt(n))
-k<-1000
+k<-round(1000/b)
 
 
 Tn_b_matrix <- matrix(NA, nrow = k, ncol = length(theta_grid))
@@ -165,7 +165,7 @@ bounds_set_gms <- c(min(confidence_set_gms), max(confidence_set_gms))
 
 ##Exercise 5. CHK method, pretty straight forward
 alpha=0.05
-p=2 ##number of ineq
+p=1 ##number of ineq
 
 cck=-qnorm(alpha/p)/sqrt(1-qnorm(alpha/p)^2/n)
 
