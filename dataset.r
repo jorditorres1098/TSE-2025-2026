@@ -1,4 +1,3 @@
-###1.1. This is just to simulate the data and see if seeting a seed
 rm(list=ls())
 gc()
 library(MASS)
@@ -22,12 +21,13 @@ theta_grid <- seq(1, 3, by = 0.01)
 yc<-0.5*(yl+yu)
 delta<-(yu-yl)/2
 
-# Combine the relevant data in a dataframe
+
 data_full <- data.frame(
   x = x,
   yc = yc,
   delta = delta
 )
+
 
 #Moment function
 m1_vec <- function(yc, delta, X, theta){
@@ -48,41 +48,32 @@ mbar2 <-colMeans(moment_matrix_2)
 s2_1 <- apply(moment_matrix_1, 2, var)
 s2_2 <- apply(moment_matrix_2, 2, var)
 
-# Calculate the full-sample test statistic
-tn <- n*((pmax(mbar1, 0)^2)/s2_1 + (pmax(mbar2, 0)^2)/s2_2)
-
+# --- FIX 1: use standard deviations (sqrt of variances) ---
+tn <- n*(pmax(mbar1/sqrt(s2_1), 0)^2 + pmax(mbar2/sqrt(s2_2), 0)^2)
 
 ## PA Method 
-
-# Simulate B draws from a standard multivariate normal distribution
 B <- 1000 
 J <- 2    
 Z <- mvrnorm(n = B, mu = rep(0, J), Sigma = diag(J))
 
-# Matrix to store the simulated test statistics for each theta
 s_matrix <- matrix(NA, nrow = B, ncol = length(theta_grid))
 
-# Combine the loops for covariance estimation and simulation
 for (j in 1:length(theta_grid)) {
   moment_vectors <- cbind(moment_matrix_1[, j], moment_matrix_2[, j])
-
   sigma <- cov(moment_vectors)
-
-  
   D_hat_inv_sqrt <- diag(diag(sigma)^(-0.5))
   omega <- D_hat_inv_sqrt %*% sigma %*% D_hat_inv_sqrt
 
   for (b in 1:B) {
-    simulated_moments <- chol(omega) %*% Z[b, ]
+    # --- FIX 2: use t(chol(omega)) ---
+    simulated_moments <- t(chol(omega)) %*% Z[b, ] 
     s_b <- sum(pmax(simulated_moments, 0)^2)
     s_matrix[b, j] <- s_b
   }
 }
 
-# Find the critical value (95th percentile) for each theta
 pa_critical_value <- apply(s_matrix, 2, quantile, probs = 0.95, na.rm = TRUE)
 
-# Construct the confidence set
 confidence_set_pa <- theta_grid[tn <= pa_critical_value]
 identified_set_pa <- c(min(confidence_set_pa), max(confidence_set_pa))
 
@@ -114,7 +105,7 @@ for (i in 1:k) {
     s2_1_b <- apply(moment_matrix_1, 2, var)
     s2_2_b <- apply(moment_matrix_2, 2, var)
 
-    Tn_b_vec <- b * ( (pmax(mbar1_b, 0)^2) / s2_1_b + (pmax(mbar2_b, 0)^2) / s2_2_b )
+    Tn_b_vec <- b * ((pmax(mbar1_b/sqrt(s2_1_b), 0)^2 + (pmax(mbar2_b/ sqrt(s2_2_b), 0 ))^2))
     
     Tn_b_matrix[i, ] <- Tn_b_vec
 }
@@ -124,3 +115,59 @@ critical_value_subsampling <- apply(Tn_b_matrix, 2, quantile, probs = 0.95)
 
 confidence_set_subsampling <- theta_grid[tn <= critical_value_subsampling]
 identified_set_subsampling <- c(min(confidence_set_subsampling), max(confidence_set_subsampling))
+
+
+
+###3. MMS method
+
+#Kappa is determined in a data-drive way, mostly. 
+
+# Matrix to store the simulated test statistics for each theta
+skappa_matrix <- matrix(NA, nrow = B, ncol = length(theta_grid))
+
+kappa <- sqrt(2 * log(log(n))) ##recommended but need to find a way as proposed in the paper mentioned; data driven way is always possible 
+
+# Combine the loops for covariance estimation and simulation
+for (j in 1:length(theta_grid)) {
+  
+  moment_vectors <- cbind(moment_matrix_1[, j], moment_matrix_2[, j])
+  sigma <- cov(moment_vectors)
+  D_hat_inv_sqrt <- diag(diag(sigma)^(-0.5))
+  omega <- D_hat_inv_sqrt %*% sigma %*% D_hat_inv_sqrt
+
+  xi_1<- sqrt(n)*(mbar1[j]/(sqrt(s2_1[j])*kappa))
+  xi_2<- sqrt(n)*(mbar2[j]/(sqrt(s2_2[j])*kappa))
+
+  varphi <- c(pmin(xi_1, 0), pmin(xi_2, 0))
+
+  for (b in 1:B) {
+    simulated_moments <- t(chol(omega)) %*% Z[b, ] + varphi
+    s_b_kappa <- pmax(simulated_moments[1], 0)^2 +pmax(simulated_moments[2], 0)^2
+    skappa_matrix[b, j] <- s_b_kappa
+  }
+}
+
+# Find the critical value (95th percentile) for each theta
+gms_critical_value <- apply(skappa_matrix, 2, quantile, probs = 0.95, na.rm = TRUE)
+
+# Construct the confidence set
+confidence_set_gms <- theta_grid[tn <= gms_critical_value]
+identified_set_gms <- c(min(confidence_set_gms), max(confidence_set_gms))
+
+
+###CHK method. 
+alpha=0.05
+p=2
+
+cck=-qnorm(alpha/p)/sqrt(1-qnorm(alpha/p)^2/n)
+
+tn_cck <- pmax(sqrt(n)*(mbar1/sqrt(s2_1)), sqrt(n)*(mbar2/sqrt(s2_2)))
+
+
+
+confidence_set_cck <- theta_grid[tn_cck <= cck]
+identified_set_cck <- c(min(confidence_set_cck), max(confidence_set_cck))
+
+
+
+###########################EOF 
