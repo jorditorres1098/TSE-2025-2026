@@ -1,4 +1,4 @@
-##date 11/09/2025 visca Catalunya lliure. 
+##date 11/09/2025 
 ##Author: Jordi
 
 rm(list=ls())
@@ -13,7 +13,7 @@ x<-runif(n, min=-sqrt(3), max=sqrt(3))
 epsilon<- runif(n, min=-0.5, max=0.5)
 theta<-2
 v<-rnorm(n)
-
+ 
 ystar <- theta * x + epsilon
 yl <- ystar + v * (v < 0)    
 yu <- ystar + v * (v >= 0)   
@@ -59,9 +59,9 @@ tn <- n*(pmax(mbar1/sqrt(s2_1), 0)^2 + pmax(mbar2/sqrt(s2_2), 0)^2)
 #-----------------------------------------------------------------------------------
 
 ##Exercise 2: PA Method -->aproximate the distribution of the T to have the right critical values. 
-B <- 1000 #ad hoc?
+B <- 1000 #ad hoc? we need to push the draws...
 J <- 2 #two moments
-Z <- mvrnorm(n = B, mu = rep(0, J), Sigma = diag(J))
+Z <- mvrnorm(n = B, mu = rep(0, J), Sigma=diag(rep(1,J)))
 
 s_matrix <- matrix(NA, nrow = B, ncol = length(theta_grid))
 
@@ -89,7 +89,7 @@ bounds_set_pa <- c(min(confidence_set_pa), max(confidence_set_pa))
 ##Exercise 3. Subsampling-->another way to determine the critical values.
 #we define sample size and number of draws
 b<- round(sqrt(n))
-k<-1000
+k<-10000
 
 
 Tn_b_matrix <- matrix(NA, nrow = k, ncol = length(theta_grid))
@@ -112,10 +112,14 @@ for (i in 1:k) {
     s2_1_b <- apply(moment_matrix_1, 2, var)
     s2_2_b <- apply(moment_matrix_2, 2, var)
 
-    Tn_b_vec <- b * ((pmax(mbar1_b/sqrt(s2_1_b), 0)^2 + (pmax(mbar2_b/ sqrt(s2_2_b), 0 ))^2))
+    Tn_b_vec <-  b*((pmax(mbar1_b/sqrt(s2_1_b), 0)^2 + (pmax(mbar2_b/ sqrt(s2_2_b), 0 ))^2))
     
     Tn_b_matrix[i, ] <- Tn_b_vec
 }
+
+plot(density(Tn_b_matrix[,1]))
+
+
 
 #find critical value
 critical_value_subsampling <- apply(Tn_b_matrix, 2, quantile, probs = 0.95)
@@ -126,12 +130,12 @@ bounds_set_subsampling <- c(min(confidence_set_subsampling), max(confidence_set_
 
 
 #-----------------------------------------------------------------------------------
-##Exercise 4. MMS method
+##Exercise 4. GMS method
 
 # Matrix to store the simulated test statistics for each theta agaaain, need to find a more efficient and smart way to code in R and detach from Stataism
 skappa_matrix <- matrix(NA, nrow = B, ncol = length(theta_grid))
 
-kappa <- sqrt(2 * log(log(n))) ##recommended but need to find a way as proposed in the paper mentioned; data driven way is always possible but don't understand shit from the table in the paper alluded.
+kappa <- sqrt(2 * log(log(n))) ##recommended but need to find a way as proposed in the paper mentioned; data driven way is always possible but don't understand that much from the table in the paper alluded.
 
 for (j in 1:length(theta_grid)) {
   
@@ -144,7 +148,7 @@ for (j in 1:length(theta_grid)) {
   xi_1<- sqrt(n)*(mbar1[j]/(sqrt(s2_1[j])*kappa))
   xi_2<- sqrt(n)*(mbar2[j]/(sqrt(s2_2[j])*kappa))
 
-  varphi <- c(pmin(xi_1, 0), pmin(xi_2, 0)) ##many different varphi functions can be used, but I am lazy and decided to have only this one. Check Bontemps notes. 
+  varphi <- c(pmin(xi_1, 0), pmin(xi_2, 0)) ##many different varphi functions can be used. Check Bontemps notes. 
 
   for (b in 1:B) {
     simulated_moments <- t(chol(omega)) %*% Z[b, ] + varphi
@@ -172,6 +176,6 @@ cck=-qnorm(alpha/p)/sqrt(1-qnorm(alpha/p)^2/n)
 tn_cck <- pmax(sqrt(n)*(mbar1/sqrt(s2_1)), sqrt(n)*(mbar2/sqrt(s2_2)))
 
 confidence_set_cck <- theta_grid[tn_cck <= cck]
-identified_set_cck <- c(min(confidence_set_cck), max(confidence_set_cck))
+bounds_set_cck <- c(min(confidence_set_cck), max(confidence_set_cck))
 
 #-----------------------------------------------------------------------------------EOF 
