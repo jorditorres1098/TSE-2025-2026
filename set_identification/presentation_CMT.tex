@@ -1,0 +1,144 @@
+\documentclass{beamer}
+
+\usetheme{AnnArbor} % AnnArbor main theme
+\usecolortheme{dolphin} % Blue color theme
+
+% Sidebar navigation similar to Frankfurt
+\useoutertheme[subsection=false]{miniframes}
+
+% Packages
+\usepackage{graphicx, booktabs, amsmath, amssymb, hyperref, xcolor}
+% Title information
+\title[CMT (2021)]{Market Structure and Competition in Airilines Markets}
+\author[Zafar, Wiswall]{JPE, 2021 \\Federico Ciliberto, Charles Murry, Elie Tamer}
+\date{\today}
+
+\begin{document}
+
+% Title Slide
+\begin{frame}
+    \titlepage
+\end{frame}
+
+% Outline Slide
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+% Section 1: Introduction
+\section{Introduction}
+
+\begin{frame}{Introduction}
+    \begin{itemize}
+        This is a sketch...
+        \item Game of simultaneous entry and pricing decisions. 
+        \item Let $i=1,2$ denote the firms and $j=1, ..., J$ the number of potential markets 
+        \item Then firms need to decide $y_{ij}=\{0,1\}$ and set $P{ij}$ conditional on $y_{ij}=1$.
+        \item Problem \rightarrow 
+        \begin{enumerate}
+            \item Firms select into markets, so entry decision needs to be modelled (vs BLP that takes market entry as given)
+            \item This affects the analysis of merger policy and effects.
+            \item Basically, expand BLP to introduce endogeneous market entry
+        \end{enumerate}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Literature Review}
+\begin{enumerate}
+    \item BLP: estimate competition model, nash eq, heterogeneous products etc. 
+    \item + add entry game very similar as Ciliberto Tamer 2009
+    
+    Mention other important methods where this has been applied\dots they mention it in their paper. 
+    (This is important to have an idea of the key idea of the paper)
+\end{enumerate}
+    
+\end{frame}
+
+
+\begin{frame}{Simple model}
+    full info, pure strategy game (think it can be extended to mixed)
+    \begin{equation}
+        y_1= \mathbb{1}\left[\delta_{2}y_2+\gamma Z_{1}+ \upsilon_1 \right]
+        y_2= \mathbb{1}\left[\delta_{1}y_1+\gamma Z_{2}+ \upsilon_2 \right]
+
+        S_1=X_1\beta + \alpha_1 V_1 + \psi_1
+        S_2=X_2\beta + \alpha_2 V_2 + \psi_2
+    \end{equation}
+    explain the variables that are exogeenous and the endogeneous. The fundamental idea is this one:
+    where \(\left(\upsilon_1, upsilon_2, \phi_1, phi_2\right) \sim (N,\Sigma)\)
+     
+    And the off-diagonal entries of sigma are not 0! this introduces the source of selection biased, explain example here (similar to Heckman's selection model, potentially). 
+\end{frame}
+
+
+
+\begin{frame}{Simple model}
+    \begin{equation}
+        y_1= \mathbb{1}\left[\delta_{2}y_2+\gamma Z_{1}+ \upsilon_1 \right]
+        y_2= \mathbb{1}\left[\delta_{1}y_1+\gamma Z_{2}+ \upsilon_2 \right]
+
+        S_1=X_1\beta + \alpha_1 V_1 + \psi_1
+        S_2=X_2\beta + \alpha_2 V_2 + \psi_2
+    \end{equation}
+    explain the variables that are exogeenous and the endogeneous. The fundamental idea is this one:
+    where \(\left(\upsilon_1, upsilon_2, \phi_1, phi_2\right) \sim (N,\Sigma)\)
+     
+    And the off-diagonal entries of sigma are not 0! this introduces the source of selection biased, explain example here (similar to Heckman's selection model, potentially). Maybe talk about the non-standard problems that we may have here -multiple eq and setting of price (endogeneity).  
+\end{frame}
+
+
+
+\begin{frame}{Simple model}
+But how to do inference?
+
+We can estimate the distribution of what we observe in the data \(\left(S_1y_1, V_1y_1, y_1, S_2y_2, V_2y_2, y_2\right)\) compare this with simulated moments--> using
+
+\(P(\psi_1\leq t_1; y_1=1 , y2=0 )\) and we can compare this to: 
+
+\(P(\psi_1\leq t_1; y_1=1 , y2=0 )= P(\psi_1\leq t_1; (\upsilon_1, \upsilon_2)\in A^{u}_{(1,0)})+ P(d_{1,0} |\psi_1\leq t_1 ; (\upsilon_1, \upsilon_2)\in A^{nu}_{(1,0)} ) P(\psi_1\leq t_1 ; (\upsilon_1, \upsilon_2)\in A^{nu}_{(1,0)} )\)
+
+So we can easily bound these two inequalities using:
+
+\[
+P(\psi_1\leq t_1; (\upsilon_1, \upsilon_2)\in A^{u}_{(1,0)}) \leq P(\psi_1\leq t_1; y_1=1 , y2=0 ) \leq P(\psi_1\leq t_1; (\upsilon_1, \upsilon_2)\in A^{u}_{(1,0)})+ P(\psi_1\leq t_1 ; (\upsilon_1, \upsilon_2)\in A^{nu}_{(1,0)} )
+\]
+
+If we repeat this exercise we can repeat it for firm two 0,1 condition. And what is left is 1,1 , 0,0 , but these are easily bounded: 
+\(P(y_1=0, y_2=0)=(\upsilon_1\leq -\gamma Z_1,\upsilon_2\leq -\gamma Z_2 )\)
+one is the opposite... This gives us these moment conditions
+
+
+\(\mathbb{E}\left(G(\theta, S1Y1\dots )\right)\leq 0\)
+
+Maybe CT!! on why there are regions of multiplicy and what that means, revisit  this tomorrow. But should be fine.
+\end{frame}
+
+\begin{frame}{The structural model}
+\begin{equation}
+    y_1=1 \iff \pi_1=\left(p_1-c(W_1, \eta_1) M \cdot \tilde{s}_1(\textbf{p},\textbf{X}, \textbf{Y}, \xi)- F(Z_1, \upsilon_1)\right) \geq 0
+    y_2=1 \iff \pi_2=\left(p_2-c(W_2, \eta_1) M \cdot \tilde{s}_2(\textbf{p},\textbf{X}, \textbf{Y}, \xi)- F(Z_2, \upsilon_2)\right) \geq 0
+    
+    S_1= \tilde{s}_1(\textbf{p},\textbf{X}, \textbf{Y}, \xi)
+    S_2= \tilde{s}_2(\textbf{p},\textbf{X}, \textbf{Y}, \xi)
+    
+    \left(p_1-c(W_1, \eta_1)\right) \frac{\partial \tilde{s}_1}{\partial p_1}+\tilde{s}_1(\textbf{p},\textbf{X}, \textbf{Y}, \xi)
+    \left(p_2-c(W_2, \eta_2)\right) \frac{\partial \tilde{s}_2}{\partial p_2}+\tilde{s}_2(\textbf{p},\textbf{X}, \textbf{Y}, \xi)
+
+\end{equation}
+Mention assumptions on functions-parametrization and assumptions on how unobservables are correlated , which is the essential idea of the paper (accouont for selection problem)
+\end{frame}
+
+\begin{frame}
+    Describe the algorithm that they use! the main idea is simple and requires to compute first the distribution of errors and then compare them to the simulated probabilities. 
+\end{frame}
+
+\begin{frame}
+    Actual application
+    Show self-selection of carriers
+    Show model of BLP vs BLP with endogeneous entry. 
+
+\end{frame}
+
+
+
+\end{document}
