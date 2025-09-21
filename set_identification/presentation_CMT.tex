@@ -8,9 +8,13 @@
 
 % Packages
 \usepackage{graphicx, booktabs, amsmath, amssymb, hyperref, xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
 % Title information
 \title[CMT (2021)]{Market Structure and Competition in Airilines Markets}
-\author[Zafar, Wiswall]{JPE, 2021 \\Federico Ciliberto, Charles Murry, Elie Tamer}
+\author[Ciliberto, Murray, Tamer]{JPE, 2021 \\Federico Ciliberto, Charles Murry, Elie Tamer}
 \date{\today}
 
 \begin{document}
@@ -30,115 +34,195 @@
 
 \begin{frame}{Introduction}
     \begin{itemize}
-        This is a sketch...
-        \item Game of simultaneous entry and pricing decisions. 
-        \item Let $i=1,2$ denote the firms and $j=1, ..., J$ the number of potential markets 
-        \item Then firms need to decide $y_{ij}=\{0,1\}$ and set $P{ij}$ conditional on $y_{ij}=1$.
-        \item Problem \rightarrow 
+        \item \textbf{Setup:} Two firms ($i=1,2$) across markets ($j=1,\dots,J$).
+        \item Each firm chooses:
+        \begin{itemize}
+            \item Entry decision $y_{ij} \in \{0,1\}$ 
+            \item Price $P_{ij}$ if $y_{ij}=1$
+        \end{itemize}
+        \item \textbf{Key issues:} 
         \begin{enumerate}
-            \item Firms select into markets, so entry decision needs to be modelled (vs BLP that takes market entry as given)
-            \item This affects the analysis of merger policy and effects.
-            \item Basically, expand BLP to introduce endogeneous market entry
+            \item Firms self-select into markets $\Rightarrow$ entry must be modeled.
+            \item Ignoring this biases demand and cost estimates (contrast with BLP).
+            \item Crucial for evaluating merger policy and welfare.
         \end{enumerate}
     \end{itemize}
 \end{frame}
 
+
 \begin{frame}{Literature Review}
-\begin{enumerate}
-    \item BLP: estimate competition model, nash eq, heterogeneous products etc. 
-    \item + add entry game very similar as Ciliberto Tamer 2009
+    \begin{itemize}
+        \item \textbf{BLP (1995):} Demand and pricing in differentiated products, assumes exogenous market structure.
+        \item \textbf{Ciliberto \& Tamer (2009):} Entry games with multiple equilibria, partial identification.
+        \item \textbf{This paper:} Combines BLP with endogenous entry à la CT (2009).
+    \end{itemize}
+\end{frame}
+
+\section{The Model}
+\begin{frame}{Simple Model}
+    \begin{equation*}
+        \begin{aligned}
+        y_1 &= \mathbb{1}\!\left[\delta_{2}y_2 + \gamma Z_{1} + \nu_1 \geq 0 \right] \\
+        y_2 &= \mathbb{1}\!\left[\delta_{1}y_1 + \gamma Z_{2} + \nu_2 \geq 0 \right] \\
+        S_1 &= X_1\beta + \alpha_1 V_1 + \xi_1 \\
+        S_2 &= X_2\beta + \alpha_2 V_2 + \xi_2
+        \end{aligned}
+    \end{equation*}
+    \vspace{0.3cm}
+    \begin{itemize}
+        \item Errors are jointly normal $\mathcal{N}(0,\Sigma)$.
+        \item Off-diagonal entries of $\Sigma \neq 0 \implies$ \textbf{selection bias}.
+        \item Issues: multiple equilibria and endogenous variables.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Inference: Setup}
+    \small
+    \textbf{Observables:} $(S_1 y_1, V_1 y_1, y_1, \; S_2 y_2, V_2 y_2, y_2)$.
     
-    Mention other important methods where this has been applied\dots they mention it in their paper. 
-    (This is important to have an idea of the key idea of the paper)
-\end{enumerate}
+    \vspace{0.2cm}
+    \textbf{Key Idea:} Link the distribution of observables to the model's predictions.
+    
+    \vspace{0.2cm}
+    For $(y_1,y_2)=(1,0)$:
+    \[
+    P(\xi_1 \leq t_1; y_1=1,y_2=0)
+    \]
+    This probability can be decomposed into unique ($A^u$) and multiple ($A^m$) equilibrium regions.
+    \[
+    \resizebox{\linewidth}{!}{P(\xi_1 \leq t_1; (\nu_1,\nu_2)\in A^{u}_{(1,0)}) 
+    \;+\;
+    P(d_{1,0}=1 \mid \xi_1 \leq t_1, (\nu_1,\nu_2)\in A^{nu}_{(1,0)})
+    \cdot P(\xi_1 \leq t_1; (\nu_1,\nu_2)\in A^{nu}_{(1,0)}) 
+    }
+    \]
     
 \end{frame}
 
+\begin{frame}{Multiplicity regions}
+    \centering
+    % To add the image, place your image file (e.g., my_image.png) in the same folder as your LaTeX file
+    % Then, uncomment the line below and change 'my_image.png' to your file name.
+    % \includegraphics[width=0.8\textwidth]{my_image.png}
+    Here add the picture from CT 2009
+\end{frame}
 
-\begin{frame}{Simple model}
-    full info, pure strategy game (think it can be extended to mixed)
+\begin{frame}{Inference: Bounds}
+    \small
+    \[
+    P(\xi_1 \leq t_1; (\nu_1,\nu_2)\in A^{u}_{(1,0)})
+    \]
+    \[
+    \leq P(S_1 - \alpha_1 V_1 - X_1 \beta \leq t_1; y_1=1,y_2=0)
+    \]
+    \[
+    \leq P(\xi_1 \leq t_1; (\nu_1,\nu_2)\in A^{u}_{(1,0)}) + P(\xi_1 \leq t_1; (\nu_1,\nu_2)\in A^{m}_{(1,0)})
+    \]
+    \vspace{0.2cm}
+\end{frame}
+
+\begin{frame}{All Moment Conditions}
+    \small
+    \textbf{Moment Inequalities:}
+    \begin{itemize}
+        \item For $(y_1, y_2)=(1,0)$:
+        \[
+        ml_{(1,0)}\leq \mathbb{E}[ \mathbb{1}_{\{S_1-\dots\leq t_1, y_1=1, y_2=0\}} ] \leq mu_{(1,0)}
+        \]
+        \item For $(y_1, y_2)=(0,1)$:
+        \[
+        ml_{(0,1)}\leq \mathbb{E}[ \mathbb{1}_{\{S_2-\dots\leq t_2, y_1=0, y_2=1\}} ] \leq mu_{(0,1)}
+        \]
+    \end{itemize}
+    \vspace{0.2cm}
+    \textbf{Moment Equalities:}
+    \begin{itemize}
+        \item For $(y_1, y_2)=(1,1)$:
+        \[
+        \mathbb{E}[ \mathbb{1}_{\{S_1-\dots\leq t_1, S_2-\dots\leq t_2, y_1=1, y_2=1\}} ] = m_{(1,1)}
+        \]
+        \item For $(y_1, y_2)=(0,0)$:
+        \[
+        \mathbb{E}[ \mathbb{1}_{\{y_1=0, y_2=0\}} ] = m_{(0,0)}
+        \]
+    \end{itemize}
+
+    \textbf{Overall Moment Conditions:}
+    \[
+    \mathbb{E}[G(\theta, S_1y_1, S_2y_2, V_1y_1, V_2y_2, y_1, y_2)|Z, X] \leq 0
+    \]
+\end{frame}
+
+\begin{frame}{The Structural Model}
     \begin{equation}
-        y_1= \mathbb{1}\left[\delta_{2}y_2+\gamma Z_{1}+ \upsilon_1 \right]
-        y_2= \mathbb{1}\left[\delta_{1}y_1+\gamma Z_{2}+ \upsilon_2 \right]
-
-        S_1=X_1\beta + \alpha_1 V_1 + \psi_1
-        S_2=X_2\beta + \alpha_2 V_2 + \psi_2
+        \begin{cases}
+        y_1=1 \iff \pi_1=\left(p_1-c(W_1, \eta_1) M \cdot \tilde{s}_1(\textbf{p},\textbf{X}, \textbf{Y}, \xi)- F(Z_1, \upsilon_1)\right) \geq 0 \\
+        y_2=1 \iff \pi_2=\left(p_2-c(W_2, \eta_2) M \cdot \tilde{s}_2(\textbf{p},\textbf{X}, \textbf{Y}, \xi)- F(Z_2, \upsilon_2)\right) \geq 0 \\
+        S_1= \tilde{s}_1(\textbf{p},\textbf{X}, \textbf{Y}, \xi) \\
+        S_2= \tilde{s}_2(\textbf{p},\textbf{X}, \textbf{Y}, \xi) \\
+        \left(p_1-c(W_1, \eta_1)\right) \frac{\partial \tilde{s}_1}{\partial p_1}+\tilde{s}_1(\textbf{p},\textbf{X}, \textbf{Y}, \xi) = 0 \\
+        \left(p_2-c(W_2, \eta_2)\right) \frac{\partial \tilde{s}_2}{\partial p_2}+\tilde{s}_2(\textbf{p},\textbf{X}, \textbf{Y}, \xi)=0
+        \end{cases}
     \end{equation}
-    explain the variables that are exogeenous and the endogeneous. The fundamental idea is this one:
-    where \(\left(\upsilon_1, upsilon_2, \phi_1, phi_2\right) \sim (N,\Sigma)\)
-     
-    And the off-diagonal entries of sigma are not 0! this introduces the source of selection biased, explain example here (similar to Heckman's selection model, potentially). 
 \end{frame}
 
-
-
-\begin{frame}{Simple model}
-    \begin{equation}
-        y_1= \mathbb{1}\left[\delta_{2}y_2+\gamma Z_{1}+ \upsilon_1 \right]
-        y_2= \mathbb{1}\left[\delta_{1}y_1+\gamma Z_{2}+ \upsilon_2 \right]
-
-        S_1=X_1\beta + \alpha_1 V_1 + \psi_1
-        S_2=X_2\beta + \alpha_2 V_2 + \psi_2
-    \end{equation}
-    explain the variables that are exogeenous and the endogeneous. The fundamental idea is this one:
-    where \(\left(\upsilon_1, upsilon_2, \phi_1, phi_2\right) \sim (N,\Sigma)\)
-     
-    And the off-diagonal entries of sigma are not 0! this introduces the source of selection biased, explain example here (similar to Heckman's selection model, potentially). Maybe talk about the non-standard problems that we may have here -multiple eq and setting of price (endogeneity).  
+\begin{frame}{Estimation Algorithm}
+    \begin{itemize}
+        \item Find $\Theta = (\alpha, \beta, \varphi, \gamma, \Sigma)$ that minimizes distance between empirical and simulated distributions.
+        \item Candidate parameter value: $\Theta_0$
+    \end{itemize}
+    \vspace{0.2cm}
+    \textbf{Step 1: Empirical CDF}
+    \begin{itemize}
+        \item Compute residuals from data using $\Theta_0$:
+        \[\hat{\xi}, \hat{\eta}\]
+        \item Construct empirical CDFs:
+        \[
+        \hat{P}(\hat{\xi} \leq t_D, \hat{\eta} \leq t_S | \textbf{X}, \textbf{W}, \textbf{Z})
+        \]
+    \end{itemize}
+    \vspace{0.2cm}
+    \textbf{Step 2: Simulated CDFs (Bounds)}
+    \begin{itemize}
+        \item Simulate $(\nu^r, \xi^r, \eta^r)$ from $\mathcal{N}(0, \Sigma_0)$.
+        \item For each draw and each of the $2^K-1$ potential market structures:
+        \begin{itemize}
+            \item Solve the subsystem of demand and FOCs for equilibrium prices and shares, $(\bar{p}^r, \bar{s}^r)$.
+            \item Compute profits to determine equilibria.
+        \end{itemize}
+        \item Construct simulated CDFs for unique ($A^U$) and multiple ($A^M$) equilibrium regions.
+        \[
+        \hat{P}(\xi^r \leq t_D, \eta^r \leq t_S; \nu^r \in A^U) \quad \text{and} \quad \hat{P}(\xi^r \leq t_D, \eta^r \leq t_S; \nu^r \in A^M)
+        \]
+    \end{itemize}
+    \vspace{0.2cm}
+    \textbf{Step 3: Minimum Distance}
+    \begin{itemize}
+        \item Use a criterion function to define bounds based on how far the simulated moments depart from the moment conditions.
+        \item The identified set is the set of all $\Theta$ that minimize this distance.-->CHT 2007
+    \end{itemize}
 \end{frame}
 
-
-
-\begin{frame}{Simple model}
-But how to do inference?
-
-We can estimate the distribution of what we observe in the data \(\left(S_1y_1, V_1y_1, y_1, S_2y_2, V_2y_2, y_2\right)\) compare this with simulated moments--> using
-
-\(P(\psi_1\leq t_1; y_1=1 , y2=0 )\) and we can compare this to: 
-
-\(P(\psi_1\leq t_1; y_1=1 , y2=0 )= P(\psi_1\leq t_1; (\upsilon_1, \upsilon_2)\in A^{u}_{(1,0)})+ P(d_{1,0} |\psi_1\leq t_1 ; (\upsilon_1, \upsilon_2)\in A^{nu}_{(1,0)} ) P(\psi_1\leq t_1 ; (\upsilon_1, \upsilon_2)\in A^{nu}_{(1,0)} )\)
-
-So we can easily bound these two inequalities using:
-
-\[
-P(\psi_1\leq t_1; (\upsilon_1, \upsilon_2)\in A^{u}_{(1,0)}) \leq P(\psi_1\leq t_1; y_1=1 , y2=0 ) \leq P(\psi_1\leq t_1; (\upsilon_1, \upsilon_2)\in A^{u}_{(1,0)})+ P(\psi_1\leq t_1 ; (\upsilon_1, \upsilon_2)\in A^{nu}_{(1,0)} )
-\]
-
-If we repeat this exercise we can repeat it for firm two 0,1 condition. And what is left is 1,1 , 0,0 , but these are easily bounded: 
-\(P(y_1=0, y_2=0)=(\upsilon_1\leq -\gamma Z_1,\upsilon_2\leq -\gamma Z_2 )\)
-one is the opposite... This gives us these moment conditions
-
-
-\(\mathbb{E}\left(G(\theta, S1Y1\dots )\right)\leq 0\)
-
-Maybe CT!! on why there are regions of multiplicy and what that means, revisit  this tomorrow. But should be fine.
-\end{frame}
-
-\begin{frame}{The structural model}
-\begin{equation}
-    y_1=1 \iff \pi_1=\left(p_1-c(W_1, \eta_1) M \cdot \tilde{s}_1(\textbf{p},\textbf{X}, \textbf{Y}, \xi)- F(Z_1, \upsilon_1)\right) \geq 0
-    y_2=1 \iff \pi_2=\left(p_2-c(W_2, \eta_1) M \cdot \tilde{s}_2(\textbf{p},\textbf{X}, \textbf{Y}, \xi)- F(Z_2, \upsilon_2)\right) \geq 0
-    
-    S_1= \tilde{s}_1(\textbf{p},\textbf{X}, \textbf{Y}, \xi)
-    S_2= \tilde{s}_2(\textbf{p},\textbf{X}, \textbf{Y}, \xi)
-    
-    \left(p_1-c(W_1, \eta_1)\right) \frac{\partial \tilde{s}_1}{\partial p_1}+\tilde{s}_1(\textbf{p},\textbf{X}, \textbf{Y}, \xi)
-    \left(p_2-c(W_2, \eta_2)\right) \frac{\partial \tilde{s}_2}{\partial p_2}+\tilde{s}_2(\textbf{p},\textbf{X}, \textbf{Y}, \xi)
-
-\end{equation}
-Mention assumptions on functions-parametrization and assumptions on how unobservables are correlated , which is the essential idea of the paper (accouont for selection problem)
-\end{frame}
-
-\begin{frame}
-    Describe the algorithm that they use! the main idea is simple and requires to compute first the distribution of errors and then compare them to the simulated probabilities. 
-\end{frame}
-
-\begin{frame}
-    Actual application
-    Show self-selection of carriers
-    Show model of BLP vs BLP with endogeneous entry. 
+\begin{frame}{Data}
+  %show picture of the results 
 
 \end{frame}
 
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{lccc}
+        \toprule
+        \textbf{Demand} & \textbf{GMM} & \textbf{Ex.E} & \textbf{En.E} \\
+        \midrule
+        Price (100\$) & [-2.385, -2.185] & [-2.315, -2.282] & [-1.557, -1.488] \\
+        \midrule
+        \textbf{Market Power} & & & \\
+        \midrule
+        Median Elasticity & [-8.163, -8.091] & [-7.281, -7.063] & [-4.105, -4.007] \\
+        Median Markup & [28.146, 28.274] & \textcolor{red}{[30.366, 31.564]} & \textcolor{blue}{[53.617, 56.051]} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 
 \end{document}

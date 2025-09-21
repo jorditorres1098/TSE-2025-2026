@@ -1,0 +1,2 @@
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{The Model}{5}{0}{2}
