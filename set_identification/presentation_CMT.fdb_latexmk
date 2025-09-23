@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1758450065.23571 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/set_identification/presentation_CMT.tex" "presentation_CMT.pdf" "presentation_CMT" 1758450066.5994 2
-  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/set_identification/presentation_CMT.tex" 1758450062.78994 8085 a8f1b8b5f4df6fe2999c239a9ccd0f05 ""
+["pdflatex"] 1758543271.56864 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/set_identification/presentation_CMT.tex" "presentation_CMT.pdf" "presentation_CMT" 1758543273.04869 2
+  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/set_identification/presentation_CMT.tex" 1758543268.98344 8085 a8f1b8b5f4df6fe2999c239a9ccd0f05 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/map/pdftex/pdftex.map" 1750006559.21597 339773 a1c68872d3dc0a4bee66a5dedbc28f32 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcss1095.pk" 1741089078.74524 11640 a20d2ca57de059b375f38b349c3d8b1e ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1734277941.08881 12002472 b582eb731daf2b623c3d30845607ef6c ""
@@ -206,11 +206,11 @@
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/translator/translator.sty" 1739183877.70114 8765 56d370785f0143111ff9898b5adfe08e ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/url/url.sty" 1725915934.0507 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/xcolor/xcolor.sty" 1734275016.41717 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "presentation_CMT.aux" 1758450066.47647 2520 90c70b3165b954511b4ca03a5b1cb50a "pdflatex"
-  "presentation_CMT.nav" 1758450066.47782 1598 8ec539677ba8d4bfed61609ab5a23f5e "pdflatex"
-  "presentation_CMT.out" 1758450066.47741 194 bc3d91951e4f959dbb9d93b370c1d8ce "pdflatex"
-  "presentation_CMT.tex" 1758450062.78994 8085 a8f1b8b5f4df6fe2999c239a9ccd0f05 ""
-  "presentation_CMT.toc" 1758450066.47786 93 b16e6b89d235a59abc62a3d32214823f "pdflatex"
+  "presentation_CMT.aux" 1758543272.90948 2520 90c70b3165b954511b4ca03a5b1cb50a "pdflatex"
+  "presentation_CMT.nav" 1758543272.91082 1598 8ec539677ba8d4bfed61609ab5a23f5e "pdflatex"
+  "presentation_CMT.out" 1758543272.91014 194 bc3d91951e4f959dbb9d93b370c1d8ce "pdflatex"
+  "presentation_CMT.tex" 1758543268.98344 8085 a8f1b8b5f4df6fe2999c239a9ccd0f05 ""
+  "presentation_CMT.toc" 1758543272.91086 93 b16e6b89d235a59abc62a3d32214823f "pdflatex"
   (generated)
   "presentation_CMT.aux"
   "presentation_CMT.log"
