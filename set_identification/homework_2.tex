@@ -1,0 +1,118 @@
+\documentclass{article}
+\usepackage{amsmath} 
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{float}   % for [H]
+\usepackage{graphicx}   % for \includegraphics
+\usepackage{tabularx}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{blindtext}
+\usepackage{hyperref}
+\usepackage{natbib} % <-- NEW: to handle references
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{dcolumn}
+\usepackage{threeparttable}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage{pdflscape} % in your preamble
+\usepackage{tabularray}
+\setcounter{secnumdepth}{2}
+
+\setlength\parindent{0pt}
+
+
+
+
+\begin{document}
+
+\title{Homework 2: set identification}
+\author{Jordi Torres}
+\date{\today}
+
+
+\maketitle
+
+
+\subsection*{Question 1}
+We can easily show that the identified set is a curve by combining the first two moment equalities:
+\[
+P_{01}+P_{10}= -\alpha_1 -\alpha_2- \alpha_1\alpha_2.
+\]
+We also know that in our data $\hat{P}_{01}=0.35$ and $\hat{P}_{10}=0.15$, so that
+\[
+0.5= -\alpha_1 -\alpha_2- \alpha_1\alpha_2.
+\]
+Then we can define the identified set $\Theta_I$ as
+\[
+\Theta_I= \left\{(\alpha_1, \alpha_2)\in [-1,0]^{2}: 0.5=-\alpha_1 -\alpha_2- \alpha_1\alpha_2,\ \exists\,u\in[0,1]\right\}.
+\]
+To see that this defines a curve in $\mathbb{R}^2$, we can solve explicitly for $\alpha_2$:
+\[
+\alpha_2 = -\frac{0.5+\alpha_1}{1+\alpha_1}, \qquad \alpha_1\neq -1.
+\]
+Hence the solution set is the graph of a single-valued function, i.e.\ a one-dimensional curve\footnote{I think we can use Implicit Function Theorem but this should be enough}.
+
+\subsection*{Question 2}
+
+\subsubsection*{a)}
+We can create bounds on the observed probabilities and then define moment inequalities. For $y=(1,0)$ we have
+\[
+\hat P_{01} = -\alpha_1(1+\alpha_2) + u\,(\alpha_1\alpha_2), \qquad u\in[0,1].
+\]
+Since $\alpha_1,\alpha_2\in[-1,0]$, we have $\alpha_1\alpha_2\ge 0$, so $\hat P_{01}$ is (weakly) increasing in $u$. Hence
+\[
+-\alpha_1(1+\alpha_2) \;\le\; \hat P_{01} \;\le\; -\alpha_1(1+\alpha_2) + \alpha_1\alpha_2,
+\]
+which yields the two moment inequalities
+\[
+-\alpha_1(1+\alpha_2) - \hat P_{01} \;\le\; 0,
+\qquad
+\hat P_{01} + \alpha_1(1+\alpha_2) - \alpha_1\alpha_2 \;\le\; 0.
+\]
+
+Analogously, for $y=(0,1)$:
+\[
+\hat P_{10} = -\alpha_2(1+\alpha_1) + (1-u)\,(\alpha_1\alpha_2),
+\]
+which is (weakly) decreasing in $u$, giving
+\[
+-\alpha_2(1+\alpha_1) \;\le\; \hat P_{10} \;\le\; -\alpha_2(1+\alpha_1) + \alpha_1\alpha_2,
+\]
+and the two inequalities
+\[
+-\alpha_2(1+\alpha_1) - \hat P_{10} \;\le\; 0,
+\qquad
+\hat P_{10} + \alpha_2(1+\alpha_1) - \alpha_1\alpha_2 \;\le\; 0.
+\]
+
+Finally, $P_{11}=(1+\alpha_1)(1+\alpha_2)$ provides the equality
+\[
+(1+\alpha_1)(1+\alpha_2) - \hat P_{11} = 0.
+\]
+
+Thus we have a system of 5 (in)equalities that we can use to estimate the bounds of the identified set. 
+
+
+\subsubsection*{b)}
+
+Will use CHT and implement it , I think
+
+
+\subsubsection*{c)}
+I can do subsampling. Maybe time consuming but should be straightforward. 
+
+
+\subsubsection*{d)}
+Report the results here\dots
+
+
+\subsection*{e)}
+Cox and Shi, to read and then do!
+
+\end{document}
