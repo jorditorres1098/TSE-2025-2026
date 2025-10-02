@@ -40,28 +40,56 @@
 
 
 \subsection*{Question 1}
-We can easily show that the identified set is a curve by combining the first two moment equalities:
+We know from the model
 \[
-P_{01}+P_{10}= -\alpha_1 -\alpha_2- \alpha_1\alpha_2.
+\begin{aligned}
+P^0_{01} &= -\alpha_1(1+\alpha_2) + u\,\alpha_1\alpha_2,\\
+P^0_{10} &= -\alpha_2(1+\alpha_1) + (1-u)\,\alpha_1\alpha_2,\\
+P^0_{11} &= (1+\alpha_1)(1+\alpha_2),
+\end{aligned}
+\qquad
+(\alpha_1,\alpha_2)\in[-1,0]^2,\; u\in[0,1].
 \]
-We also know that in our data $\hat{P}_{01}=0.35$ and $\hat{P}_{10}=0.15$, so that
+
+The third equation does not depend on $u$, so any feasible $(\alpha_1,\alpha_2)$ must satisfy
 \[
-0.5= -\alpha_1 -\alpha_2- \alpha_1\alpha_2.
+(1+\alpha_1)(1+\alpha_2) = P^0_{11}.
 \]
-Then we can define the identified set $\Theta_I$ as
+This immediately implies $1+\alpha_i>0$, so in fact $\alpha_i>-1$ and the boundary $\alpha_1=-1$ is not allowed.
+
+Solving explicitly,
 \[
-\Theta_I= \left\{(\alpha_1, \alpha_2)\in [-1,0]^{2}: 0.5=-\alpha_1 -\alpha_2- \alpha_1\alpha_2,\ \exists\,u\in[0,1]\right\}.
+\alpha_2 = -1 + \frac{P^0_{11}}{1+\alpha_1}, \qquad \alpha_1\in(-1,0].
 \]
-To see that this defines a curve in $\mathbb{R}^2$, we can solve explicitly for $\alpha_2$:
+So all admissible parameters lie on this one-dimensional curve.
+
+Now I need to check feasibility of $u\in[0,1]$. From the first equation,
 \[
-\alpha_2 = -\frac{0.5+\alpha_1}{1+\alpha_1}, \qquad \alpha_1\neq -1.
+u(\alpha_1,\alpha_2) = \frac{P^0_{01} + \alpha_1(1+\alpha_2)}{\alpha_1\alpha_2},
+\qquad\text{so I need } 0 \le u(\alpha_1,\alpha_2) \le 1.
 \]
-Hence the solution set is the graph of a single-valued function, i.e.\ a one-dimensional curve\footnote{I think we can use Implicit Function Theorem but this should be enough}.
+Equivalently,
+\[
+-\alpha_1(1+\alpha_2) \;\le\; P^0_{01} \;\le\; -\alpha_1(1+\alpha_2)+\alpha_1\alpha_2.
+\]
+
+\bigskip
+
+\textbf{Final Identified Set}
+\[
+\Theta_I = \left\{
+(\alpha_1,\alpha_2)\in(-1,0]^2 :
+(1+\alpha_1)(1+\alpha_2)=P^0_{11},\;
+\frac{P^0_{01} + \alpha_1(1+\alpha_2)}{\alpha_1\alpha_2}\in[0,1]
+\right\}.
+\]
+As expected, it is a curve in $\mathbb{R}^2$, not an area.
+
 
 \subsection*{Question 2}
 
 \subsubsection*{a)}
-We can create bounds on the observed probabilities and then define moment inequalities. For $y=(1,0)$ we have
+We can create boxunds on the observed probabilities and then define moment inequalities. For $y=(1,0)$ we have
 \[
 \hat P_{01} = -\alpha_1(1+\alpha_2) + u\,(\alpha_1\alpha_2), \qquad u\in[0,1].
 \]
@@ -73,7 +101,7 @@ which yields the two moment inequalities
 \[
 -\alpha_1(1+\alpha_2) - \hat P_{01} \;\le\; 0,
 \qquad
-\hat P_{01} + \alpha_1(1+\alpha_2) - \alpha_1\alpha_2 \;\le\; 0.
+\hat P_{01} + \alpha_1 \;\le\; 0.
 \]
 
 Analogously, for $y=(0,1)$:
@@ -88,7 +116,7 @@ and the two inequalities
 \[
 -\alpha_2(1+\alpha_1) - \hat P_{10} \;\le\; 0,
 \qquad
-\hat P_{10} + \alpha_2(1+\alpha_1) - \alpha_1\alpha_2 \;\le\; 0.
+\hat P_{10} + \alpha_2 \;\le\; 0.
 \]
 
 Finally, $P_{11}=(1+\alpha_1)(1+\alpha_2)$ provides the equality
@@ -96,23 +124,101 @@ Finally, $P_{11}=(1+\alpha_1)(1+\alpha_2)$ provides the equality
 (1+\alpha_1)(1+\alpha_2) - \hat P_{11} = 0.
 \]
 
-Thus we have a system of 5 (in)equalities that we can use to estimate the bounds of the identified set. 
+Thus, in principle we obtain five (in)equalities. However, in the specific data configuration 
+$\hat P_{01}=0.35$, $\hat P_{10}=0.15$, and $\hat P_{11}=0.5$, the system reduces to the simpler set
+\[
+\hat P_{01} \le -\alpha_1,\qquad \hat P_{10} \le -\alpha_2,\qquad (1+\alpha_1)(1+\alpha_2)=\hat P_{11},
+\]
+since the lower bounds are automatically satisfied once the upper bounds and the equality are imposed.
 
 
 \subsubsection*{b)}
+I propose the following test:
 
-Will use CHT and implement it , I think
+\[
+Tn(\theta)= max_{j} \sqrt{n} \frac{\bar{m_j}}{\sigma_j}
+\]
 
 
 \subsubsection*{c)}
-I can do subsampling. Maybe time consuming but should be straightforward. 
+I will compute the critical value using GMS. The idea is to simulate a multivariate normal, that has the variance-covariance matrix of my observed data. Then I define
+
+\[
+\xi_{j}(\theta)=\sqrt{n} \frac{\bar{m_j}}{\sigma_j} \frac{1}{\kappa}
+\]
+
+Where \(\kappa=\sqrt{2 \log(\log(n))}\). For every value of $\theta$ in the grid (or potential combination) I then compute this variable and add the initially simulated. Then I take the row maximum to have an asymptotic distribution of the test statistic and then I take the 95th percentile to define the critical value.
+
 
 
 \subsubsection*{d)}
-Report the results here\dots
+My bounds are the following: 
+
+\begin{table}[H]
+\centering
+\caption{GMS 95\% confidence bounds for $(\alpha_1,\alpha_2)$}
+\label{tab:gms_bounds}
+\begin{tabular}{lcc}
+\toprule
+Parameter & Lower & Upper \\
+\midrule
+$\alpha_1$ & $-0.470$ & $-0.315$ \\
+$\alpha_2$ & $-0.325$ & $-0.125$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The total number of points are 504.
 
 
 \subsection*{e)}
-Cox and Shi, to read and then do!
+
+For each parameter value $\theta=(\alpha_1,\alpha_2)$ I do the following:
+
+\begin{enumerate}
+    \item Compute the sample moment vector
+    \[
+    m_n(\theta)=
+    \begin{pmatrix}
+    \hat P_{01} + \alpha_1\\
+    \hat P_{10} + \alpha_2\\
+    \hat P_{11} - (1+\alpha_1)(1+\alpha_2)
+    \end{pmatrix},
+    \]
+    where the first two are inequality moments ($\le 0$) and the last one is an equality ($=0$).
+
+    \item Estimate the covariance matrix $\hat\Sigma$ of $(\hat P_{01},\hat P_{10},\hat P_{11})$ using the usual multinomial formula
+    \[
+    \hat\Sigma = \mathrm{diag}(\hat p) - \hat p\,\hat p', \qquad \hat p=(\hat P_{01},\hat P_{10},\hat P_{11})'.
+    \]
+    This matrix is singular, so I use the Moore--Penrose inverse $\hat\Sigma^+$.
+
+    \item Project $m_n(\theta)$ onto the feasible set
+    \[
+    \mathcal{M} = \{\mu\in\mathbb{R}^3 : \mu_1\le 0,\ \mu_2\le 0,\ \mu_3=0\}.
+    \]
+    In other words, I solve numerically
+    \[
+    \hat\mu(\theta) = \arg\min_{\mu\in\mathcal{M}} \;
+    n\,(m_n(\theta)-\mu)'\,\hat\Sigma^+\,(m_n(\theta)-\mu).
+    \]
+    (In code this is just an \texttt{optim()} with box constraints.)
+
+    \item Count how many moments are ``close to'' binding at the solution $\hat\mu(\theta)$. The equality is always binding, and I add one more for each inequality with $\hat\mu_j\approx 0$.
+
+    \item Compute the critical value as $\chi^2_{r,\,1-\alpha}$ where $r$ is the number of binding moments.
+
+    \item Keep $\theta$ if
+    \[
+    T_n(\theta)
+    :=
+    n\,(m_n(\theta)-\hat\mu(\theta))'\,\hat\Sigma^+\,(m_n(\theta)-\hat\mu(\theta))
+    \;\le\;
+    \chi^2_{r,\,1-\alpha}.
+    \]
+\end{enumerate}
+
+The confidence set is just all grid points that survive this test. However, there seems to be an error in my code, as I am not able to generate correct bounds.
+
 
 \end{document}
