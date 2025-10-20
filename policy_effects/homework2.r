@@ -8,6 +8,9 @@ library(here)
 library(dplyr)
 library(rdlocrand)
 library(ggplot2)
+library(lmtest)
+library(sandwich)
+library(rdrobust)
 
 
 relative_path <- "/Users/jorditorresvallverdu/Library/Mobile Documents/com~apple~CloudDocs/tse/year2/term1/bobba/data"
@@ -66,18 +69,22 @@ plot_data <- main %>%
             score= mean(score, na.rm=TRUE),
             .groups = "drop")
 
-plot_data %>%
+collapsed <- main %>%
   filter(population >= -500 & population <= 500) %>%
-  mutate(pop_bin = cut(population, breaks = seq(-500, 500, by = 50))) %>%
-  group_by(pop_bin) %>%
-  summarise(wage = mean(wage, na.rm = TRUE),
-            pop_mid = mean(population, na.rm = TRUE),
-            .groups = "drop") %>%
-  ggplot(aes(x = pop_mid, y = wage)) +
+  group_by(id_school) %>%
+  summarise(
+    wage = mean(wage, na.rm = TRUE),
+    population = first(population),   # population should be school-specific
+    .groups = "drop"
+  ) %>%
+  distinct(id_school, .keep_all = TRUE)   # enforce uniqueness
+
+
+  ggplot(collapsed, aes(x = population, y = wage)) +
   geom_point(color = "darkred") +
   geom_smooth(method = "loess", se = TRUE, color = "blue") +
   geom_vline(xintercept = 0, linetype = "dashed") +
-  labs(title = "RD Plot: Wage vs Population (School-level, binned)")
+  labs(title = "RD Plot: Wage vs Population (School-level, collapsed)")
 
   plot_data %>%
   filter(population >= -500 & population <= 500) %>%
@@ -157,13 +164,82 @@ output <- apply(grid, 1, function(row) {
 
 
 
-##Exercise 2.
+##Exercise 2. Continuity based approaches. 
+#Assume: continuity around the cutoff-->test for continuity of the pdf at Xi
+
+#2.1. Global parametric approach
+
+#First we do a simple regression
+
+globalrd1 <- lm(wage ~ population + D_pop + D_pop:population, data = main)
+
+cl_vcov1 <- vcovCL(globalrd1, cluster = ~id_school)  
+coeftest(globalrd, vcov = cl_vcov)
 
 
+globalrd1_2 <- lm(score ~ population + D_pop + D_pop:population, data = main)
+
+cl_vcov1_2 <- vcovCL(globalrd1_2, cluster = ~id_school)  
+coeftest(globalrd, vcov = cl_vcov)
 
 
+globalrd2 <- lm(wage ~ time + D_time + D_time:time, data = main)
+
+cl_vcov2 <- vcovCL(globalrd2, cluster = ~id_school)  
+coeftest(globalrd, vcov = cl_vcov)
+
+globalrd2_2 <- lm(score ~ time + D_time + D_time:time, data = main)
+
+cl_vcov2_2 <- vcovCL(globalrd2_2, cluster = ~id_school)  
+coeftest(globalrd, vcov = cl_vcov)
+
+#Keep graphical analysis for afterwards.--> basically I need to simply predict for each line. Also, I need to define different polynomials to see how robust is the effect. 
 
 
+#Second we do a local approximation non-parametrically -using Cattaneo et al state of art approach. We will use different methods -kernel and polynomial approximations- to check for robustness. 
+
+
+# 1) Estimate RD (this chooses the optimal h for you)
+
+rd_local_nonpar <- function(Y, X, ker, p, bselect, cluster_var, nameY, nameX) {
+  
+  res <- rdrobust(y = Y, x = X, p = p, bwselect=bselect,
+                  kernel = ker, vce = "nn", masspoints = "adjust", cluster=cluster_var)
+  
+  hL <- as.numeric(res$bws[1,1])   
+  hR <- as.numeric(res$bws[1,2])   
+  
+  ix <- X >= -hL & X <= hR #restrict support to bandwidth recommended-->this is what is done, no?
+  
+  # Plot 
+  rdplot(y = Y[ix], x = X[ix], c = 0, p = p, kernel = ker, h = c(hL, hR),masspoints = "adjust", 
+  #just to make it nicer: (NOTE: NEED TO ADD CI!!)
+  x.label = nameX %||% "Running variable", y.label = nameY %||% "Outcome", title   = paste0("RD Plot: ", nameY, " vs ", nameX),
+  x.lim   = c(-hL, hR))
+  
+  # Return key results
+  return(data.frame(
+    outcome = nameY,
+    running = nameX,
+    tau_hat = res$Estimate[1],     # sestimate
+    se      = res$se[1],           
+    pval    = res$pv[1],                
+    h_left  = hL,
+    h_right = hR,
+    N_left  = res$N[1],
+    N_right = res$N[2]
+  ))
+}
+
+results <- apply(grid, 1, function(row) {
+  Rn <- row["R"] #useful trick that I apply throughout, maybe inefficiently though. 
+  Yn <- row["Y"]
+  cat("iteration:", Rn, Yn, "\n")
+  rd_local_nonpar(Y = Y_list[[Yn]], X = R_list[[Rn]], ker = "tri", p = 1, bselect="mserd", cluster_var=main$id_school, nameY = Yn, nameX = Rn) ##change this to try different stuff and generate different tables. 
+})
+##When I write this I will make sure to try different specifications. 
+
+#pending to use the rddensity command-->this is basically to see if continuity holds, no?
 
 
 
