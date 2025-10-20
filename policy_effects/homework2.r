@@ -15,14 +15,14 @@ library(rdrobust)
 
 relative_path <- "/Users/jorditorresvallverdu/Library/Mobile Documents/com~apple~CloudDocs/tse/year2/term1/bobba/data"
 
-main <- read_dta(file.path(relative_path, "RD_sample.dta"))
+data <- read_dta(file.path(relative_path, "RD_sample.dta"))
 
 df <- as.data.frame(haven::as_factor(main))
 #View(df[1:100, ])
 
 
 #pre data-cleaning
-main <- main |> 
+main <- data |> 
     mutate(time = as.numeric(time)) |>
     mutate(population= as.numeric(population)) |>
     filter(time>30) |>
@@ -174,56 +174,64 @@ output <- apply(grid, 1, function(row) {
 globalrd1 <- lm(wage ~ population + D_pop + D_pop:population, data = main)
 
 cl_vcov1 <- vcovCL(globalrd1, cluster = ~id_school)  
-coeftest(globalrd, vcov = cl_vcov)
+lm_results<- coeftest(globalrd, vcov = cl_vcov)
 
 
-globalrd1_2 <- lm(score ~ population + D_pop + D_pop:population, data = main)
+global_rd <- function(Y,X, D, cluster_var, nameY, nameX){
 
-cl_vcov1_2 <- vcovCL(globalrd1_2, cluster = ~id_school)  
-coeftest(globalrd, vcov = cl_vcov)
+globalrd<-lm(Y ~ X + D + D:X)
+cl_vcov <-vcovCL(globalrd, cluster = cluster_var)  
+lm_results<- coeftest(globalrd, vcov = cl_vcov)
 
+return(data.frame(
+    outcome = nameY,
+    running = nameX,
+    estimate = lm_results[,1],
+    se       = lm_results[,2],
+    t        = lm_results[,3],
+    pval     = lm_results[,4],
+  ))
 
-globalrd2 <- lm(wage ~ time + D_time + D_time:time, data = main)
+}
 
-cl_vcov2 <- vcovCL(globalrd2, cluster = ~id_school)  
-coeftest(globalrd, vcov = cl_vcov)
+linear_reg <- apply(grid, 1, function(row) {
+  Rn <- row["R"]
+  Yn <- row["Y"]
+  cat("iteration:", Rn, Yn, "\n")
+  global_rd(Y=Y_list[[Yn]], X=R_list[[Rn]], D=D_list[[Rn]], cluster_var=main$id_school, nameY = Yn, nameX = Rn)
+})
 
-globalrd2_2 <- lm(score ~ time + D_time + D_time:time, data = main)
-
-cl_vcov2_2 <- vcovCL(globalrd2_2, cluster = ~id_school)  
-coeftest(globalrd, vcov = cl_vcov)
+##try to fix this bullshit!
 
 #Keep graphical analysis for afterwards.--> basically I need to simply predict for each line. Also, I need to define different polynomials to see how robust is the effect. 
 
 
-#Second we do a local approximation non-parametrically -using Cattaneo et al state of art approach. We will use different methods -kernel and polynomial approximations- to check for robustness. 
+#2.2. Second we do a local approximation non-parametrically -using Cattaneo et al state of art approach. We will use different methods -kernel and polynomial approximations- to check for robustness. 
 
-
-# 1) Estimate RD (this chooses the optimal h for you)
 
 rd_local_nonpar <- function(Y, X, ker, p, bselect, cluster_var, nameY, nameX) {
   
   res <- rdrobust(y = Y, x = X, p = p, bwselect=bselect,
                   kernel = ker, vce = "nn", masspoints = "adjust", cluster=cluster_var)
   
-  hL <- as.numeric(res$bws[1,1])   
+  hL <- as.numeric(res$bws[1,1])   #this gets reseted at each apply
   hR <- as.numeric(res$bws[1,2])   
   
-  ix <- X >= -hL & X <= hR #restrict support to bandwidth recommended-->this is what is done, no?
-  
+  ix <- X >= -hL & X <= hR #restrict support to bandwidth recommended-->this is what is done, no?--->>REVISE
+
   # Plot 
-  rdplot(y = Y[ix], x = X[ix], c = 0, p = p, kernel = ker, h = c(hL, hR),masspoints = "adjust", 
-  #just to make it nicer: (NOTE: NEED TO ADD CI!!)
+  rdplot(y = Y[ix], x = X[ix], c = 0, p = p, kernel = ker, h = c(hL, hR),masspoints = "adjust", ci=TRUE, shade=TRUE,
   x.label = nameX %||% "Running variable", y.label = nameY %||% "Outcome", title   = paste0("RD Plot: ", nameY, " vs ", nameX),
   x.lim   = c(-hL, hR))
+  #just to make it nicer: (NOTE: NEED TO ADD CI!!) But to the regression discontinuity line-->DOES THE program accept it? does not seem so! kind of slopish...
+
   
-  # Return key results
   return(data.frame(
     outcome = nameY,
     running = nameX,
     tau_hat = res$Estimate[1],     # sestimate
-    se      = res$se[1],           
-    pval    = res$pv[1],                
+    se      = res$se[1],
+    pval    = res$pv[1],
     h_left  = hL,
     h_right = hR,
     N_left  = res$N[1],
@@ -237,11 +245,33 @@ results <- apply(grid, 1, function(row) {
   cat("iteration:", Rn, Yn, "\n")
   rd_local_nonpar(Y = Y_list[[Yn]], X = R_list[[Rn]], ker = "tri", p = 1, bselect="mserd", cluster_var=main$id_school, nameY = Yn, nameX = Rn) ##change this to try different stuff and generate different tables. 
 })
-##When I write this I will make sure to try different specifications. 
 
-#pending to use the rddensity command-->this is basically to see if continuity holds, no?
+#NOTE:#When I write this I will make sure to try different specifications as a robustness check. 
+
+#NOTE: pending to use the rddensity command-->this is basically to see if continuity holds, no? What other assumptions do I need to test? ->do this when writing the report. 
 
 
+
+##3. Define first rurality frontier
+
+main <- main |>
+      mutate(rurality_frontier= sqrt((population)^2+(time)^2)
+      ) |>
+      mutate(rurality_frontier=ifelse (main$D_pop==1 | main$D_time==1, rurality_frontier*(-1), rurality_frontier ) )
+       
+
+
+
+grid2 <- data.frame(Y=names(Y_list)) ##define a matrix of 2X2 with the names of the variables. 
+
+
+results2 <- apply(grid2, 1, function(row) {
+  Yn <- row["Y"]
+  cat("iteration:", Yn, "\n")
+  rd_local_nonpar(Y = Y_list[[Yn]], X = main$rurality_frontier, ker = "tri", p = 1, bselect="mserd", cluster_var=main$id_school, nameY = Yn, nameX = "rurality") ##change this to try different stuff and generate different tables. 
+})
+
+##4. In 2D, now we need to move along another dimension. 
 
 
 ############################################## EOF
