@@ -262,7 +262,7 @@ main <- main |>
 
 
 
-grid2 <- data.frame(Y=names(Y_list)) ##define a matrix of 2X2 with the names of the variables. 
+grid2 <- data.frame(Y=names(Y_list)) ##dreplicate previous command now with one running variable and two outcomes.
 
 
 results2 <- apply(grid2, 1, function(row) {
@@ -272,6 +272,8 @@ results2 <- apply(grid2, 1, function(row) {
 })
 
 ##4. In 2D, now we need to move along another dimension. 
+#this needs to be treated carefully... tomorrow morning I will start. 
+
 
 
 ############################################## EOF
