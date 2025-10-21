@@ -11,6 +11,7 @@ library(ggplot2)
 library(lmtest)
 library(sandwich)
 library(rdrobust)
+library(rd2d)
 
 
 relative_path <- "/Users/jorditorresvallverdu/Library/Mobile Documents/com~apple~CloudDocs/tse/year2/term1/bobba/data"
@@ -270,10 +271,28 @@ results2 <- apply(grid2, 1, function(row) {
   cat("iteration:", Yn, "\n")
   rd_local_nonpar(Y = Y_list[[Yn]], X = main$rurality_frontier, ker = "tri", p = 1, bselect="mserd", cluster_var=main$id_school, nameY = Yn, nameX = "rurality") ##change this to try different stuff and generate different tables. 
 })
+#NOTE: here i should pass it also with RD2 package?
+
 
 ##4. In 2D, now we need to move along another dimension. 
 #this needs to be treated carefully... tomorrow morning I will start. 
 
 
+# treatment rule (OR condition
+
+main <- main |> mutate(t=as.numeric(main$population<=0 | main$time>=0))
+X_mat <- cbind(main$population, main$time)
+
+
+b= matrix(c(0,0,100,0,0,-20, 50,0, 0,-5), ncol = 2, byrow = TRUE) #com seleccionar aixo?
+
+rd2_wage <-rd2d(Y=main$wage, X=X_mat, t=main$t, b=b, p = 1, kernel = "tri", masspoints = "adjust", level = 95, cbands = TRUE, repp = 1000, bwselect = "mserd")
+
+rd2_score <-rd2d(Y=main$score, X=X_mat, t=main$t, b=b, p = 1, kernel = "tri", masspoints = "adjust", level = 95, cbands = TRUE, repp = 1000, bwselect = "mserd")
+
+#for score I am not capturing the locality of the effect because width too big!! see how to fix this bullshit. 
+
+##how to pick the boundary points in a datadrive way, maybe draw a graph, no?
+#I think here I either use a graph or use his evidence
 
 ############################################## EOF
