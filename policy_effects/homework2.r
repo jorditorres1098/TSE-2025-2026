@@ -230,7 +230,7 @@ rd_local_nonpar <- function(Y, X, ker, p, bselect, cluster_var, nameY, nameX) {
   return(data.frame(
     outcome = nameY,
     running = nameX,
-    tau_hat = res$Estimate[1],     # sestimate
+    tau_hat = res$Estimate[1],     # !estimate
     se      = res$se[1],
     pval    = res$pv[1],
     h_left  = hL,
