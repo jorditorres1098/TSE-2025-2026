@@ -12,14 +12,15 @@ library(lmtest)
 library(sandwich)
 library(rdrobust)
 library(rd2d)
+library(rddensity)
 
-
+rm(list = ls())
 relative_path <- "/Users/jorditorresvallverdu/Library/Mobile Documents/com~apple~CloudDocs/tse/year2/term1/bobba/data"
 
 data <- read_dta(file.path(relative_path, "RD_sample.dta"))
 
 df <- as.data.frame(haven::as_factor(main))
-#View(df[1:100, ])
+
 
 
 #pre data-cleaning
@@ -138,12 +139,12 @@ run_all <- function(Y, R, D, X, type) {
   win <- rdwinselect(R=R, X=X, cutoff=0, statistic=type, level=0.15, reps=1000, plot = TRUE)
     wl <- win$window[1]
     wr <- win$window[2]
-
+    #I know this is redundant, but wanted to pass one onto the other but apparently does not work with wl...
   # 2. Randinf
-  ri <- rdrandinf(Y=Y, R=R, wl=wl, wr=wr, cutoff=0, fuzzy=D, statistic=type, reps=1000)
+  ri <- rdrandinf(Y=Y, R=R, level=0.15, cutoff=0, fuzzy=NULL, statistic=type, reps=1000, covariates = X)
 
   # 3. Sensitivity
-  rs <- rdsensitivity(Y=Y, R=R, cutoff=0, wlist = c(2,3,4,5,6), fuzzy=D, statistic=type, reps=1000)
+  rs <- rdsensitivity(Y=Y, R=R, cutoff=0, wlist = c(2,3,4,5,6), fuzzy=NULL, statistic=type, reps=1000)
 
   list(window=win, inference=ri, sensitivity=rs)
 }
@@ -161,7 +162,6 @@ output <- apply(grid, 1, function(row) {
 })
 
 
-##To review at some other time; ask for the code...
 
 
 
@@ -175,32 +175,26 @@ output <- apply(grid, 1, function(row) {
 globalrd1 <- lm(wage ~ population + D_pop + D_pop:population, data = main)
 
 cl_vcov1 <- vcovCL(globalrd1, cluster = ~id_school)  
-lm_results<- coeftest(globalrd, vcov = cl_vcov)
+coeftest(globalrd1, vcov = cl_vcov1)
 
 
-global_rd <- function(Y,X, D, cluster_var, nameY, nameX){
+globalrd2 <- lm(score ~ population + D_pop + D_pop:population, data = main)
 
-globalrd<-lm(Y ~ X + D + D:X)
-cl_vcov <-vcovCL(globalrd, cluster = cluster_var)  
-lm_results<- coeftest(globalrd, vcov = cl_vcov)
+cl_vcov2 <- vcovCL(globalrd2, cluster = ~id_school)  
+coeftest(globalrd2, vcov = cl_vcov2)
 
-return(data.frame(
-    outcome = nameY,
-    running = nameX,
-    estimate = lm_results[,1],
-    se       = lm_results[,2],
-    t        = lm_results[,3],
-    pval     = lm_results[,4],
-  ))
 
-}
+globalrd3 <- lm(wage ~ time + D_time + D_time:time, data = main)
 
-linear_reg <- apply(grid, 1, function(row) {
-  Rn <- row["R"]
-  Yn <- row["Y"]
-  cat("iteration:", Rn, Yn, "\n")
-  global_rd(Y=Y_list[[Yn]], X=R_list[[Rn]], D=D_list[[Rn]], cluster_var=main$id_school, nameY = Yn, nameX = Rn)
-})
+cl_vcov3 <- vcovCL(globalrd3, cluster = ~id_school)  
+coeftest(globalrd3, vcov = cl_vcov3)
+
+
+
+globalrd4 <- lm(score ~ time + D_time + D_time:time, data = main)
+
+cl_vcov4 <- vcovCL(globalrd3, cluster = ~id_school)  
+coeftest(globalrd4, vcov = cl_vcov4)
 
 ##try to fix this bullshit!
 
@@ -233,10 +227,6 @@ rd_local_nonpar <- function(Y, X, ker, p, bselect, cluster_var, nameY, nameX) {
     tau_hat = res$Estimate[1],     # !estimate
     se      = res$se[1],
     pval    = res$pv[1],
-    h_left  = hL,
-    h_right = hR,
-    N_left  = res$N[1],
-    N_right = res$N[2]
   ))
 }
 
@@ -249,7 +239,83 @@ results <- apply(grid, 1, function(row) {
 
 #NOTE:#When I write this I will make sure to try different specifications as a robustness check. 
 
-#NOTE: pending to use the rddensity command-->this is basically to see if continuity holds, no? What other assumptions do I need to test? ->do this when writing the report. 
+rd_density_test_population <-rddensity(
+R_list$population,
+c = 0,
+p = 2,
+q = 0,
+kernel = "triangular",
+massPoints = TRUE,
+bwselect = "diff",
+all = FALSE,
+regularize = TRUE,
+binoNW = 10,
+binoP = 0.5
+)
+
+rd_density_test_time <-rddensity(
+R_list$time, c = 0, p = 2, q = 0,
+kernel = "triangular",
+massPoints = TRUE,
+bwselect = "diff",
+all = FALSE,
+regularize = TRUE,
+binoNW = 10,
+binoP = 0.5
+)
+
+
+
+rdplotdensity( rd_density_test_population,
+R_list$population,
+plotN = 10, plotGrid = c("es", "qs"), alpha = 0.05, CIsimul = 2000, histFillCol = 3, histFillShade = 0.2, histLineCol = "white",
+title = "Manipulation test time",
+xlabel = "time",
+ylabel = "density",
+)
+
+rdplotdensity(rd_density_test_time,
+R_list$time,
+plotN = 10, plotGrid = c("es", "qs"), alpha = 0.05,
+CIsimul = 2000, histFillCol = 3, histFillShade = 0.2, histLineCol = "white",
+title = "Manipulation test time",
+xlabel = "population",
+ylabel = "density",
+)
+
+
+
+
+
+
+##robustness
+results_robust1 <- apply(grid, 1, function(row) {
+  Rn <- row["R"] #useful trick that I apply throughout, maybe inefficiently though. 
+  Yn <- row["Y"]
+  cat("iteration:", Rn, Yn, "\n")
+  rd_local_nonpar(Y = Y_list[[Yn]], X = R_list[[Rn]], ker = "tri", p = 2, bselect="mserd", cluster_var=main$id_school, nameY = Yn, nameX = Rn) ##change this to try different stuff and generate different tables. 
+})
+
+results_robust2 <- apply(grid, 1, function(row) {
+  Rn <- row["R"] #useful trick that I apply throughout, maybe inefficiently though. 
+  Yn <- row["Y"]
+  cat("iteration:", Rn, Yn, "\n")
+  rd_local_nonpar(Y = Y_list[[Yn]], X = R_list[[Rn]], ker = "tri", p = 3, bselect="mserd", cluster_var=main$id_school, nameY = Yn, nameX = Rn) ##change this to try different stuff and generate different tables. 
+})
+
+results_robust3 <- apply(grid, 1, function(row) {
+  Rn <- row["R"] #useful trick that I apply throughout, maybe inefficiently though. 
+  Yn <- row["Y"]
+  cat("iteration:", Rn, Yn, "\n")
+  rd_local_nonpar(Y = Y_list[[Yn]], X = R_list[[Rn]], ker = "epanechnikov", p = 1, bselect="mserd", cluster_var=main$id_school, nameY = Yn, nameX = Rn) ##change this to try different stuff and generate different tables. 
+})
+
+results_robust4 <- apply(grid, 1, function(row) {
+  Rn <- row["R"] #useful trick that I apply throughout, maybe inefficiently though. 
+  Yn <- row["Y"]
+  cat("iteration:", Rn, Yn, "\n")
+  rd_local_nonpar(Y = Y_list[[Yn]], X = R_list[[Rn]], ker = "epanechnikov", p = 2, bselect="mserd", cluster_var=main$id_school, nameY = Yn, nameX = Rn) ##change this to try different stuff and generate different tables. 
+})
 
 
 
@@ -284,11 +350,32 @@ main <- main |> mutate(t=as.numeric(main$population<=0 | main$time>=0))
 X_mat <- cbind(main$population, main$time)
 
 
-b= matrix(c(0,0,100,0,0,-20, 50,0, 0,-5), ncol = 2, byrow = TRUE) #com seleccionar aixo?
+b <- cbind(seq(0, 200, length.out = 40),
+           seq(0, -40, length.out = 40))
+##this is it???
 
 rd2_wage <-rd2d(Y=main$wage, X=X_mat, t=main$t, b=b, p = 1, kernel = "tri", masspoints = "adjust", level = 95, cbands = TRUE, repp = 1000, bwselect = "mserd")
 
 rd2_score <-rd2d(Y=main$score, X=X_mat, t=main$t, b=b, p = 1, kernel = "tri", masspoints = "adjust", level = 95, cbands = TRUE, repp = 1000, bwselect = "mserd")
+
+
+results_rd2_wage <- as.data.frame(rd2_wage$results)
+
+results_rd2_wage <- results_rd2_wage |>
+  dplyr::select(b1, b2, tau = Est.q, se = Se.q, ci_l = CI.lower, ci_u = CI.upper)
+
+
+ggplot(results_rd2_wage, aes(x = 1:nrow(results_rd2_wage), y = tau)) +
+  geom_point(color = "blue", size = 2) +
+  geom_line(color = "blue", alpha = 0.7) +
+  geom_errorbar(aes(ymin = ci_l, ymax = ci_u), width = 0.2, color = "gray40") +
+  labs(
+    title = "Point Estimates along the Rurality Frontier (Wage)",
+    x = "Boundary Evaluation Point (b₁–b₄₀)",
+    y = "Estimated Treatment Effect (τ̂)"
+  ) +
+  theme_minimal(base_size = 13)
+
 
 #for score I am not capturing the locality of the effect because width too big!! see how to fix this bullshit. 
 
