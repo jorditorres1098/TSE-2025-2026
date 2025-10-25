@@ -19,9 +19,6 @@ relative_path <- "/Users/jorditorresvallverdu/Library/Mobile Documents/com~apple
 
 data <- read_dta(file.path(relative_path, "RD_sample.dta"))
 
-df <- as.data.frame(haven::as_factor(main))
-
-
 
 #pre data-cleaning
 main <- data |> 
@@ -34,7 +31,7 @@ main <- data |>
     D_pop= as.integer(population<=0) ,
     D_time= as.integer(time>=0)) #compute the two treatment variables 
    
-
+rm(data)
 #Note: there are some extreme values for some running variables should we consider that in the cleaning process???
 
 
@@ -224,9 +221,9 @@ rd_local_nonpar <- function(Y, X, ker, p, bselect, cluster_var, nameY, nameX) {
   return(data.frame(
     outcome = nameY,
     running = nameX,
-    tau_hat = res$Estimate[1],     # !estimate
-    se      = res$se[1],
-    pval    = res$pv[1],
+    tau_hat = res$coef[1, 1],
+    se      = res$se[1, 1],
+    pval    = res$pv[1, 1]
   ))
 }
 
@@ -350,8 +347,14 @@ main <- main |> mutate(t=as.numeric(main$population<=0 | main$time>=0))
 X_mat <- cbind(main$population, main$time)
 
 
-b <- cbind(seq(0, 200, length.out = 40),
-           seq(0, -40, length.out = 40))
+b1 <- cbind(seq(0, 200, length.out = 20), rep(0, 20))
+
+# Other arm: population = 0, time decreases
+b2 <- cbind(rep(0, 20), seq(0, -40, length.out = 20))
+
+# Combine (this is your "L" shape)
+b <- rbind(b1, b2)
+
 ##this is it???
 
 rd2_wage <-rd2d(Y=main$wage, X=X_mat, t=main$t, b=b, p = 1, kernel = "tri", masspoints = "adjust", level = 95, cbands = TRUE, repp = 1000, bwselect = "mserd")
@@ -371,6 +374,25 @@ ggplot(results_rd2_wage, aes(x = 1:nrow(results_rd2_wage), y = tau)) +
   geom_errorbar(aes(ymin = ci_l, ymax = ci_u), width = 0.2, color = "gray40") +
   labs(
     title = "Point Estimates along the Rurality Frontier (Wage)",
+    x = "Boundary Evaluation Point (b₁–b₄₀)",
+    y = "Estimated Treatment Effect (τ̂)"
+  ) +
+  theme_minimal(base_size = 13)
+
+
+
+  results_rd2_score <- as.data.frame(rd2_score$results)
+
+results_rd2_score <- results_rd2_score |>
+  dplyr::select(b1, b2, tau = Est.q, se = Se.q, ci_l = CI.lower, ci_u = CI.upper)
+
+
+ggplot(results_rd2_score, aes(x = 1:nrow(results_rd2_score), y = tau)) +
+  geom_point(color = "blue", size = 2) +
+  geom_line(color = "blue", alpha = 0.7) +
+  geom_errorbar(aes(ymin = ci_l, ymax = ci_u), width = 0.2, color = "gray40") +
+  labs(
+    title = "Point Estimates along the Rurality Frontier (Score)",
     x = "Boundary Evaluation Point (b₁–b₄₀)",
     y = "Estimated Treatment Effect (τ̂)"
   ) +
