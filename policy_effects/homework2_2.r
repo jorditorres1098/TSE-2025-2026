@@ -252,7 +252,7 @@ collapse_summary <- function(data, label) {
 sum_clog    <- collapse_summary(match_clog, "Clogit")
 sum_clog_cf <- collapse_summary(match_clog_cf, "Clogit_CF")
 sum_mix     <- collapse_summary(match_clog_mix, "Mixlogit")
-sum_mix_cf  <- collapse_summary(match_clog_mix_cf, "Mixlogit_CF")
+sum_mix_cf  <- collapse_summary(match_mix_cf, "Mixlogit_CF")
 
 summary_all <- rbind(sum_clog, sum_clog_cf, sum_mix, sum_mix_cf)
 
@@ -267,7 +267,7 @@ collapse_rural_urban <- function(data, label) {
 rural_clog    <- collapse_rural_urban(match_clog, "Clogit")
 rural_clog_cf <- collapse_rural_urban(match_clog_cf, "Clogit_CF")
 rural_mix     <- collapse_rural_urban(match_clog_mix, "Mixlogit")
-rural_mix_cf  <- collapse_rural_urban(match_clog_mix_cf, "Mixlogit_CF")
+rural_mix_cf  <- collapse_rural_urban(match_mix_cf, "Mixlogit_CF")
 
 rural_summary <- rbind(rural_clog, rural_clog_cf, rural_mix, rural_mix_cf)
 

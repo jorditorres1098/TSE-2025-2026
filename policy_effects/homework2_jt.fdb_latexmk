@@ -1,10 +1,8 @@
 # Fdb version 4
-["pdflatex"] 1761329740.07298 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/homework2_jt.tex" "homework2_jt.pdf" "homework2_jt" 1761329740.82921 0
-  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/homework2_jt.tex" 1761329739.40908 9877 5732fe1f6e367f5307af7f57718881d6 ""
+["pdflatex"] 1761477675.47397 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/homework2_jt.tex" "homework2_jt.pdf" "homework2_jt" 1761477676.22313 0
+  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/homework2_jt.tex" 1761477673.79789 23665 0d48bf39edc11c6d7adf7b949cd1af7d ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/map/pdftex/pdftex.map" 1750006559.21597 339773 a1c68872d3dc0a4bee66a5dedbc28f32 ""
-  "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1734277980.39253 11548 65e4107434a595602cca075154f9e8e6 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1734277941.08881 12002472 b582eb731daf2b623c3d30845607ef6c ""
-  "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1725915925.12221 1436 c7f957a372ef2fbe93c0982f96625e12 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1725915917.94285 1004 54797486969f23fa377b128694d548df ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1725915917.94298 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1725915917.95218 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -30,6 +28,7 @@
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmtt8.tfm" 1725915924.43928 768 d7b9a2629a0c353102ad947dc9221d49 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1725915917.95663 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1725915917.95775 32080 340ef9bf63678554ee606688e7b5339d ""
+  "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1725915917.96975 30251 6afa5cb1d0204815a708a080681d4674 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1725915917.97614 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1725915917.98009 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1725915917.9817 36281 c355509802a035cadc5f15869451dcee ""
@@ -185,9 +184,9 @@
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/tools/xspace.sty" 1734275015.87431 4545 e3f4de576c914e2000f07f69a891c071 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/url/url.sty" 1725915934.0507 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/xcolor/xcolor.sty" 1734275016.41717 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "homework2_jt.aux" 1761329740.69568 2398 cb1859d06ffe0f3cfe6aa496f3608f8c "pdflatex"
-  "homework2_jt.out" 1761329740.69618 801 e5c699bb48ceaf4f59728167f32cb76c "pdflatex"
-  "homework2_jt.tex" 1761329739.40908 9877 5732fe1f6e367f5307af7f57718881d6 ""
+  "homework2_jt.aux" 1761477676.0931 4004 2b5042b9c5d2f33444f37acbd1a7fdf0 "pdflatex"
+  "homework2_jt.out" 1761477676.0937 1131 0a8994b991f9beba55e4df157542b708 "pdflatex"
+  "homework2_jt.tex" 1761477673.79789 23665 0d48bf39edc11c6d7adf7b949cd1af7d ""
   (generated)
   "homework2_jt.aux"
   "homework2_jt.log"

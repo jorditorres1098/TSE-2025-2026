@@ -59,73 +59,97 @@ D_list <- list(
 X <- as.matrix(main[ , c( "gender", "univ", "exp_publica_c", "exp_privada_c")])
 
 ################
-#Some descriptives, graph analysis 
-plot_data <- main %>%
-  group_by(id_school) %>%
-  summarise(wage = mean(wage, na.rm = TRUE),
-            population = first(population),
-            time= first(time),
-            score= mean(score, na.rm=TRUE),
-            .groups = "drop")
+## Local RD-style descriptive plots (dots only, no smoothing)
 
-collapsed <- main %>%
-  filter(population >= -500 & population <= 500) %>%
+library(dplyr)
+library(ggplot2)
+
+# Collapse at school level
+plot_data <- main %>%
   group_by(id_school) %>%
   summarise(
     wage = mean(wage, na.rm = TRUE),
-    population = first(population),   # population should be school-specific
+    score = mean(score, na.rm = TRUE),
+    population = first(population),
+    time = first(time),
     .groups = "drop"
-  ) %>%
-  distinct(id_school, .keep_all = TRUE)   # enforce uniqueness
+  )
 
-
-  ggplot(collapsed, aes(x = population, y = wage)) +
-  geom_point(color = "darkred") +
-  geom_smooth(method = "loess", se = TRUE, color = "blue") +
-  geom_vline(xintercept = 0, linetype = "dashed") +
-  labs(title = "RD Plot: Wage vs Population (School-level, collapsed)")
-
-  plot_data %>%
+plot_data %>%
   filter(population >= -500 & population <= 500) %>%
   mutate(pop_bin = cut(population, breaks = seq(-500, 500, by = 50))) %>%
   group_by(pop_bin) %>%
-  summarise(score = mean(score, na.rm = TRUE),
-            pop_mid = mean(population, na.rm = TRUE),
-            .groups = "drop") %>%
+  summarise(
+    pop_mid = mean(population, na.rm = TRUE),
+    wage = mean(wage, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = pop_mid, y = wage)) +
+  geom_point(color = "darkred", size = 2) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  labs(
+    title = "Local RD: Wage vs Population",
+    x = "Population (centered at cutoff)",
+    y = "Average Wage"
+  ) +
+  theme_minimal(base_size = 13)
+
+plot_data %>%
+  filter(population >= -500 & population <= 500) %>%
+  mutate(pop_bin = cut(population, breaks = seq(-500, 500, by = 50))) %>%
+  group_by(pop_bin) %>%
+  summarise(
+    pop_mid = mean(population, na.rm = TRUE),
+    score = mean(score, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
   ggplot(aes(x = pop_mid, y = score)) +
-  geom_point(color = "darkred") +
-  geom_smooth(method = "loess", se = TRUE, color = "blue") +
+  geom_point(color = "darkred", size = 2) +
   geom_vline(xintercept = 0, linetype = "dashed") +
-  labs(title = "RD Plot: Score vs Population (School-level, binned)")
-
-
+  labs(
+    title = "Local RD: Score vs Population",
+    x = "Population (centered at cutoff)",
+    y = "Average Score"
+  ) +
+  theme_minimal(base_size = 13)
 
 plot_data %>%
-  filter(time >= -89 & time <= 89) %>%
-  mutate(time_bin = cut(time, breaks = seq(-89, 89, by = 5))) %>%
+  filter(time >= -90 & time <= 90) %>%
+  mutate(time_bin = cut(time, breaks = seq(-90, 90, by = 5))) %>%
   group_by(time_bin) %>%
-  summarise(wage = mean(wage, na.rm = TRUE),
-            time_bin = mean(time, na.rm = TRUE),
-            .groups = "drop") %>%
-  ggplot(aes(x = time_bin, y = wage)) +
-  geom_point(color = "darkred") +
-  geom_smooth(method = "loess", se = TRUE, color = "blue") +
+  summarise(
+    time_mid = mean(time, na.rm = TRUE),
+    wage = mean(wage, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = time_mid, y = wage)) +
+  geom_point(color = "darkred", size = 2) +
   geom_vline(xintercept = 0, linetype = "dashed") +
-  labs(title = "RD Plot: Wage vs Time (School-level, binned)")
-
+  labs(
+    title = "Local RD: Wage vs Time",
+    x = "Time (centered at cutoff)",
+    y = "Average Wage"
+  ) +
+  theme_minimal(base_size = 13)
 
 plot_data %>%
-  filter(time >= -89 & time <= 89) %>%
-  mutate(time_bin = cut(time, breaks = seq(-89, 89, by = 5))) %>%
+  filter(time >= -90 & time <= 90) %>%
+  mutate(time_bin = cut(time, breaks = seq(-90, 90, by = 5))) %>%
   group_by(time_bin) %>%
-  summarise(score = mean(score, na.rm = TRUE),
-            time_bin = mean(time, na.rm = TRUE),
-            .groups = "drop") %>%
-  ggplot(aes(x = time_bin, y = score)) +
-  geom_point(color = "darkred") +
-  geom_smooth(method = "loess", se = TRUE, color = "blue") +
+  summarise(
+    time_mid = mean(time, na.rm = TRUE),
+    score = mean(score, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = time_mid, y = score)) +
+  geom_point(color = "darkred", size = 2) +
   geom_vline(xintercept = 0, linetype = "dashed") +
-  labs(title = "RD Plot: score vs Time (School-level, binned)")
+  labs(
+    title = "Local RD: Score vs Time",
+    x = "Time (centered at cutoff)",
+    y = "Average Score"
+  ) +
+  theme_minimal(base_size = 13)
 
 
 
