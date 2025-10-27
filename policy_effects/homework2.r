@@ -1,5 +1,6 @@
 ##Homework 2 of Policy analysis: RD
 ##Date: 15/10/2025
+##Author: Jordi Torres 
 
 
 #0. Introduction, data manipulation. 
@@ -20,7 +21,7 @@ relative_path <- "/Users/jorditorresvallverdu/Library/Mobile Documents/com~apple
 data <- read_dta(file.path(relative_path, "RD_sample.dta"))
 
 
-#pre data-cleaning
+################Data cleaning
 main <- data |> 
     mutate(time = as.numeric(time)) |>
     mutate(population= as.numeric(population)) |>
@@ -34,8 +35,6 @@ main <- data |>
 rm(data)
 #Note: there are some extreme values for some running variables should we consider that in the cleaning process???
 
-
-#1.1 Window selection.
 
 #define vector of running variables
 R_list <- list(
@@ -58,7 +57,7 @@ D_list <- list(
 #define covariates to test balance
 X <- as.matrix(main[ , c( "gender", "univ", "exp_publica_c", "exp_privada_c")])
 
-################
+################Q.1
 ## Local RD-style descriptive plots (dots only, no smoothing)
 
 library(dplyr)
@@ -184,15 +183,12 @@ output <- apply(grid, 1, function(row) {
 
 
 
-
-
-##Exercise 2. Continuity based approaches. 
+################Exercise 2. Continuity based approaches.
 #Assume: continuity around the cutoff-->test for continuity of the pdf at Xi
 
 #2.1. Global parametric approach
 
 #First we do a simple regression
-
 globalrd1 <- lm(wage ~ population + D_pop + D_pop:population, data = main)
 
 cl_vcov1 <- vcovCL(globalrd1, cluster = ~id_school)  
@@ -217,8 +213,6 @@ globalrd4 <- lm(score ~ time + D_time + D_time:time, data = main)
 cl_vcov4 <- vcovCL(globalrd3, cluster = ~id_school)  
 coeftest(globalrd4, vcov = cl_vcov4)
 
-##try to fix this bullshit!
-
 #Keep graphical analysis for afterwards.--> basically I need to simply predict for each line. Also, I need to define different polynomials to see how robust is the effect. 
 
 
@@ -239,7 +233,7 @@ rd_local_nonpar <- function(Y, X, ker, p, bselect, cluster_var, nameY, nameX) {
   rdplot(y = Y[ix], x = X[ix], c = 0, p = p, kernel = ker, h = c(hL, hR),masspoints = "adjust", ci=TRUE, shade=TRUE,
   x.label = nameX %||% "Running variable", y.label = nameY %||% "Outcome", title   = paste0("RD Plot: ", nameY, " vs ", nameX),
   x.lim   = c(-hL, hR))
-  #just to make it nicer: (NOTE: NEED TO ADD CI!!) But to the regression discontinuity line-->DOES THE program accept it? does not seem so! kind of slopish...
+  #just to make it nicer: (NOTE: NEED TO ADD CI!!) But to the regression discontinuity line-->DOES THE program accept it? does not seem so! kind of slopish...Add myself ; code it.
 
   
   return(data.frame(
@@ -305,10 +299,6 @@ ylabel = "density",
 )
 
 
-
-
-
-
 ##robustness
 results_robust1 <- apply(grid, 1, function(row) {
   Rn <- row["R"] #useful trick that I apply throughout, maybe inefficiently though. 
@@ -339,8 +329,7 @@ results_robust4 <- apply(grid, 1, function(row) {
 })
 
 
-
-##3. Define first rurality frontier
+################Exercise 3. Define first rurality frontier
 
 main <- main |>
       mutate(rurality_frontier= sqrt((population)^2+(time)^2)
@@ -360,10 +349,7 @@ results2 <- apply(grid2, 1, function(row) {
 })
 #NOTE: here i should pass it also with RD2 package?
 
-
-##4. In 2D, now we need to move along another dimension. 
-#this needs to be treated carefully... tomorrow morning I will start. 
-
+################Exercise 4. Biundary rd
 
 # treatment rule (OR condition
 
@@ -371,7 +357,7 @@ main <- main |> mutate(t=as.numeric(main$population<=0 | main$time>=0))
 X_mat <- cbind(main$population, main$time)
 
 
-b1 <- cbind(seq(0, 200, length.out = 20), rep(0, 20))
+b1 <- cbind(seq(0, 200, length.out = 20), rep(0, 20)) #ad hoc, is there a data drive way to select points?
 
 # Other arm: population = 0, time decreases
 b2 <- cbind(rep(0, 20), seq(0, -40, length.out = 20))
@@ -379,13 +365,11 @@ b2 <- cbind(rep(0, 20), seq(0, -40, length.out = 20))
 # Combine (this is your "L" shape)
 b <- rbind(b1, b2)
 
-##this is it???
-
 rd2_wage <-rd2d(Y=main$wage, X=X_mat, t=main$t, b=b, p = 1, kernel = "tri", masspoints = "adjust", level = 95, cbands = TRUE, repp = 1000, bwselect = "mserd")
 
 rd2_score <-rd2d(Y=main$score, X=X_mat, t=main$t, b=b, p = 1, kernel = "tri", masspoints = "adjust", level = 95, cbands = TRUE, repp = 1000, bwselect = "mserd")
 
-
+#graph results, inefficiently probably.
 results_rd2_wage <- as.data.frame(rd2_wage$results)
 
 results_rd2_wage <- results_rd2_wage |>
@@ -421,11 +405,5 @@ ggplot(results_rd2_score, aes(x = 1:nrow(results_rd2_score), y = tau)) +
     y = "Estimated Treatment Effect (τ̂)"
   ) +
   theme_minimal(base_size = 13)
-
-
-#for score I am not capturing the locality of the effect because width too big!! see how to fix this bullshit. 
-
-##how to pick the boundary points in a datadrive way, maybe draw a graph, no?
-#I think here I either use a graph or use his evidence
 
 ############################################## EOF

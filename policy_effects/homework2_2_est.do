@@ -1,5 +1,8 @@
 **
 
+*Date 20/10/2025
+*Author: Jordi Torres
+*Purpose: estimate clogit and mlogit and store coefficients.
 
 use "/Users/jorditorresvallverdu/Downloads/Model_sample.dta", clear
 ssc install parmest
@@ -9,9 +12,6 @@ keep if score>=cutoff
 
 gen time2= time^2
 gen logpop2= logpop^2
-
-gen time
-
 
 ***************************************************************++***************
 ********************+1. CLOGIT:estimation **************************************

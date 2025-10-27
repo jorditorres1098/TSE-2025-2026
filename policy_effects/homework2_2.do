@@ -1,5 +1,8 @@
 
-***This is just to be able to compute the effect of no bonus. 
+*Date 20/10/2025
+*Author: Jordi Torres
+*Purpose: use clogit and mlogit models to estimate predicted utilities and counterfactuals.
+
 
 set seed  1234
 
@@ -16,8 +19,6 @@ gen logpop2= logpop^2
 //clean time for q.7 and 8
 gen time_norm= time*60
 gen population_norm= exp(logpop)
-
-
 
 
 gen treat_extremerural = (population_norm <= 500 & time_norm >= 120)
@@ -54,7 +55,7 @@ preserve
 
 	keep uij n_plazas score id_school id_teach treat_extremerural treat_rural treat_modrural population_norm time_norm wage
 	export delimited using "model_restricted_clogit.csv", replace
-	!gzip model_restricted_clogit.csv, replace //I use this as input of my algorithm.
+	!gzip model_restricted_clogit.csv, replace //I use this as input of my algorithm. Inefficient...
 
 *save as csv
 restore
@@ -76,7 +77,7 @@ estimates use clogit_model
 *How to change wage? I need to incorporate information on the rurality and treatment status of the school. 
 predict vij_cf, xb
 
-gen uij_cf= vij_cf+err //with just one draw. same draw, though?
+gen uij_cf= vij_cf+err //with just one draw. same draw, though? I would say so.
 
 
 preserve 
@@ -101,8 +102,6 @@ replace wage=prev_wage
 ***************************************************************++***************
 ********************+2. MIXLOGIT *************************************************
 ********************************************************************************
-
-*Run it on a subset of random teachers, as it takes ages
 
 estimates use mixlogit_model
 predict mix_vij, xb

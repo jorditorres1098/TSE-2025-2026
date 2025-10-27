@@ -1,5 +1,6 @@
 ##Homework 2 of Policy analysis: RD
 ##Date: 15/10/2025
+##Author: Jordi Torres
 
 rm(list = ls())
 #0. Introduction, data manipulation. 
@@ -18,8 +19,6 @@ library(mlogit)
 library(data.table)
 
 ##First define the algorithm. 
-
-
 dictator_algorithm <- function(data, utility_col) {
 
   # Ensure data.table
@@ -35,7 +34,7 @@ dictator_algorithm <- function(data, utility_col) {
 
   characteristics_j <- data[, .(population=unique(population_norm), time=unique(time_norm), treat_extreme= unique(treat_extremerural), treat_rural= unique(treat_rural), treat_mod= unique(treat_modrural), wage= unique(wage)), by= id_school]
 
-  # Rank of preferences
+  # Rank of preferences!!
   data[, rank := frank(-get(utility_col), ties.method = "random"), by = id_teach]
   teacher_pref <- data[order(id_teach, rank),
                        .(pref_list = list(id_school),
@@ -62,7 +61,7 @@ dictator_algorithm <- function(data, utility_col) {
     }
   }
 
-  # export
+  #export
   matches <- data.table(
     id_teach = as.integer(names(assign)),
     id_school = as.integer(assign)
@@ -75,21 +74,21 @@ dictator_algorithm <- function(data, utility_col) {
   matches[, outside_opt := as.integer(id_school %in% c(1, 2))]
 
 
-  # Merge school characteristics
+  # Merge school characteristics to have running vars normalizedd
   matches <- merge(matches, characteristics_j, by = "id_school", all.x = TRUE)
 
-  # Merge teacher scores
+  # same w teacher scores
   matches <- merge(matches, score_i, by = "id_teach", all.x = TRUE)
-
-  #Normalize cutoffs and apply same cleaning as before! (pending)
 
   return(matches)
 }
 
 
 ##Exercise 7
+#note: input estimated in stata.
+#the rd code is a replication of the Rfile 1_1.
 
-df <- fread("/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/model_restricted_clogit.csv")
+df <- fread("/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/model_restricted_clogit.csv") 
 match_clog <- dictator_algorithm(df, "uij")
 
 rm(df)
@@ -165,7 +164,7 @@ results <- apply(grid, 1, function(row) {
 })
 
 
-###Mix logit
+#Mix logit
 df2 <- fread("/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/model_restricted_mixlogit.csv")
 match_clog_mix <- dictator_algorithm(df2, "mix_uij")
 
@@ -213,17 +212,17 @@ results2 <- apply(grid, 1, function(row) {
   rd_local_nonpar(Y = Y_list[[Yn]], X = R_list[[Rn]], ker = "tri", p = 1, bselect="mserd", cluster_var=main$id_school, nameY = Yn, nameX = Rn) ##change this to try different stuff and generate different tables. 
 })
 
+##Exercise 8
 
 
-######clogit cf
-###Clogit logit
+#clogit cf
 df3 <- fread("/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/model_restricted_clogit_cf.csv")
 match_clog_cf <- dictator_algorithm(df3, "uij_cf")
 
 rm(df3)
 
 
-###mixlogit
+#mixlogit cf
 df4 <- fread("/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/model_restricted_mixlogit_cf.csv")
 match_mix_cf <- dictator_algorithm(df4, "mix_uij_cf")
 
@@ -232,7 +231,7 @@ rm(df4)
 
 
 
-####Computing differences
+##Computing differences
 
 #define all rural
 for (d in list(match_clog, match_clog_cf, match_clog_mix, match_clog_mix_cf)) {
@@ -289,4 +288,4 @@ effect_mix  <- compute_effect(rural_mix, rural_mix_cf, "Mixlogit")
 effect_summary <- rbind(effect_clog, effect_mix)
 
 
-#########EOF
+##############EOF
