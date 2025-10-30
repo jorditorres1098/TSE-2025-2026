@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="httpgd" width="370.00" height="263.00" viewBox="0 0 370.00 263.00">
+<defs>
+  <style type='text/css'><![CDATA[
+    .httpgd line, .httpgd polyline, .httpgd polygon, .httpgd path, .httpgd rect, .httpgd circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+<clipPath id="c0"><rect x="0.00" y="0.00" width="370.00" height="263.00"/></clipPath>
+<clipPath id="c1"><rect x="59.04" y="59.04" width="280.72" height="130.52"/></clipPath>
+<clipPath id="c2"><rect x="0.00" y="0.00" width="370.00" height="263.00"/></clipPath>
+</defs>
+<rect width="100%" height="100%" style="stroke: none;fill: #FFFFFF;"/>
+<g clip-path="url(#c0)">
+</g><g clip-path="url(#c1)">
+<circle cx="101.93" cy="184.73" r="2.70" style="stroke-width: 0.75;"/>
+<circle cx="134.42" cy="179.53" r="2.70" style="stroke-width: 0.75;"/>
+<circle cx="150.66" cy="176.76" r="2.70" style="stroke-width: 0.75;"/>
+<circle cx="183.15" cy="176.42" r="2.70" style="stroke-width: 0.75;"/>
+<circle cx="248.14" cy="91.23" r="2.70" style="stroke-width: 0.75;"/>
+<circle cx="280.63" cy="115.12" r="2.70" style="stroke-width: 0.75;"/>
+<circle cx="296.87" cy="98.50" r="2.70" style="stroke-width: 0.75;"/>
+<circle cx="313.12" cy="90.88" r="2.70" style="stroke-width: 0.75;"/>
+<circle cx="329.36" cy="63.87" r="2.70" style="stroke-width: 0.75;"/>
+</g><g clip-path="url(#c2)">
+<line x1="69.44" y1="189.56" x2="313.12" y2="189.56" style="stroke-width: 0.75;"/>
+<line x1="69.44" y1="189.56" x2="69.44" y2="196.76" style="stroke-width: 0.75;"/>
+<line x1="150.66" y1="189.56" x2="150.66" y2="196.76" style="stroke-width: 0.75;"/>
+<line x1="231.89" y1="189.56" x2="231.89" y2="196.76" style="stroke-width: 0.75;"/>
+<line x1="313.12" y1="189.56" x2="313.12" y2="196.76" style="stroke-width: 0.75;"/>
+<g><text x="69.44" y="215.48" text-anchor="middle" style="font-family: Arial;font-size: 12.00px;" textLength="6.67px" lengthAdjust="spacingAndGlyphs">0</text></g>
+<g><text x="150.66" y="215.48" text-anchor="middle" style="font-family: Arial;font-size: 12.00px;" textLength="6.67px" lengthAdjust="spacingAndGlyphs">5</text></g>
+<g><text x="231.89" y="215.48" text-anchor="middle" style="font-family: Arial;font-size: 12.00px;" textLength="13.35px" lengthAdjust="spacingAndGlyphs">10</text></g>
+<g><text x="313.12" y="215.48" text-anchor="middle" style="font-family: Arial;font-size: 12.00px;" textLength="13.35px" lengthAdjust="spacingAndGlyphs">15</text></g>
+<line x1="59.04" y1="185.42" x2="59.04" y2="64.22" style="stroke-width: 0.75;"/>
+<line x1="59.04" y1="185.42" x2="51.84" y2="185.42" style="stroke-width: 0.75;"/>
+<line x1="59.04" y1="168.10" x2="51.84" y2="168.10" style="stroke-width: 0.75;"/>
+<line x1="59.04" y1="150.79" x2="51.84" y2="150.79" style="stroke-width: 0.75;"/>
+<line x1="59.04" y1="133.48" x2="51.84" y2="133.48" style="stroke-width: 0.75;"/>
+<line x1="59.04" y1="116.16" x2="51.84" y2="116.16" style="stroke-width: 0.75;"/>
+<line x1="59.04" y1="98.85" x2="51.84" y2="98.85" style="stroke-width: 0.75;"/>
+<line x1="59.04" y1="81.53" x2="51.84" y2="81.53" style="stroke-width: 0.75;"/>
+<line x1="59.04" y1="64.22" x2="51.84" y2="64.22" style="stroke-width: 0.75;"/>
+<g><text transform="translate(41.76,185.42) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 12.00px;" textLength="23.36px" lengthAdjust="spacingAndGlyphs">0.00</text></g>
+<g><text transform="translate(41.76,150.79) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 12.00px;" textLength="23.36px" lengthAdjust="spacingAndGlyphs">0.10</text></g>
+<g><text transform="translate(41.76,116.16) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 12.00px;" textLength="23.36px" lengthAdjust="spacingAndGlyphs">0.20</text></g>
+<g><text transform="translate(41.76,81.53) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 12.00px;" textLength="23.36px" lengthAdjust="spacingAndGlyphs">0.30</text></g>
+<polygon points="59.04,189.56 339.76,189.56 339.76,59.04 59.04,59.04" style="stroke-width: 0.75;" />
+<g><text x="199.40" y="244.28" text-anchor="middle" style="font-family: Arial;font-size: 12.00px;" textLength="53.34px" lengthAdjust="spacingAndGlyphs">wlist_right</text></g>
+<g><text transform="translate(12.96,124.30) rotate(-90.00)" text-anchor="middle" style="font-family: Arial;font-size: 12.00px;" textLength="29.34px" lengthAdjust="spacingAndGlyphs">Pvals</text></g>
+</g>
+</svg>
