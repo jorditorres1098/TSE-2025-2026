@@ -23,6 +23,10 @@
 \usepackage{pdflscape} % in your preamble
 \usepackage{tabularray}
 \setcounter{secnumdepth}{2}
+\usepackage{amsmath, amsthm}  % for math and theorem environments
+
+% Define a theorem environment
+\newtheorem{theorem}{Theorem}
 
 \setlength\parindent{0pt}
 
@@ -38,9 +42,53 @@
 
 \maketitle
 
-\section{Exercise 1}
+\section*{Exercise 1}
 
-I show the results of the 
+Let $(g,t)\in \{1, \dots, G\} \times \{1, \dots, T\} := N $ In our case, $g$ stands for municipalities and $t$ for term. Treatment in this case is defined as $d_{g,t}\in \{0,1\}$, where 1 indicates that the village was given the Seguro Popular at that time period. \\
+
+The design was staggered because treatment was switched in only once $d_{g,t}=1$ and then it remains 1 (there is one exception of a switcher that is in treatment, switches off and then switcher back in, probably a data cleaning mistake. ). Intensity of treatment does not vary over time or change, no?
+
+In table~\ref{tab:classification} we can see the proportion of villages that switch into or out of treatment and those that are stayers. For those that are stayers, I distinguish between the always treated and the always control. We can observe that most of the sample is always treated, while only 10\% of villages switch.
+
+\input{figures/table1.tex}
+
+We can write the following model: 
+
+\[
+Y_{g,t}= \sum_{g'=1}^{G}\gamma_{g'}\mathbf{1}\{g=g'\} + \sum_{t'=1}^{T}\gamma_{t'}\mathbf{1}\{t=t'\} + \beta_{fe}^{X} \mathbf{1}\{d_{g,t}=1\} + \textbf{X}'\beta+ \epsilon_{j,t}
+\]
+Where we cluster $\epsilon_{j,t}$ at the village level. 
+
+We need to collapse the dataset at the level of analysis. I include the general case where we want to condition on a vector of characteristics at the g,t level to make sure assumptions below hold (as stated in Theorem 1 of Chaisemartin d'Haultefe DID)
+
+\begin{theorem}
+    In design CLA, if PT and NA hold, then: \(\mathbf{E}(\beta_{fe}^{X})=\text{ATT}\)
+\end{theorem}
+
+
+\textbf{Assumptions needed}
+
+\begin{enumerate}
+    \item \textbf{SUTVA (randomness of treatment)}: this implies that g's potential outcome depends only on g's treatment and not on other villages. This implies that there are no spillovers across villages of the Seguro Popular treatment (which seems reasonable).--> is this needed 100\%? Is this implied by any of the other two assumptions?
+    \item \textbf{No anticipation (NA)}: current outcome does not depend on future realizations of the treatment. Here implies that agents don't expect the change in the subsidy and adapt their behavior? Initial condition also? what if villages were exposed to treatment before we start measuring them?
+    \item \textbf{Parallel trend assumptions (PT)}: it implies that, in the absence of treatment, the trends that groups would have followed was the same. That is: for all $t\leq 2$ : \( \mathbf{E} (Y_{g,t}(0)-Y_{g,t-1}(0)) \), which means for untreated potential outcomes would have stayed the same. 
+\end{enumerate}
+
+Limitations of these assumptions? \textbf{\textcolor{blue}{ADD}} p.67 of their book, basically. 
+
+\section*{Exercise 2}
+
+In table~\ref{tab:fe_fd} I show the results of the TWFE estimator and the First difference estimator. Both coefficients are not significant; likely because of the low amount of switchers that we have in the dataset. Without forbidden comparisons. -->solution to this? with and without forbidden comparisons?
+
+\input{figures/fe_fd_results.tex} 
+
+
+\textcolor{blue}{textbf{Note: revise this ugly ass table}} Solved a way to put latex tables directly from R to Latex but with the problem of 1. ugly as fuck, 2. unable to put it where I want to. 
+
+
+Here to revise a little bit the implementation of the first difference estimator etcetera in R and modify a little bit so the table is correct. 
+
+
 
 
 \end{document}
