@@ -123,7 +123,7 @@ texreg(
   dcolumn = TRUE,
   file = file.path(out_path_tables, "fe_fd_results.tex"),
   override.gof = list(
-    c(nobs(fe_model2), nobs(fe_model2_wc), nobs(fd_model), nobs(fd_model_wc))
+    c(nobs(fe_model), nobs(fe_model_wc), nobs(fd_model), nobs(fd_model_wc))
   ),
   override.gof.names = c("Observations"),
   override.gof.decimal = c(0)
@@ -204,18 +204,80 @@ twoway1 <- twowayfeweights(data_bacon,
   Y="lwage",
   G="cvemun",
   T="quarter" ,
-  D="treat"
+  D="treat", 
+  summary_measures = TRUE
 
 )
 
-twoway2 <- twowayfeweights(data_bacon, 
-  Y="lwage",
+#plot
+
+unique_weights <- twoway1$dat_result |>
+          distinct(weight) |>
+          arrange(weight)
+
+ggplot(unique_weights, aes(x = seq_along(weight), y = weight)) +
+  geom_point(alpha = 0.6, color = "steelblue") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red", linewidth = 1) +
+  theme_minimal(base_size = 13) +
+  labs(
+    title = "Weights from Two-Way FE Decomposition",
+    x = "Observation index",
+    y = "Weight"
+  )
+
+#regression
+
+weights_bygt <- twoway1$dat_result |>
+              rename(cvemun=G, quarter=T)
+
+
+data_reg <- data_bacon |>
+          left_join(weights_bygt, weight, by=c("cvemun", "quarter")) |>
+          left_join(main |> select(cvemun, pobtot, indmarg95), by=c("cvemun") )
+
+reg_weights <- lm(weight ~ mean_age + mean_sec_occup + share_high_educ + pobtot + indmarg95 , data=data_reg ) #revise this, do I need the dataset collapsed at the individual level or at the g,t level? probably it changes a lot the results, n affects se. Need to control for X in some specifications... just to make sure the parallel trend assumptions holds. REVISE. 
+
+summary(reg_weights)
+
+##first differences
+
+first_dif <- data_bacon |>
+        arrange(cvemun, quarter) |>
+        group_by(cvemun) |>
+        mutate(
+          lagwage= lwage- dplyr::lag(lwage) ,
+          lagtreat= treat- dplyr::lag(treat)
+        ) |>
+        ungroup() |>
+        filter(!is.na(lagwage) & !is.na(lagtreat)) ##this is to drop the first lime of missings
+
+
+#this needs to be done on first difference data!!!
+twoway2 <- twowayfeweights(first_dif, 
+  Y="lagwage",
   G="cvemun",
   T="quarter" ,
-  D="treat",
+  D="lagtreat",
   type="fdTR", 
-  D0= "mean_hwage"
+  D0= "lwage"
   
 )
 
+unique_weights2 <- twoway2$dat_result |>
+          distinct(weight) |>
+          arrange(weight)
+
+ggplot(unique_weights2, aes(x = seq_along(weight), y = weight)) +
+  geom_point(alpha = 0.6, color = "steelblue") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red", linewidth = 1) +
+  theme_minimal(base_size = 13) +
+  labs(
+    title = "Weights from First Differences Decomposition",
+    x = "Observation index",
+    y = "Weight"
+  )
+
 ##unsure about this
+
+#plot, then check correlations between the treatment variables and what we have so far. 
+
