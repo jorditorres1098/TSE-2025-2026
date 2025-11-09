@@ -21,6 +21,7 @@ library(plm)
 library(TwoWayFEWeights)
 library(bacondecomp)
 library(texreg)
+library(did)
 rm(list = ls())
 
 
@@ -225,15 +226,31 @@ ggplot(unique_weights, aes(x = seq_along(weight), y = weight)) +
     y = "Weight"
   )
 
+
+ggplot(twoway1$dat_result, aes(x = as.factor(T), y = weight)) +
+  geom_boxplot(fill = "steelblue", alpha = 0.7, outlier.color = "red") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
+  theme_minimal(base_size = 13) +
+  labs(title = "Distribution of TWFE Weights by Quarter",
+       x = "Quarter (T)", y = "Weight")
+
+
+
 #regression
 
 weights_bygt <- twoway1$dat_result |>
-              rename(cvemun=G, quarter=T)
+              rename(cvemun=G, quarter=T) |>
+              
+main_muni <- main |>
+  select(cvemun, pobtot, indmarg95) |>
+  distinct(cvemun, .keep_all = TRUE)
+
 
 
 data_reg <- data_bacon |>
           left_join(weights_bygt, weight, by=c("cvemun", "quarter")) |>
-          left_join(main |> select(cvemun, pobtot, indmarg95), by=c("cvemun") )
+          left_join(main_muni |> select(cvemun, pobtot, indmarg95), by=c("cvemun") ) 
+
 
 reg_weights <- lm(weight ~ mean_age + mean_sec_occup + share_high_educ + pobtot + indmarg95 , data=data_reg ) #revise this, do I need the dataset collapsed at the individual level or at the g,t level? probably it changes a lot the results, n affects se. Need to control for X in some specifications... just to make sure the parallel trend assumptions holds. REVISE. 
 
@@ -280,4 +297,86 @@ ggplot(unique_weights2, aes(x = seq_along(weight), y = weight)) +
 ##unsure about this
 
 #plot, then check correlations between the treatment variables and what we have so far. 
+
+
+###Should advance a bit...
+
+#Exercise 3
+
+data_exercise3 <- data_bacon |>
+  group_by(cvemun) |>
+  mutate(
+    treat_first = ifelse(
+      any(treat == 1),
+      min(quarter[treat == 1]),
+      NA_real_
+    )
+  ) |>
+  ungroup()
+
+  data_exercise3 <- data_exercise3 |>
+  mutate(event_time = quarter - treat_first)
+
+
+#this is to generate a dataset at the time dimension lvel.
+es_model <- feols(
+  lwage ~ i(event_time, ref = -1) | cvemun + quarter,
+  cluster = ~cvemun,
+  data = data_exercise3
+)
+
+iplot(
+  es_model,
+  main = "Event Study: Effect of Seguro Popular on log(wage)",
+  xlab = "Event time (quarters relative to treatment)",
+  ylab = "Estimated effect (log points)",
+  ref.line = 0
+)
+
+library(DIDmultiplegt)
+
+  data_exercise3 <- data_exercise3 |>
+  filter(event_time>=0 & event_time<=3)
+
+##this does not work because we can't identify the effect of not having treatment... it is colinear with time fixed effects. Also, identification of the rest is weak... maybe we need to restrict sample to small changers:
+did_multiplegt_dyn(
+df,
+outcome,
+group,
+time,
+treatment,
+effects = 1,
+design = NULL,
+normalized = FALSE,
+normalized_weights = FALSE,
+effects_equal = FALSE,
+placebo = 0,
+controls = NULL,
+trends_nonparam = NULL,
+trends_lin = FALSE,
+continuous = NULL,
+weight = NULL,
+cluster = NULL,
+by = NULL,
+by_path = NULL,
+predict_het = NULL,
+date_first_switch = NULL,
+same_switchers = FALSE,
+same_switchers_pl = FALSE,
+switchers = "",
+only_never_switchers = FALSE,
+ci_level = 95,
+graph_off = FALSE,
+save_results = NULL,
+save_sample = FALSE,
+less_conservative_se = FALSE,
+bootstrap = NULL,
+dont_drop_larger_lower = FALSE,
+drop_if_d_miss_before_first_switch = FALSE,
+ggplot_args = NULL
+)
+#em falta aplicar l'altre command. Moure a Stata? no idea, revisar millor la identificació d'això; escriure bé
+
+
+#fer el gràfic
 

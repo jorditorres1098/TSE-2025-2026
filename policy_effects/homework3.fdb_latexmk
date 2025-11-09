@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1762504845.56137 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/homework3.tex" "homework3.pdf" "homework3" 1762504846.30643 0
-  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/homework3.tex" 1762454502.9413 4380 1812a89f775078da2e832d1831aa12de ""
+["pdflatex"] 1762701749.44687 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/homework3.tex" "homework3.pdf" "homework3" 1762701750.19744 0
+  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/homework3.tex" 1762526085.86866 4380 1812a89f775078da2e832d1831aa12de ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/map/pdftex/pdftex.map" 1762210004.74647 339773 a1c68872d3dc0a4bee66a5dedbc28f32 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1734277941.08881 12002472 b582eb731daf2b623c3d30845607ef6c ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1725915917.94285 1004 54797486969f23fa377b128694d548df ""
@@ -181,11 +181,11 @@
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/tools/xspace.sty" 1734275015.87431 4545 e3f4de576c914e2000f07f69a891c071 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/url/url.sty" 1725915934.0507 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/xcolor/xcolor.sty" 1734275016.41717 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "figures/fe_fd_results.tex" 1762445863.76182 1631 5d80209b4c52040c074685d9b046239c ""
-  "figures/table1.tex" 1762504844.53335 389 a36cfad6c5705598e3bf1b0e1e8dbf47 ""
-  "homework3.aux" 1762504846.18442 621 aa3bfb63f25a1672904f0814a6a302a1 "pdflatex"
-  "homework3.out" 1762504846.15433 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "homework3.tex" 1762454502.9413 4380 1812a89f775078da2e832d1831aa12de ""
+  "figures/fe_fd_results.tex" 1762701749.03408 1631 5d80209b4c52040c074685d9b046239c ""
+  "figures/table1.tex" 1762701748.93144 389 58e6891c6c73922b1e928c7095558f3f ""
+  "homework3.aux" 1762701750.0745 621 aa3bfb63f25a1672904f0814a6a302a1 "pdflatex"
+  "homework3.out" 1762701750.04657 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "homework3.tex" 1762526085.86866 4380 1812a89f775078da2e832d1831aa12de ""
   (generated)
   "homework3.aux"
   "homework3.log"
