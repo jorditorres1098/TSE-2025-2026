@@ -332,7 +332,7 @@ iplot(
   ylab = "Estimated effect (log points)",
   ref.line = 0
 )
-
+#this does not work.
 library(DIDmultiplegt)
 
   data_exercise3 <- data_exercise3 |>
