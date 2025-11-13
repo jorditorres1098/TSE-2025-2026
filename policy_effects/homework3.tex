@@ -91,4 +91,136 @@ Here to revise a little bit the implementation of the first difference estimator
 
 
 
+\section*{Exercise 5}
+
+\[
+\mathbf{E}(w_{j})= U , \forall j\in \{f,i\}
+\]
+
+\[
+\frac{w_{f}^{*}+ B_{f} + \eta_{f}U}{\rho + \eta_{f}}=U
+\]
+
+\[
+w_{f}^{*}= U\rho - Bj
+\]
+
+Thus, although the total compensation will the be the same across informal and formal jobs (i.e $U\rho$), if \(B_f>B_i \iff w_f>w_i\). Higher amenities in terms of social security conditions in formal jobs will decrease the reservation wage. (no differential in skill-type of contract/informality + assumes workers with different skills have the same bargaining power.)
+
+\section*{Exercise 6}
+I will first try to simplify the expression of \(w_j^{*}\), given that this is an essential equilibrium element in the likelihood. This follows the procedure we did in class. 
+
+We use the results of the previous exercise and the definition given in the exercise to write:
+
+\[
+w_j^{*}= b - B_{j} + \sum_{j} \lambda_{j} 
+\left( 
+\int_{w_{j}<w_{j}^{*}} U\, dF_j(w_j) 
++ 
+\int_{w_j\geq w_{j}^{*}} E_j(w_j)\, dF_j(w_j) 
+- U 
+\right)
+\]
+
+Collecting terms and noting that 
+\(\int_{w_{j}<w_{j}^{*}} dF_j(w_j) = F_j(w_j^{*})\), we obtain:
+
+\[
+w_j^{*}= b - B_{j} + \sum_{j} \lambda_{j} 
+\left( 
+U F_j(w_{j}^{*}) - U 
++ 
+\int_{w_j\geq w_{j}^{*}} E_j(w_j)\, dF_j(w_j) 
+\right)
+\]
+
+This simplifies to:
+
+\[
+w_j^{*}= b - B_{j} + \sum_{j} \lambda_{j} 
+\left( 
+- U \big(1 - F_j(w_{j}^{*})\big) 
++ 
+\int_{w_j\geq w_{j}^{*}} E_j(w_j)\, dF_j(w_j) 
+\right).
+\]
+
+Adding and subtracting \(U\) inside the integral and simplifying the 
+\(U\big(1-F_j(w_j^*)\big)\) terms gives:
+
+\[
+w_j^{*}= b - B_{j} + \sum_{j} \lambda_{j} 
+\int_{w_j\geq w_{j}^{*}} 
+\big( 
+E_j(w_j) - U 
+\big)\, dF_j(w_j)
+\]
+
+We then substitute for the definition of \(E_j(w_j)\):
+
+\[
+E_j(w_j) = \frac{w_j + B_j + \eta_j U}{\rho + \eta_j}
+\]
+
+Using \(E_j(w_j^*)=U\) implies \(E_j(w_j)-U=\dfrac{w_j-w_j^*}{\rho+\eta_j}\)Replacing this into the expression above, we obtain:
+
+\[
+w_j^{*}= b - B_{j} + \sum_{j} 
+\frac{\lambda_{j}}{\rho + \eta_j} 
+\int_{w_j\geq w_{j}^{*}} 
+\big(w_j - w_{j}^{*}\big)\, dF_j(w_j),
+\]
+
+which holds for each \(j \in \{i,f\}\)
+
+\vspace{1em}
+
+Then we construct the likelihood contributions of employed and unemployed people in the following way.
+
+\paragraph{Unemployed.} Let \(\tilde F_j(w_j^*) \equiv 1 - F_j(w_j^*)\) and define the sector-specific job-finding hazards \(a_j \equiv \lambda_j \tilde F_j(w_j^*)\). The total exit hazard from unemployment is
+\[
+h_u \;=\; a_i + a_f \;=\; \lambda_i \tilde F_i(w_i^*) + \lambda_f \tilde F_f(w_f^*)
+\]
+The likelihood of an ongoing unemployment spell of duration \(t_u\) is
+\[
+L(t_u, u)
+\;=\;
+\underbrace{h_u \exp(-h_u t_u)}_{\text{duration density}}
+\times 
+\underbrace{p(u)}_{\text{steady-state mass at }U}\!,
+\]
+where, for the three-state system \((U,E_i,E_f)\),
+\[
+p(u) \;=\; \Big( 1 + \tfrac{a_i}{\eta_i} + \tfrac{a_f}{\eta_f} \Big)^{-1}
+\]
+
+\paragraph{Employed.} For employed individuals with observed sector \(j\) and wage \(w\),
+\[
+L(w, e_j)
+\;=\;
+\underbrace{\frac{f_j(w)}{\tilde F_j(w_j^*)}}_{\text{accepted-wage density on }[w_j^*,\infty)}
+\times 
+\underbrace{p(e_j)}_{\text{steady-state mass at }E_j}\!,
+\qquad
+p(e_j) \;=\; \frac{a_j/\eta_j}{\,1 + \frac{a_i}{\eta_i} + \frac{a_f}{\eta_f}\,}
+\]
+If the sector is not observed, use the mixture
+\[
+L(w, e) \;=\; \sum_{j\in\{i,f\}} \frac{f_j(w)}{\tilde F_j(w_j^*)}\, p(e_j)
+\]
+
+Thus, the overall likelihood function can be written as:
+
+\[
+L(\theta)= 
+\prod_{i \in U} L(t_{u,i}, u) 
+\times 
+\prod_{i \in E} L(w_i, e) .
+\]
+
+\textbf{Derivatives}
+
+
+
+
 \end{document}

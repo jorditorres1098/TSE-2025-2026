@@ -39,6 +39,7 @@ rm(data)
 
 ##with dta we have labels passing by usual names... 
 
+##______________________________________________________________________________
 #Exercise 1
 classification <- main |>
     group_by(cvemun) |>
@@ -71,10 +72,13 @@ latex_table <- xtable(classification_summary,
 print(latex_table, 
       file = file.path(out_path_tables, "table1.tex"), 
       include.rownames = FALSE, 
-      booktabs = TRUE)  # booktabs = nicer formatting for LaTeX
+      booktabs = TRUE)  
 
 
-#Exercise 1.1 estimate it using a collapsed dataset: the level of observation is the individual, but we want the level of observation to be the municipality. 
+#Exercise 1.1 estimate it using a collapsed dataset: the level of observation is the individual, but we want the level of observation to be the municipality. First differences does not make sense... 
+
+#Exercise 2
+##______________________________________________________________________________
 
 #collapse the data 
 data_analysis <- main |>
@@ -84,13 +88,13 @@ data_analysis <- main |>
     mean_age      = mean(age, na.rm = TRUE),
     mean_hwage    = mean(hwage, na.rm = TRUE),
     mean_sec_occup = mean(sec_occup, na.rm = TRUE),
-    share_formal   = mean(occup == 2, na.rm = TRUE),  # example: share formal workers
+    share_formal   = mean(occup == 2, na.rm = TRUE),  
     share_high_educ = mean(educ == 1, na.rm = TRUE),  # share high schooling
     .groups = "drop"
   ) |>
   mutate(lwage= log(mean_hwage))
 
-##this is the same as the reghdfe command in STATA
+##TWFE
 
 fe_model <- feols(lwage ~ treat | cvemun + quarter, 
                   data = data_analysis, 
@@ -104,7 +108,7 @@ fe_model_wc <- feols(lwage ~ treat + mean_age +  share_formal + mean_sec_occup  
 summary(fe_model_wc)
 
 
-# first differences 
+# first differences -->useless! 
 pdata <- pdata.frame(data_analysis, index = c("cvemun", "quarter")) #same as xtset
 
 # First-difference model
@@ -113,6 +117,7 @@ fd_model <- plm(lwage ~ treat, data = pdata, model = "fd", cluster=cvemun)
 fd_model_wc <- plm(lwage ~ treat + mean_age+ share_formal + share_high_educ, data = pdata, model = "fd", cluster=cvemun)
 
 
+#export directly to latex doc (tables update automatically)
 texreg(
   list(fe_model, fe_model_wc, fd_model, fd_model_wc),
   custom.model.names = c("2WFE", "2WFE", "FD", "FD"),
@@ -130,31 +135,30 @@ texreg(
   override.gof.decimal = c(0)
 )
 
-##Should we add cluster se at the g,t 
+###weights...
+##______________________________________________________________________________
 
-#bacon
-
+##First differences data
 data_transitions <- data_analysis %>%
-  arrange(cvemun, quarter) %>%          # make sure sorted by id & time
+  arrange(cvemun, quarter) %>%         #sort
   group_by(cvemun) |>
   mutate(
     lag_treat = dplyr::lag(treat),
-    switched  = treat != lag_treat      # TRUE whenever treatment changes
+    switched  = treat != lag_treat      # TtrRUE when treatment changes
   ) |>
   summarise(
-    n_switches = sum(switched, na.rm = TRUE)   # count TRUEs
+    n_switches = sum(switched, na.rm = TRUE)   # count trues
   ) |>
   ungroup()
 
-
+#prepare data
 data_bacon <- data_analysis |>
   group_by(cvemun) |>
   filter(all(!is.na(lwage))) |>
   ungroup() |>
-  filter(cvemun != 29005) ##we filter out the weird switcher across time.
+  filter(cvemun != 29005) ##we filter out the weird switcher across time (makes it non-staggered treatment; this goes against all programs)
 
-  #I can also plot across time the changes of the outcomes to see if potential outcomes hold. This is a plot I should do today. 
-
+#preliminary analysis
 data_patterns <- data_bacon |>
   arrange(cvemun, quarter) |>
   group_by(cvemun) |>
@@ -173,9 +177,9 @@ ggplot(pattern_means, aes(x = quarter,
                           color = code,
                           group = code,
                           shape = code)) +
-  geom_line(linewidth = 1) +        # modern equivalent of size=
+  geom_line(linewidth = 1) +       
   geom_point(size = 2) +
-  scale_color_brewer(palette = "Set2") +   # clean, qualitative palette
+  scale_color_brewer(palette = "Set2") +  
   theme_minimal(base_size = 13) +
   labs(
     title = "Average hourly wage by treatment pattern",
@@ -185,8 +189,10 @@ ggplot(pattern_means, aes(x = quarter,
     shape = "Pattern"
   )
 
-
 #WE NEED to drop those obs with missings - we can't have missings nor unbalancedness in the panel dataset. 
+##These are averages, add CI!!
+
+#Bacon_decomp
 
 baconres <- bacon(lwage ~ treat,
                   data = data_bacon,
@@ -200,7 +206,6 @@ ggplot(baconres) +
   labs(x = "Weight", y = "Estimate", shape = "Type")
 
 #twowayfixedeffects
-
 twoway1 <- twowayfeweights(data_bacon, 
   Y="lwage",
   G="cvemun",
@@ -211,7 +216,6 @@ twoway1 <- twowayfeweights(data_bacon,
 )
 
 #plot
-
 unique_weights <- twoway1$dat_result |>
           distinct(weight) |>
           arrange(weight)
@@ -227,6 +231,8 @@ ggplot(unique_weights, aes(x = seq_along(weight), y = weight)) +
   )
 
 
+#need to take averages across time
+
 ggplot(twoway1$dat_result, aes(x = as.factor(T), y = weight)) +
   geom_boxplot(fill = "steelblue", alpha = 0.7, outlier.color = "red") +
   geom_hline(yintercept = 0, linetype = "dashed", color = "black") +
@@ -239,22 +245,22 @@ ggplot(twoway1$dat_result, aes(x = as.factor(T), y = weight)) +
 #regression
 
 weights_bygt <- twoway1$dat_result |>
-              rename(cvemun=G, quarter=T) |>
+              rename(cvemun=G, quarter=T) 
               
 main_muni <- main |>
   select(cvemun, pobtot, indmarg95) |>
   distinct(cvemun, .keep_all = TRUE)
-
-
 
 data_reg <- data_bacon |>
           left_join(weights_bygt, weight, by=c("cvemun", "quarter")) |>
           left_join(main_muni |> select(cvemun, pobtot, indmarg95), by=c("cvemun") ) 
 
 
-reg_weights <- lm(weight ~ mean_age + mean_sec_occup + share_high_educ + pobtot + indmarg95 , data=data_reg ) #revise this, do I need the dataset collapsed at the individual level or at the g,t level? probably it changes a lot the results, n affects se. Need to control for X in some specifications... just to make sure the parallel trend assumptions holds. REVISE. 
+reg_weights <- lm(weight ~ mean_age + mean_sec_occup + share_high_educ + pobtot + indmarg95 , data=data_reg ) 
 
 summary(reg_weights)
+
+#Pending: add X as controls to further support parallel trend assumption
 
 ##first differences
 
@@ -294,14 +300,12 @@ ggplot(unique_weights2, aes(x = seq_along(weight), y = weight)) +
     y = "Weight"
   )
 
-##unsure about this
+##unsure about how to plot this. maybe it is better to add time in X... 
 
-#plot, then check correlations between the treatment variables and what we have so far. 
-
-
-###Should advance a bit...
-
+##______________________________________________________________________________
 #Exercise 3
+
+##NOTE: exclude always treated (the following is all wrong: exclude always treated and add never treated as F+1!!!! )->I had to do it in Stata, as R is not aking well this package. 
 
 data_exercise3 <- data_bacon |>
   group_by(cvemun) |>
@@ -309,7 +313,7 @@ data_exercise3 <- data_bacon |>
     treat_first = ifelse(
       any(treat == 1),
       min(quarter[treat == 1]),
-      NA_real_
+      treat_first +1
     )
   ) |>
   ungroup()
@@ -332,6 +336,8 @@ iplot(
   ylab = "Estimated effect (log points)",
   ref.line = 0
 )
+
+
 #this does not work.
 library(DIDmultiplegt)
 
