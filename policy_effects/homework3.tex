@@ -218,9 +218,258 @@ L(\theta)=
 \prod_{i \in E} L(w_i, e) .
 \]
 
+
+And if we take logs the previous expression simply becomes:
+
+\[
+LL(\theta)= \sum_{i\in U} \left(\log(h_u)- h_u t_{u,i} + \log p(u)\right)\mathbf{1}\{i \in U\} + \sum_{i\in e_j} \left(\log(f_j(w))- \log (\tilde{F}_j(w^{*}))+ \log p(e_j)\right)\mathbf{1}\{i \in e_j\}
+\]
+
+
 \textbf{Derivatives}
 
+We want to argue that some parameters can't be identified. So we take derivatives with respect to the four primitives of the model. Focusing on how the hazard $h_u$ and the truncation term $\tilde F_j(w_j^*)$ enter the likelihood, we can write (ignoring mixture issues and keeping $N_u$ and $N_e$ as the numbers of unemployed and employed observations, respectively):
 
+\[
+\frac{\partial LL(\theta)}{\partial \lambda_{j}}
+=
+N_{u}
+\left[
+\left(\frac{1}{h_{u}} - \bar t_{u}\right)
+\frac{\partial h_{u}}{\partial \lambda_{j}}
+\right]
+-
+N_{e}
+\left[
+\frac{1}{\tilde{F}_{j}(w_{j}^{*})}
+\frac{\partial \tilde{F}_{j}(w_{j}^{*})}{\partial \lambda_{j}}
+\right],
+\]
+where $\bar t_u$ is the average unemployment duration.
 
+If we expand the expressions (ignoring cross–sector effects on the other reservation wage), then:
+\[
+\begin{aligned}
+\frac{\partial h_u}{\partial \lambda_j}
+&=
+\tilde F_j(w_j^{*})
++
+\lambda_j \frac{\partial \tilde F_j(w_j^{*})}{\partial \lambda_j}
+=
+\tilde F_j(w_j^{*})
+-
+\lambda_j f_j(w_j^{*}) \frac{\partial w_j^{*}}{\partial \lambda_j},
+\\[0.5em]
+\frac{\partial \tilde F_j(w_j^{*})}{\partial \lambda_j}
+&=
+\frac{\partial \tilde F_j(w_j^{*})}{\partial w_j^{*}}
+\frac{\partial w_j^{*}}{\partial \lambda_j}
+=
+- f_j(w_j^{*}) \frac{\partial w_j^{*}}{\partial \lambda_j},
+\end{aligned}
+\]
+where $f_j(\cdot)$ is the density of $F_j(\cdot)$.
+
+Thus:
+\[
+\begin{aligned}
+\frac{\partial LL(\theta)}{\partial \lambda_{j}}
+&=
+N_{u}
+\left[
+\left(
+\frac{1}{h_{u}} - \bar t_{u}
+\right)
+\left(
+\tilde{F}_{j}(w_{j}^{*})
+-
+\lambda_{j} f_{j}(w_{j}^{*})
+\frac{\partial w_{j}^{*}}{\partial \lambda_{j}}
+\right)
+\right]
+-
+N_{e}
+\left[
+\frac{1}{\tilde{F}_{j}(w_{j}^{*})}
+\left(
+- f_{j}(w_{j}^{*})
+\frac{\partial w_{j}^{*}}{\partial \lambda_{j}}
+\right)
+\right]
+\\[0.5em]
+&=
+N_{u}
+\left[
+\left(
+\frac{1}{h_{u}} - \bar t_{u}
+\right)
+\left(
+\tilde{F}_{j}(w_{j}^{*})
+-
+\lambda_{j} f_{j}(w_{j}^{*})
+\frac{\partial w_{j}^{*}}{\partial \lambda_{j}}
+\right)
+\right]
++
+N_{e}
+\left[
+\frac{f_{j}(w_{j}^{*})}{\tilde{F}_{j}(w_{j}^{*})}
+\frac{\partial w_{j}^{*}}{\partial \lambda_{j}}
+\right].
+\end{aligned}
+\]
+
+Hence, $\lambda_j$ enters both directly (through $\tilde F_j(w_j^*)$ in $h_u$) and indirectly through the equilibrium object $w_j^{*}$.
+
+Then, if we take derivatives with respect to $\eta_j$ we can write:
+\[
+\frac{\partial LL(\theta)}{\partial \eta_j}
+= 
+N_u\left[
+\left(\frac{1}{h_u} - \bar t_{u}\right)\frac{\partial h_u}{\partial \eta_j}
+\;+\;
+\frac{1}{p_u}\frac{\partial p_u}{\partial \eta_j}
+\right]
+-
+N_e\left[
+\frac{1}{\tilde{F}_{j}(w_j^*)}\frac{\partial \tilde{F}_{j}(w_j^*)}{\partial \eta_j}
+\;+\;
+\frac{1}{p_e}\frac{\partial p_e}{\partial \eta_j}
+\right].
+\]
+
+Doing the same type of expansion as before:
+\[
+\begin{aligned}
+\frac{\partial h_u}{\partial \eta_j}
+&=
+\lambda_j \frac{\partial \tilde F_j(w_j^{*})}{\partial \eta_j}
++
+\lambda_i \frac{\partial \tilde F_i(w_i^{*})}{\partial \eta_j}
+\\
+&=
+-\lambda_j f_j(w_j^{*}) \frac{\partial w_j^{*}}{\partial \eta_j}
+-
+\lambda_i f_i(w_i^{*}) \frac{\partial w_i^{*}}{\partial \eta_j},
+\\[0.5em]
+\frac{\partial \tilde{F}_j(w_j^{*})}{\partial \eta_j}
+&=
+- f_j(w_j^{*}) \frac{\partial w_j^{*}}{\partial \eta_j},
+\end{aligned}
+\]
+so that
+\[
+\begin{aligned}
+\frac{\partial LL(\theta)}{\partial \eta_j}
+=
+N_u\Bigg[
+&\left(
+\frac{1}{h_u} - \bar t_{u}
+\right)
+\left(
+-\lambda_j f_j(w_j^{*}) \frac{\partial w_j^{*}}{\partial \eta_j}
+- \lambda_i f_i(w_i^{*}) \frac{\partial w_i^{*}}{\partial \eta_j}
+\right)
++
+\frac{1}{p_u}\frac{\partial p_u}{\partial \eta_j}
+\Bigg]
+\\
+&
+- N_e\Bigg[
+\frac{1}{\tilde{F}_j(w_j^{*})}
+\left(
+- f_j(w_j^{*}) \frac{\partial w_j^{*}}{\partial \eta_j}
+\right)
++
+\frac{1}{p_e}\frac{\partial p_e}{\partial \eta_j}
+\Bigg]
+\\[0.5em]
+=
+N_u\Bigg[
+&\left(
+\frac{1}{h_u} - \bar t_{u}
+\right)
+\left(
+-\lambda_j f_j(w_j^{*}) \frac{\partial w_j^{*}}{\partial \eta_j}
+- \lambda_i f_i(w_i^{*}) \frac{\partial w_i^{*}}{\partial \eta_j}
+\right)
++
+\frac{1}{p_u}\frac{\partial p_u}{\partial \eta_j}
+\Bigg]
+\\
+&+
+N_e\Bigg[
+\frac{f_j(w_j^{*})}{\tilde{F}_j(w_j^{*})}
+\frac{\partial w_j^{*}}{\partial \eta_j}
+-
+\frac{1}{p_e}\frac{\partial p_e}{\partial \eta_j}
+\Bigg].
+\end{aligned}
+\]
+
+Same thing happens here: $\eta_j$ affects the likelihood only through equilibrium objects such as $w_j^{*}$ and the steady-state probabilities $p_u$ and $p_e$.
+
+Finally, for the parameters of the wage offer distribution we can schematically write (for sector $j$):
+\[
+\frac{\partial LL(\theta)}{\partial \mu_j}
+= 
+\kappa \,\frac{(\ln w_j - \mu_j)}{\sigma_{j}^{2}}
++ \frac{\partial \Phi(\cdot)}{\partial \mu_j},
+\]
+and for the variance parameter:
+\[
+\frac{\partial LL(\theta)}{\partial \sigma^{2}_{j}}
+= 
+\kappa \,\frac{(\ln w_j - \mu_j)^{2}}{2\sigma_{j}^{4}}
++ \frac{\partial \Phi(\cdot)}{\partial \sigma^{2}_{j}},
+\]
+where $\kappa$ collects constants and sample size terms, and $\Phi(\cdot)$ denotes the contribution of the truncation and duration components of the likelihood. The data only allow us to identify certain combinations of the structural parameters. For instance, $a_j = \lambda_j \tilde{F}_j(w_j^{*})$ can be identified, but it is a composite of $\lambda_j$ and the reservation wage $w_j^{*}$ (and thus of $\mu_j,\sigma_j$). The same argument applies to $\eta_j$.
+
+\textbf{intuition:} in the likelihood $\lambda_j$ and $\eta_j$ never enter separately. From the data, we can identify only the reduced form objects $hu=ai+af$ the ratios $\frac{a_j}{\eta_j}$, and the shape of the accepted wage distributions.
+
+\textbf{FOCs and (non-)identification; collinearity.}
+
+Define the sector-specific job–finding hazard
+\[
+a_j \equiv \lambda_j \tilde F_j(w_j^*).
+\]
+All the elements that enter the likelihood — the total hazard $h_u$, the stationary probabilities \(p(u)\) and \(p(e_j)\), and the accepted–wage density — can be written in terms of $a_j$, $\eta_j$ and the wage-distribution parameters $(\mu_j,\sigma_j)$, and, crucially, the reservation wage $w_j^*$ itself is an equilibrium object that also depends on $(\lambda_j,\eta_j,\mu_j,\sigma_j)$ only through $a_j$.
+
+Thus the log–likelihood can be rewritten as
+\[
+LL(\theta)
+=
+\tilde L\big(a_i,a_f,\eta_i,\eta_f,\mu_i,\mu_f,\sigma_i,\sigma_f\big),
+\]
+with $\lambda_j$ appearing only via $a_j = \lambda_j \tilde F_j(w_j^*)$.
+
+Using the chain rule,
+\[
+\frac{\partial LL}{\partial \lambda_j}
+=
+\frac{\partial \tilde L}{\partial a_j}
+\frac{\partial a_j}{\partial \lambda_j},
+\qquad
+\frac{\partial LL}{\partial \eta_j}
+=
+\frac{\partial \tilde L}{\partial a_j}
+\frac{\partial a_j}{\partial \eta_j}
++
+\frac{\partial \tilde L}{\partial \eta_j}.
+\]
+
+If, as in this model, $\tilde L$ depends on $\eta_j$ only through the ratio $a_j/\eta_j$ (via the stationary probabilities), then $\partial \tilde L / \partial \eta_j$ is itself a linear combination of $\partial \tilde L / \partial a_j$, and the two first–order conditions
+\[
+\frac{\partial LL}{\partial \lambda_j} = 0,
+\qquad
+\frac{\partial LL}{\partial \eta_j} = 0
+\]
+are \emph{collinear}: they collapse to the same restriction in terms of $a_j$ and $a_j/\eta_j$. In other words, the data pin down only the composite objects
+\[
+a_j = \lambda_j \tilde F_j(w_j^*),
+\qquad
+\frac{a_j}{\eta_j},
+\]
+but not $\lambda_j$ and $\eta_j$ separately. This is precisely the sense in which some of the structural parameters are not identified: different combinations of $(\lambda_j,\eta_j)$ that yield the same $(a_j,a_j/\eta_j)$ produce the same likelihood and hence satisfy the same FOCs.
 
 \end{document}
