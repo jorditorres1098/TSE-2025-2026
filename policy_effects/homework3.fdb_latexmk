@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1763200959.00764 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/homework3.tex" "homework3.pdf" "homework3" 1763200959.79053 0
-  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/homework3.tex" 1763200958.51217 15540 bb15b1b3babd78a56794efd3398cd9b4 ""
+["pdflatex"] 1763224174.1047 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/homework3.tex" "homework3.pdf" "homework3" 1763224175.06542 0
+  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/homework3.tex" 1763224172.79001 15734 d9ecb32860deb13c6abc653aa863cac8 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/map/pdftex/pdftex.map" 1762210004.74647 339773 a1c68872d3dc0a4bee66a5dedbc28f32 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1734277941.08881 12002472 b582eb731daf2b623c3d30845607ef6c ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1725915917.94285 1004 54797486969f23fa377b128694d548df ""
@@ -184,9 +184,9 @@
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/xcolor/xcolor.sty" 1734275016.41717 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "figures/fe_fd_results.tex" 1762785840.65961 1631 5d80209b4c52040c074685d9b046239c ""
   "figures/table1.tex" 1762785840.10432 389 1929a68895c659fbd6cfd09291467cf1 ""
-  "homework3.aux" 1763200959.66502 811 71c991b7962b04e7c8daffecc0edbe5a "pdflatex"
-  "homework3.out" 1763200959.62189 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "homework3.tex" 1763200958.51217 15540 bb15b1b3babd78a56794efd3398cd9b4 ""
+  "homework3.aux" 1763224174.93058 811 71c991b7962b04e7c8daffecc0edbe5a "pdflatex"
+  "homework3.out" 1763224174.88507 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "homework3.tex" 1763224172.79001 15734 d9ecb32860deb13c6abc653aa863cac8 ""
   (generated)
   "homework3.aux"
   "homework3.log"
