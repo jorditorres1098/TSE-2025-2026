@@ -266,10 +266,10 @@ INPUT ./homework3.out
 INPUT ./homework3.out
 INPUT homework3.out
 INPUT homework3.out
+OUTPUT homework3.pdf
 INPUT ./homework3.out
 INPUT ./homework3.out
 OUTPUT homework3.out
-OUTPUT homework3.pdf
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmr17.tfm
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmr12.tfm
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmr8.tfm
@@ -318,6 +318,9 @@ INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data
 INPUT ./figures/fe_fd_results.tex
 INPUT ./figures/fe_fd_results.tex
 INPUT figures/fe_fd_results.tex
+INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmbx8.tfm
+INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmbx6.tfm
+INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmti8.tfm
 INPUT homework3.aux
 INPUT ./homework3.out
 INPUT ./homework3.out
@@ -331,8 +334,12 @@ INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/inst
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi5.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi5.pfb
+INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi6.pfb
+INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi6.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb
+INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb
+INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb
@@ -341,6 +348,8 @@ INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/inst
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb
+INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb
+INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy5.pfb
@@ -349,3 +358,5 @@ INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/inst
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy7.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmti10.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmti10.pfb
+INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmti8.pfb
+INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmti8.pfb

@@ -50,4 +50,6 @@ reshape wide g_2, i(dif) j(first_treat)
 graph twoway line g_2* dif, xtitle("relative time") ytitle("weight in TWFE g_2 coefficient") graphregion(fcolor(white)) scheme(sj)
 
 
+use "/Users/jorditorresvallverdu/Downloads/xsection_05.dta", clear
 
+merge m:m hwage occup using "/Users/jorditorresvallverdu/Library/Mobile Documents/com~apple~CloudDocs/tse/year2/term1/bobba/data/panel_06.dta"

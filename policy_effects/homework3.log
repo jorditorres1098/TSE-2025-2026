@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2024.12.15)  15 NOV 2025 17:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2024.12.15)  16 NOV 2025 18:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -803,31 +803,60 @@ Overfull \hbox (2.26932pt too wide) in paragraph at lines 180--181
  []
 
 
+Overfull \hbox (40.70381pt too wide) detected at line 210
+\OML/cmm/m/it/10 L\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 w; t[]; e[]\OT1/cmr/m/n/10 )  =  []  \OMS/cmsy/m/n/10 ^^B  []  ^^B  []\OML/cmm/m/it/10 ;  p\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 e[]\OT1/cmr/m/n/10 )  =  []\OML/cmm/m/it/10 :
+ []
+
+
+Overfull \hbox (69.79079pt too wide) detected at line 247
+\OML/cmm/m/it/10 LL\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^R\OT1/cmr/m/n/10 ) = [] [] [](\OML/cmm/m/it/10 h[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 h[] t[] \OT1/cmr/m/n/10 + [] \OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 u\OT1/cmr/m/n/10 )[]\OT1/cmr/bx/n/10 1\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 i \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 U\OMS/cmsy/m/n/10 g  \OT1/cmr/m/n/10 +  [] [] [](\OML/cmm/m/it/10 f[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 w[]\OT1/cmr/m/n/10 )) \OMS/cmsy/m/n/10 ^^@ [] [][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 w[]\OT1/cmr/m/n/10 )[] + [](\OML/cmm/m/it/10 ^^Q[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 ^^Q[]t[] \OT1/cmr/m/n/10 + [] \OML/cmm/m/it/10 p\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 e[]\OT1/cmr/m/n/10 )[]\OT1/cmr/bx/n/10 1\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 i \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 e[]\OMS/cmsy/m/n/10 g\OML/cmm/m/it/10 :
+ []
+
+
 
 [3]
+Underfull \hbox (badness 10000) in paragraph at lines 260--264
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 268--270
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 276--281
+
+ []
+
+
 
 [4]
 
-[5] (homework3.aux)
+[5]
+
+[6]
+
+[7] (homework3.aux)
  ***********
 LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
  ***********
 Package rerunfilecheck Info: File `homework3.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+(rerunfilecheck)             Checksum: 8AF305D8263DE4F269939CBFC3F9A4B2;83.
  ) 
 Here is how much of TeX's memory you used:
- 24326 strings out of 473682
- 492112 string characters out of 5703553
- 878962 words of memory out of 5000000
- 46974 multiletter control sequences out of 15000+600000
- 567288 words of font info for 71 fonts, out of 8000000 for 9000
+ 24352 strings out of 473682
+ 492367 string characters out of 5703553
+ 882974 words of memory out of 5000000
+ 46985 multiletter control sequences out of 15000+600000
+ 568261 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,11n,107p,620b,452s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi5.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy5.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy7.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on homework3.pdf (5 pages, 210289 bytes).
+ 94i,11n,107p,620b,503s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi5.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy5.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy7.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmti10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmti8.pfb>
+Output written on homework3.pdf (7 pages, 260092 bytes).
 PDF statistics:
- 117 PDF objects out of 1000 (max. 8388607)
- 18 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 163 PDF objects out of 1000 (max. 8388607)
+ 30 named destinations out of 1000 (max. 500000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

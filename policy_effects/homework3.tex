@@ -196,18 +196,21 @@ p(u) \;=\; \Big( 1 + \tfrac{a_i}{\eta_i} + \tfrac{a_f}{\eta_f} \Big)^{-1}
 
 \paragraph{Employed.} For employed individuals with observed sector \(j\) and wage \(w\),
 \[
-L(w, e_j)
+L(w,t_e, e_j)
 \;=\;
 \underbrace{\frac{f_j(w)}{\tilde F_j(w_j^*)}}_{\text{accepted-wage density on }[w_j^*,\infty)}
-\times 
-\underbrace{p(e_j)}_{\text{steady-state mass at }E_j}\!,
+\;\times\;
+\underbrace{\eta_j e^{-\eta_j t_e}}_{\text{job-duration density}}
+\;\times\;
+\underbrace{p(e_j)}_{\text{steady-state mass at }E_j},
 \qquad
-p(e_j) \;=\; \frac{a_j/\eta_j}{\,1 + \frac{a_i}{\eta_i} + \frac{a_f}{\eta_f}\,}
+p(e_j)
+\;=\;
+\frac{a_j/\eta_j}{\,1 + \frac{a_i}{\eta_i} + \frac{a_f}{\eta_f}\,}.
 \]
-If the sector is not observed, use the mixture
-\[
-L(w, e) \;=\; \sum_{j\in\{i,f\}} \frac{f_j(w)}{\tilde F_j(w_j^*)}\, p(e_j)
-\]
+
+
+\textbf{Note:} we are assuming steady state, which implies \(a_i*\lambda_i=u*\eta_i\). This gives the expression of the probabilities from above
 
 Thus, the overall likelihood function can be written as:
 
@@ -222,9 +225,196 @@ L(\theta)=
 And if we take logs the previous expression simply becomes:
 
 \[
-LL(\theta)= \sum_{i\in U} \left(\log(h_u)- h_u t_{u,i} + \log p(u)\right)\mathbf{1}\{i \in U\} + \sum_{i\in e_j} \left(\log(f_j(w))- \log (\tilde{F}_j(w^{*}))+ \log p(e_j)\right)\mathbf{1}\{i \in e_j\}
+LL(\theta)
+=
+\sum_{i\in U}
+\Big(
+\log(h_u)
+- h_u\, t_{u,i}
++ \log p(u)
+\Big)
+\mathbf{1}\{i\in U\}
+\;+\;
+\sum_{i\in e_j}
+\Big(
+\log(f_j(w_i))
+- \log\big(\tilde F_j(w_j^{*})\big)
++ \log(\eta_j)
+- \eta_j t_{e,i}
++ \log p(e_j)
+\Big)
+\mathbf{1}\{i\in e_j\}.
 \]
 
+
+
+
+\textbf{Identification intuition.}
+
+The key reduced–form object that we observe in unemployment data is the
+sector–specific job–finding probabilty:
+\[
+a_j \;\equiv\; \lambda_j \tilde F_j(w_j^*), 
+\qquad 
+\tilde F_j(w_j^*) = 1 - F_j(w_j^*).
+\]
+This $a_j$ is the probability that a worker receives and accepts an offer from sector $j$. From unemployment durations we can identify
+$a_j$, but we cannot separate $\lambda_j$ from the acceptance probability
+$\tilde F_j(w_j^*)$. \\
+
+Job durations identify $\eta_j$ directly, because
+\[
+f(t_e\mid e_j) = \eta_j e^{-\eta_j t_e}
+\]
+is an exponential density. Hence $\eta_j$ is point–identified. \\
+
+The accepted wage distribution identifies only the truncated density
+\[
+f_j(w \mid w \ge w_j^*) 
+= 
+\frac{f_j(w;\mu_j,\sigma_j)}{1-F_j(w_j^*;\mu_j,\sigma_j)},
+\]
+so we learn the shape parameters $(\mu_j,\sigma_j)$ of the offer distribution,
+but we do not learn the location of the truncation point $w_j^*$ itself.
+Because rejected offers are never observed, the data cannot recover down $w_j^*$ or
+$\tilde F_j(w_j^*)=1-F_j(w_j^*)$. \\
+
+Putting these facts together, all the objects in the likelihood can be written
+as functions of
+\[
+a_i,\,a_f,\qquad
+\eta_i,\,\eta_f,\qquad
+(\mu_j,\sigma_j),
+\]
+and the \textbf{reservation wage $w_j^*$ always enters through the acceptance
+probability $\tilde F_j(w_j^*)$ and therefore through $a_j$}.
+
+Hence the likelihood can be rewritten as
+\[
+LL(\theta)
+=
+\tilde L(a_i,a_f,\eta_i,\eta_f,\mu_i,\mu_f,\sigma_i,\sigma_f),
+\]
+and $\lambda_j$ never appears separately, only inside $a_j$.
+
+if we use the chain rule-\dots
+\[
+\frac{\partial LL}{\partial \lambda_j}
+=
+\frac{\partial \tilde L}{\partial a_j}
+\frac{\partial a_j}{\partial \lambda_j}.
+\]
+Since $a_j = \lambda_j (1-F_j(w_j^*))$, different $(\lambda_j,w_j^*,\mu_j,\sigma_j)$
+combinations that keep $a_j$ and the truncated density unchanged produce the
+same likelihood.
+
+\medskip
+
+\textit{Intuition:} The data identify $a_j$ and $\eta_j$ separately, but they do
+not identify $\lambda_j$ and the reservation wage $w_j^*$ separately. The
+acceptance probability $\tilde F_j(w_j^*)$ and the offer arrival rate $\lambda_j$ enter the likelihood only through their product $a_j$, so the lower tail of the offer distribution and $\lambda_j$ are not separately identified. This is why fixing w* helps recovering the \(\lambda_j\) parameters. 
+
+
+\section*{Exercise 7}
+
+I first fixed the wages to be the minimum for both informal and formal jobs. Then I am able to identify \(\lambda_j\). Note that steady state imposes that \(\lambda_i=\lambda_f\). The code can be found in the jupyter notebook attached (implemented in Julia).
+
+These are the results: 
+
+\begin{table}[htbp]
+\centering
+\caption{Structural Parameter Estimates}
+\begin{tabular}{lc}
+\hline\hline
+\textbf{Parameter} & \textbf{Estimate} \\
+\hline
+$\mu_i$      & 2.88049 \\
+             & (0.00709) \\[0.25em]
+
+$\mu_f$      & 3.13613 \\
+             & (0.00609) \\[0.25em]
+
+$\sigma_i$   & 0.57956 \\
+             & (0.00885) \\[0.25em]
+
+$\sigma_f$   & 0.52337 \\
+             & (0.00868) \\[0.25em]
+
+$\lambda_i$  & 0.13317 \\
+             & (0.03409) \\[0.25em]
+
+$\lambda_f$  & 0.15634 \\
+             & (0.03350) \\[0.25em]
+
+$\eta_i$     & 0.01007 \\
+             & (0.01209) \\[0.25em]
+
+$\eta_f$     & 0.01036 \\
+             & (0.01132) \\
+\hline
+\hline
+\multicolumn{2}{l}{\footnotesize Standard errors in parentheses.} \\
+\multicolumn{2}{l}{\footnotesize All parameters except $\mu_i,\mu_f$ reported in exponentiated form.} \\
+\end{tabular}
+\end{table}
+
+
+From the parameters estimates, I am able to recover the value of unemployed for informal and formal jobs (which should be the same by imposition?):
+
+\begin{table}[htbp]
+\centering
+\caption{Recovered Non–Wage Utility Parameters}
+\begin{tabular}{lc}
+\hline\hline
+\textbf{Parameter} & \textbf{Value} \\
+\hline
+$b_i$ & 35.246 \\[0.25em]
+$b_f$ & 44.563 \\
+\hline\hline
+\end{tabular}
+\end{table}
+
+Standard errors can be computed with Delta method? Left due to time constraints. 
+
+
+\section*{Exercise 8}
+
+For this exercise I will use the parameters we got from the previous exercise to simulate wage profiles of the original sample (the one we used for 1-4). The process I follow is the following: 
+
+\begin{enumerate}
+    \item I recover the $w_j^{*}$ under the newly defined Bi. Given that I have been able to estimate b in the previous exercise, I can recover the reservation wage for the new $B_{f}$.
+    \item Then, I simply estimate the truncated cdf's using this new reservation wages and the parameters \(\mu_j, \sigma^{2}_{j}\) that I got from the model. 
+    \item I simulate wages depending on the type of occupation that individuals have in the original dataset in each quarter (and depending on their treatment status; if $sp=1$, formal get wages from different cdf\dots). If unemployed, wages are 0, if employed in formal then I use cdf formal, if informal I use the other (and account for $sp=1$, $sp=0$).
+    \item This gives a simulated wage for each individual. Then I apply TWFE as done in exercise 2. 
+\end{enumerate}
+
+
+These are the results: 
+
+\begin{table}[H]
+\centering
+\caption{TWFE Estimate Using Simulated Counterfactual Wages}
+\begin{tabular}{lccc}
+\hline\hline
+ & Estimate & Std. Error & p-value \\
+\hline
+SP (treated) & 0.0488 & (0.0554) & 0.379 \\[0.3em]
+\hline
+Observations & \multicolumn{3}{c}{5284} \\
+R-squared    & \multicolumn{3}{c}{0.037} \\
+\hline\hline
+\end{tabular}
+\begin{flushleft}
+\footnotesize \textit{Notes:} Standard errors in parentheses.  
+Dependent variable is simulated log hourly wage.  
+Estimation includes individual and quarter fixed effects.  
+\end{flushleft}
+\end{table}
+
+
+\textbf{Revise this, not clear}
+
+\section{Appendix}
 
 \textbf{Derivatives}
 
@@ -335,6 +525,8 @@ N_e\left[
 \frac{1}{\tilde{F}_{j}(w_j^*)}\frac{\partial \tilde{F}_{j}(w_j^*)}{\partial \eta_j}
 \;+\;
 \frac{1}{p_e}\frac{\partial p_e}{\partial \eta_j}
++
+\frac{1}{\eta_i} -t_{e,i}
 \right].
 \]
 
@@ -357,7 +549,7 @@ Doing the same type of expansion as before:
 - f_j(w_j^{*}) \frac{\partial w_j^{*}}{\partial \eta_j},
 \end{aligned}
 \]
-so that
+so thatt
 \[
 \begin{aligned}
 \frac{\partial LL(\theta)}{\partial \eta_j}
@@ -381,7 +573,8 @@ N_u\Bigg[
 - f_j(w_j^{*}) \frac{\partial w_j^{*}}{\partial \eta_j}
 \right)
 +
-\frac{1}{p_e}\frac{\partial p_e}{\partial \eta_j}
+\frac{1}{p_e}\frac{\partial p_e}{\partial \eta_j} +
+\frac{1}{\eta_i} -t_{e,i}
 \Bigg]
 \\[0.5em]
 =
@@ -402,7 +595,8 @@ N_e\Bigg[
 \frac{f_j(w_j^{*})}{\tilde{F}_j(w_j^{*})}
 \frac{\partial w_j^{*}}{\partial \eta_j}
 -
-\frac{1}{p_e}\frac{\partial p_e}{\partial \eta_j}
+\frac{1}{p_e}\frac{\partial p_e}{\partial \eta_j} +
+\frac{1}{\eta_i} -t_{e,i}
 \Bigg].
 \end{aligned}
 \]
@@ -424,55 +618,5 @@ and for the variance parameter:
 + \frac{\partial \Phi(\cdot)}{\partial \sigma^{2}_{j}},
 \]
 where $\kappa$ collects constants and sample size terms, and $\Phi(\cdot)$ denotes the contribution of the truncation and duration components of the likelihood. The data only allow us to identify certain combinations of the structural parameters. For instance, $a_j = \lambda_j \tilde{F}_j(w_j^{*})$ can be identified, but it is a composite of $\lambda_j$ and the reservation wage $w_j^{*}$ (and thus of $\mu_j,\sigma_j$). The same argument applies to $\eta_j$.
-
-\textbf{intuition:} in the likelihood $\lambda_j$ and $\eta_j$ never enter separately. From the data, we can identify only the reduced form objects $hu=ai+af$ the ratios $\frac{a_j}{\eta_j}$, and the shape of the accepted wage distributions.
-
-\textbf{FOCs and (non-)identification; collinearity.}
-
-Define the sector-specific job–finding hazard
-\[
-a_j \equiv \lambda_j \tilde F_j(w_j^*).
-\]
-All the elements that enter the likelihood — the total hazard $h_u$, the stationary probabilities \(p(u)\) and \(p(e_j)\), and the accepted–wage density — can be written in terms of $a_j$, $\eta_j$ and the wage-distribution parameters $(\mu_j,\sigma_j)$, and, crucially, the reservation wage $w_j^*$ itself is an equilibrium object that also depends on $(\lambda_j,\eta_j,\mu_j,\sigma_j)$ only through $a_j$.
-
-Thus the log–likelihood can be rewritten as
-\[
-LL(\theta)
-=
-\tilde L\big(a_i,a_f,\eta_i,\eta_f,\mu_i,\mu_f,\sigma_i,\sigma_f\big),
-\]
-with $\lambda_j$ appearing only via $a_j = \lambda_j \tilde F_j(w_j^*)$.
-
-Using the chain rule,
-\[
-\frac{\partial LL}{\partial \lambda_j}
-=
-\frac{\partial \tilde L}{\partial a_j}
-\frac{\partial a_j}{\partial \lambda_j},
-\qquad
-\frac{\partial LL}{\partial \eta_j}
-=
-\frac{\partial \tilde L}{\partial a_j}
-\frac{\partial a_j}{\partial \eta_j}
-+
-\frac{\partial \tilde L}{\partial \eta_j}.
-\]
-
-If, as in this model, $\tilde L$ depends on $\eta_j$ only through the ratio $a_j/\eta_j$ (via the stationary probabilities), then $\partial \tilde L / \partial \eta_j$ is itself a linear combination of $\partial \tilde L / \partial a_j$, and the two first–order conditions
-\[
-\frac{\partial LL}{\partial \lambda_j} = 0,
-\qquad
-\frac{\partial LL}{\partial \eta_j} = 0
-\]
-are \emph{collinear}: they collapse to the same restriction in terms of $a_j$ and $a_j/\eta_j$. In other words, the data pin down only the composite objects
-\[
-a_j = \lambda_j \tilde F_j(w_j^*),
-\qquad
-\frac{a_j}{\eta_j},
-\]
-but not $\lambda_j$ and $\eta_j$ separately. This is precisely the sense in which some of the structural parameters are not identified: different combinations of $(\lambda_j,\eta_j)$ that yield the same $(a_j,a_j/\eta_j)$ produce the same likelihood and hence satisfy the same FOCs.
-
-
-\textbf{Note: this needs to be corrected because I forgot that there is possibility of job destruction hahahahahaha; also fix the prob of employment in sector ai!!! conditional probability. }
 
 \end{document}
