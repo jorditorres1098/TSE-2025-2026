@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1763314712.76904 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/homework3.tex" "homework3.pdf" "homework3" 1763314713.49174 0
-  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/homework3.tex" 1763314711.33325 19286 7f1b32aa4e69047cc215056e17d4678e ""
-  "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/map/pdftex/pdftex.map" 1762210004.74647 339773 a1c68872d3dc0a4bee66a5dedbc28f32 ""
+["pdflatex"] 1763391927.23915 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/homework3.tex" "homework3.pdf" "homework3" 1763391928.03575 0
+  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/policy_effects/homework3.tex" 1763391926.20329 19335 ab8a6afa430e1ad53fee3b539faf5991 ""
+  "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/map/pdftex/pdftex.map" 1763370921.06305 339773 a1c68872d3dc0a4bee66a5dedbc28f32 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1734277941.08881 12002472 b582eb731daf2b623c3d30845607ef6c ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1725915917.94285 1004 54797486969f23fa377b128694d548df ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1725915917.94298 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -191,9 +191,9 @@
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/xcolor/xcolor.sty" 1734275016.41717 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "figures/fe_fd_results.tex" 1762785840.65961 1631 5d80209b4c52040c074685d9b046239c ""
   "figures/table1.tex" 1762785840.10432 389 1929a68895c659fbd6cfd09291467cf1 ""
-  "homework3.aux" 1763314713.36849 1371 42bddbea46d86127c1ace8ea2402d19d "pdflatex"
-  "homework3.out" 1763314713.36895 83 8af305d8263de4f269939cbfc3f9a4b2 "pdflatex"
-  "homework3.tex" 1763314711.33325 19286 7f1b32aa4e69047cc215056e17d4678e ""
+  "homework3.aux" 1763391927.90738 1371 42bddbea46d86127c1ace8ea2402d19d "pdflatex"
+  "homework3.out" 1763391927.90782 83 8af305d8263de4f269939cbfc3f9a4b2 "pdflatex"
+  "homework3.tex" 1763391926.20329 19335 ab8a6afa430e1ad53fee3b539faf5991 ""
   (generated)
   "homework3.aux"
   "homework3.log"

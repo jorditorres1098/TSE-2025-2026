@@ -382,7 +382,7 @@ Standard errors can be computed with Delta method? Left due to time constraints.
 For this exercise I will use the parameters we got from the previous exercise to simulate wage profiles of the original sample (the one we used for 1-4). The process I follow is the following: 
 
 \begin{enumerate}
-    \item I recover the $w_j^{*}$ under the newly defined Bi. Given that I have been able to estimate b in the previous exercise, I can recover the reservation wage for the new $B_{f}$.
+    \item I recover the $w_j^{*}$ under the newly defined Bi. Given that I have been able to estimate b in the previous exercise, I can recover the reservation wage for the new $B_{f}$ by finding the fixed point of $w_j^{*}$ in this n
     \item Then, I simply estimate the truncated cdf's using this new reservation wages and the parameters \(\mu_j, \sigma^{2}_{j}\) that I got from the model. 
     \item I simulate wages depending on the type of occupation that individuals have in the original dataset in each quarter (and depending on their treatment status; if $sp=1$, formal get wages from different cdf\dots). If unemployed, wages are 0, if employed in formal then I use cdf formal, if informal I use the other (and account for $sp=1$, $sp=0$).
     \item This gives a simulated wage for each individual. Then I apply TWFE as done in exercise 2. 
