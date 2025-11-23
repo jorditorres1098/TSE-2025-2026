@@ -1,0 +1,113 @@
+\documentclass{article}
+\usepackage{amsmath} 
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{float}   % for [H]
+\usepackage{graphicx}   % for \includegraphics
+\usepackage{tabularx}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{blindtext}
+\usepackage{hyperref}
+\usepackage{natbib} % <-- NEW: to handle references
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{dcolumn}
+\usepackage{threeparttable}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage{pdflscape} % in your preamble
+\usepackage{tabularray}
+\setcounter{secnumdepth}{2}
+
+\setlength\parindent{0pt}
+
+
+
+
+\begin{document}
+
+\title{Exam- Quantitative Methods}
+\author{Jordi Torres}
+\date{\today}
+
+
+\maketitle
+
+\section*{Q1}
+
+A stationary recursive competitive equilibrium consists of 
+(i) value and policy functions $V(a,s,e)$, $c(a,s,e)$, $a'(a,s,e)$, 
+(ii) factor prices $(r,w)$, 
+(iii) aggregate quantities $(K,N)$, 
+and (iv) a stationary distribution $\Gamma(a,s,e)$ over individual states, such that:
+
+\begin{enumerate}
+    \item \textbf{Households.} 
+    Given prices $(r,w)$, the value function $V(a,s,e)$ solves
+    \[
+        V(a,s,e)
+        = \max_{c,a'\ge 0} 
+        \left\{ u(c) + \beta 
+        \sum_{s'}\sum_{e'} P_s(s'|s) P_e(e'|e)\, V(a',s',e') \right\}
+    \]
+    subject to the budget constraint
+    \[
+        c + a' = w \,[e + b(1-e)]\, s\,(1-\tau_w) + (1+r)a,
+    \]
+    and $c \ge 0$. The associated policy functions are denoted $c(a,s,e)$ and $a'(a,s,e)$.
+
+    \item \textbf{Firms.}
+    Competitive firms have a standard Cobb--Douglas technology
+    \[
+        Y = z K^{\alpha} N^{1-\alpha}.
+    \]
+    Factor prices equal marginal products:
+    \[
+        r = \alpha z K^{\alpha-1} N^{1-\alpha} - \delta,
+        \qquad
+        w = (1-\alpha) z K^{\alpha} N^{-\alpha}.
+    \]
+
+    \item \textbf{Aggregation and market clearing.}
+    The stationary distribution $\Gamma(a,s,e)$ over individual states is 
+    consistent with the optimal policy $a'(a,s,e)$ and the exogenous transition 
+    matrices $P_s$ and $P_e$.
+    Given $\Gamma$, aggregate capital and effective labor are:
+    \[
+        K = \int a\, d\Gamma(a,s,e),
+        \qquad
+        N = \int e\, s \, d\Gamma(a,s,e).
+    \]
+    The capital market clears when the $K$ used by firms equals the $K$ implied by
+    the distribution of assets:
+    \[
+        K = \int a\, d\Gamma(a,s,e).
+    \]
+    The labor market clears when the $N$ in the production function equals the
+    aggregate effective labor supplied by employed workers:
+    \[
+        N = \int e\, s\, d\Gamma(a,s,e).
+    \]
+    Goods market clearing then holds by Walras' law.
+
+    \item \textbf{Government budget.}
+    The government finances unemployment benefits by a proportional tax on labor income.
+    In the stationary equilibrium, its budget is balanced:
+    \[
+        \underbrace{\tau_w\, w \int [\,e + b(1-e)\,]\, s \, d\Gamma(a,s,e)}_{\text{labor income tax revenues}}
+        \;=\;
+        \underbrace{w\, b \int (1-e)\, s \, d\Gamma(a,s,e)}_{\text{UI payments}}.
+    \]
+\end{enumerate}
+
+
+
+
+
+
+\end{document}
