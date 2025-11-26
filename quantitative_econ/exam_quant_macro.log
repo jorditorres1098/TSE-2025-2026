@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2024.12.15)  23 NOV 2025 11:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2024.12.15)  26 NOV 2025 18:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -774,7 +774,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 40.
  (/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (1.78676pt too wide) in paragraph at lines 43--48
+Overfull \hbox (1.78676pt too wide) in paragraph at lines 44--49
 \OT1/cmr/m/n/10 A sta-tion-ary re-cur-sive com-pet-i-tive equi-lib-rium con-sists of (i) value and pol-icy func-tions $\OML/cmm/m/it/10 V\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 a; s; e\OT1/cmr/m/n/10 )$, $\OML/cmm/m/it/10 c\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 a; s; e\OT1/cmr/m/n/10 )$,
  []
 
@@ -782,7 +782,75 @@ Overfull \hbox (1.78676pt too wide) in paragraph at lines 43--48
 
 [1
 
-{/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/map/pdftex/pdftex.map}] (exam_quant_macro.aux)
+{/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/map/pdftex/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 156--157
+
+ []
+
+<b_ev_1.png, id=34, 604.2575pt x 398.48875pt>
+File: b_ev_1.png Graphic file (type png)
+<use b_ev_1.png>
+Package pdftex.def Info: b_ev_1.png  used on input line 164.
+(pdftex.def)             Requested size: 318.66948pt x 210.15219pt.
+
+
+[2]
+<b_tauw_1.png, id=55, 605.26125pt x 400.49625pt>
+File: b_tauw_1.png Graphic file (type png)
+<use b_tauw_1.png>
+Package pdftex.def Info: b_tauw_1.png  used on input line 171.
+(pdftex.def)             Requested size: 318.66948pt x 210.86256pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
+
+ []
+
+
+
+[3 <./b_ev_1.png> <./b_tauw_1.png>]
+<cv_b_2.png, id=69, 541.02126pt x 361.35pt>
+File: cv_b_2.png Graphic file (type png)
+<use cv_b_2.png>
+Package pdftex.def Info: cv_b_2.png  used on input line 278.
+(pdftex.def)             Requested size: 318.66948pt x 212.84729pt.
+
+
+[4]
+<tauw_b_2.png, id=78, 543.02875pt x 362.35374pt>
+File: tauw_b_2.png Graphic file (type png)
+<use tauw_b_2.png>
+Package pdftex.def Info: tauw_b_2.png  used on input line 285.
+(pdftex.def)             Requested size: 318.66948pt x 212.6534pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 291--295
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--298
+
+ []
+
+
+
+[5 <./cv_b_2.png> <./tauw_b_2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 299--303
+
+ []
+
+<invariant_distr.png, id=90, 600.2425pt x 400.49625pt>
+File: invariant_distr.png Graphic file (type png)
+<use invariant_distr.png>
+Package pdftex.def Info: invariant_distr.png  used on input line 330.
+(pdftex.def)             Requested size: 318.66948pt x 212.62866pt.
+
+
+[6 <./invariant_distr.png>] (exam_quant_macro.aux)
  ***********
 LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
@@ -791,17 +859,26 @@ Package rerunfilecheck Info: File `exam_quant_macro.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 24187 strings out of 473682
- 489636 string characters out of 5703553
- 864504 words of memory out of 5000000
- 46862 multiletter control sequences out of 15000+600000
+ 24266 strings out of 473682
+ 490859 string characters out of 5703553
+ 867120 words of memory out of 5000000
+ 46915 multiletter control sequences out of 15000+600000
  565625 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,8n,107p,494b,439s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy5.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on exam_quant_macro.pdf (1 page, 146344 bytes).
+ 94i,8n,107p,857b,536s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
+
+</Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy5.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on exam_quant_macro.pdf (6 pages, 346416 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 7 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 170 PDF objects out of 1000 (max. 8388607)
+ 33 named destinations out of 1000 (max. 500000)
+ 38 words of extra memory for PDF output out of 10000 (max. 10000000)
 

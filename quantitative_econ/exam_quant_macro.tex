@@ -38,6 +38,7 @@
 
 \maketitle
 
+\textbf{PART 1}
 \section*{Q1}
 
 A stationary recursive competitive equilibrium consists of 
@@ -59,7 +60,26 @@ and (iv) a stationary distribution $\Gamma(a,s,e)$ over individual states, such 
     \[
         c + a' = w \,[e + b(1-e)]\, s\,(1-\tau_w) + (1+r)a,
     \]
-    and $c \ge 0$. The associated policy functions are denoted $c(a,s,e)$ and $a'(a,s,e)$.
+    and $c \ge 0$. The associated policy functions are denoted $c(a,s,e)$ and $a'(a,s,e)$. The solution to the household problem satisfies the Euler equation
+    \[
+        u'(c(a,s,e))
+        =
+        \beta (1+r)\,
+        \sum_{s'}\sum_{e'} 
+        P_s(s'|s)\, P_e(e'|e)\,
+        u'(c(a'(a,s,e),s',e')),
+    \]
+    whenever $a'(a,s,e) > 0$. If the borrowing constraint binds, the Euler
+    inequality holds:
+    \[
+        u'(c(a,s,e))
+        \ge
+        \beta (1+r)\,
+        \sum_{s'}\sum_{e'} 
+        P_s(s'|s)\, P_e(e'|e)\,
+        u'(c(a'(a,s,e),s',e')).
+    \]
+
 
     \item \textbf{Firms.}
     Competitive firms have a standard Cobb--Douglas technology
@@ -103,10 +123,214 @@ and (iv) a stationary distribution $\Gamma(a,s,e)$ over individual states, such 
         \;=\;
         \underbrace{w\, b \int (1-e)\, s \, d\Gamma(a,s,e)}_{\text{UI payments}}.
     \]
+    
 \end{enumerate}
 
+\section*{Q2}
+
+In Table~\ref{tab:baseline_Q2} I show the results of my baseline model\footnote{I solved for the first part of the exam in the code exam\_quant\_jt.ipynb}. 
+Before calibrating it, I set $\beta = 0.96$ and the unemployment benefit to $b = 0.35$. In table ~\ref{tab:gov_budget_check} of the appendix I show that in this economy there is no budget balance (I will impose it in exercise 4); I also show the invariantt distribution of asset holdings in the stationary equilibrium, which is well-behaved (check figure~\ref{fig:stationary_dist}).
+
+\begin{table}[h!]
+    \centering
+    \caption{Baseline steady state with unemployment insurance $b = 0.35$ and $\beta = 0.96$}
+    \label{tab:baseline_Q2}
+    \begin{tabular}{lc}
+        \toprule
+        Variable                & Value \\ 
+        \midrule
+        Capital stock            & 3.9749 \\
+        Labor                     & 0.7054 \\
+        Output (GDP)              & 1.3144 \\
+        Interest rate            & 0.0390 \\
+        Wage rate                 & 1.1926 \\
+        Average welfare       & -11.1579 \\
+        Unemployment benefit      & 0.35 \\
+        Labor income tax     & 0.25 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 
+\section*{Q3}
+The value of $\beta$ that makes the capital output ratio is \textbf{0.967}, slighlty higher than 0.96 from the original specification. \\
+
+Once $b$ increases, there is a smaller need for precautionary savings as the workers face a higher safety net in expectation. Therefore, the only way in which savings are equal in both type of economies is that in the economy with higher unemployment insurance agents are also more patient. 
+\section*{Q4}
+In tables~\ref{fig:ev_b_1} and~\ref{fig:ev_tau_1} I show the results of my simulations over a b-grid. I use the calibrated $\beta$ from the previous exercise and impose budget balance inside the GE equilibrium loop\footnote{I first estimate a baseline specification with $b=0.35$ and the $\tau_w$ that sets budget balance. Then I compute the measure of welfare for this and I will keep it at the denominator. Then I will compute welfare measures for different values of $b$ and compare to this one.}. I added 33 grid points between 0.01 and 0.99 for the sake of computation time. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{b_ev_1.png}
+    \caption{Welfare effect of moving b with budget balance}
+    \label{fig:ev_b_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{b_tauw_1.png}
+    \caption{Tau\_w adjustment of moving b with budget balance}
+    \label{fig:ev_tau_1}
+\end{figure}
+
+
+\paragraph{Interpretation.}
+Figure \ref{fig:ev_tau_1} shows the labor income tax rate $\tau_w(b)$ that balances the government budget for each value of the UI replacement rate $b$. Since higher UI benefits require higher government expenditures, the balanced-budget condition implies an increasing and linear relationship between $b$ and $\tau_w(b)$. \\
+
+Figure \ref{fig:ev_b_1} reports the consumption-equivalent variation $\Delta CEV(b)$ relative to the baseline economy with $b=0.35$. By construction, $\Delta CEV(0.35)=0$. For $b>0.35$, welfare decreases monotonically, whereas for $b<0.35$ the CEV is positive. This pattern reflects the fact that unemployment is relatively rare an households can self-insure through savings. As a result, the increase in the distortionary labor tax needed to finance more generous UI reduces welfare during the (more frequent) emplyment spells by more than the additional UI benefits raise welfare during unemployment spells. Consequently, under our exercise, the balanced-budget optimal UI replacement rate lies below the empirical value of $b=0.35$. \\
+
+
+
+\textbf{PART 2}
+
+\section*{Q1}
+
+Consider an unemployed worker ($e=0$) with given next-period asset and
+productivity $(a',s')$. For a given search effort $x \ge 0$, the continuation
+value is
+\[
+V^0(a',s'|x)
+= - \frac{x^2}{2}
+  + \beta \Big[ \xi(x) V(a',s',1) + (1-\xi(x)) V(a',s',0) \Big],
+\]
+where the job-finding probability is
+\[
+\xi(x) = 1 - \exp(-\kappa x),
+\]
+and we define the value differential
+\[
+\Delta V \equiv V(a',s',1) - V(a',s',0).
+\]
+Using this, we can rewrite the objective as
+\[
+V^0(a',s'|x)
+= - \frac{x^2}{2}
+  + \beta \Big[ V(a',s',0) + \xi(x)\,\Delta V \Big].
+\]
+Since $V(a',s',0)$ does not depend on $x$, the problem reduces to
+\[
+\max_{x \ge 0} \; 
+-\frac{x^2}{2} + \beta\,\xi(x)\,\Delta V
+= \max_{x \ge 0} \left\{
+-\frac{x^2}{2} + \beta\big(1-\mathrm{e}^{-\kappa x}\big)\Delta V
+\right\}.
+\]
+
+For an interior solution $x>0$, the first-order condition is
+\[
+- x + \beta\,\xi'(x)\,\Delta V = 0,
+\qquad
+\xi'(x) = \kappa \mathrm{e}^{-\kappa x},
+\]
+so
+\[
+- x + \beta \kappa \mathrm{e}^{-\kappa x} \Delta V = 0
+\quad\Longrightarrow\quad
+x = \beta \kappa \Delta V \,\mathrm{e}^{-\kappa x}.
+\]
+Multiplying both sides by $\kappa$ and rearranging gives
+\[
+\kappa x \,\mathrm{e}^{\kappa x} = \beta \kappa^2 \Delta V.
+\]
+Letting $y \equiv \kappa x$, we obtain
+\[
+y \mathrm{e}^{y} = \beta \kappa^2 \Delta V,
+\]
+
+\section*{Q2}
+
+In the extended model with job search effort $x$ and unemployment risk, keeping
+$\beta = 0.96$ and $b = 0.35$, the stationary equilibrium is summarized in
+Table~\ref{tab:baseline_P2}.
+
+\begin{table}[H]
+    \centering
+    \caption{Baseline steady state in the model with endogenous search effort}
+    \label{tab:baseline_P2}
+    \begin{tabular}{lc}
+        \toprule
+        Variable                & Value \\ 
+        \midrule
+        Capital stock             & 3.9630 \\
+        Labor                     & 0.7057 \\
+        Output (GDP)              & 1.3133 \\
+        Interest rate             & 0.0393 \\
+        Wage rate                  & 1.1912 \\
+        Average welfare       & -11.6411 \\
+        Discount factor        & 0.96 \\
+        UI replacement rate       & 0.35 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+\section*{Q3}
+I first calibrate $\kappa$ keeping $\beta$ fixed and using the calibrated $\beta$ (i.e $0.967$) as fixed. I find that the values of $\kappa$ that make job finding rate equal to $0.55$ are between $1.20-1.22$. The capital output ratio is very close to the desired range with these two values and with the guessed $\beta$, so avoid guessing this parameter for the fixed optimal $\kappa$. Therefore, for my last exercise, I use the following calibrated parameter: 
+
+\textbf{$\beta=0.967$, $\kappa=1.21$}
+
+\section*{Q4}
+
+In tables~\ref{fig:ev_b_2} and~\ref{fig:ev_tau_2} I show the results of this exercise\footnote{I have used the same proceedure as the one described in the previous note. All is done and documented in the code exam\_quant\_jt2.ipynb}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{cv_b_2.png}
+    \caption{Welfare effect of moving b with budget balance}
+    \label{fig:ev_b_2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{tauw_b_2.png}
+    \caption{Tau\_w adjustment of moving b with budget balance}
+    \label{fig:ev_tau_2}
+\end{figure}
+\section*{Q5}
+
+Comparing the results from the two parts, we see that the overall
+relationships are the same: a higher $b$ requires a higher
+balanced-budget tax $\tau_w(b)$, and welfare decreases
+as $b$ increases. \\
+
+However, in the extended model these relationships become
+clearly non-linear.The reason is that, with endogenous search effort, increasing $b$ changes the unemployment rate. A higher $b$ raises the value of being unemployed, which reduces search effort and t herefore increases unemployment. This both increases spending and reduces the tax base, so the tax $\tau_w$ must rise more that proportionaly at high values of $b$. This explains the convex shape of $\tau_w(b)$. \\
+
+The effect on welfare is the same as before-higher taxes distort labor income-
+but now an additional channel amplifies the losses: higher $b$ leads to more
+unemployment and higher search costs. As a result, the welfare curve becomes
+steeper for large $b$.\\
+
+
+
+
+\section*{Appendix}
+
+\begin{table}[h!]
+    \centering
+    \caption{Government Budget Check in the Baseline Economy}
+    \label{tab:gov_budget_check}
+    \begin{tabular}{lc}
+        \toprule
+        Quantity  & Value \\
+        \midrule
+        Labor income tax rate                  & 0.9527 \\
+        Unemployed labor                    & 0.0693 \\
+        Tax revenue                     & 0.28247 \\
+        UI expenditures                 & 0.02876 \\
+        Budget difference                              & 0.25371 \\
+        Relative difference                   & 8.8214 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{invariant_distr.png}
+    \caption{Invariant distribution of asset holdings in the stationary equilibrium.}
+    \label{fig:stationary_dist}
+\end{figure}
 
 
 
