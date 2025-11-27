@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2024.12.15)  26 NOV 2025 18:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2024.12.15)  26 NOV 2025 19:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -865,7 +865,7 @@ Here is how much of TeX's memory you used:
  46915 multiletter control sequences out of 15000+600000
  565625 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,8n,107p,857b,536s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 94i,8n,107p,854b,536s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist, replaced by a fixed one
 
@@ -876,7 +876,7 @@ pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist,
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
 </Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi6.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy5.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on exam_quant_macro.pdf (6 pages, 346416 bytes).
+Output written on exam_quant_macro.pdf (6 pages, 346478 bytes).
 PDF statistics:
  170 PDF objects out of 1000 (max. 8388607)
  33 named destinations out of 1000 (max. 500000)

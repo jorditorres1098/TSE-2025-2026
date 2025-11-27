@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1764178776.96839 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/quantitative_econ/exam_quant_macro.tex" "exam_quant_macro.pdf" "exam_quant_macro" 1764178777.87578 0
-  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/quantitative_econ/exam_quant_macro.tex" 1764178775.91341 12560 4909cfe2281487e791b444918722591f ""
+["pdflatex"] 1764181963.28346 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/quantitative_econ/exam_quant_macro.tex" "exam_quant_macro.pdf" "exam_quant_macro" 1764181964.11458 0
+  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/quantitative_econ/exam_quant_macro.tex" 1764181962.81843 12674 840c1bc0e3b3775a26478ef7c60edcad ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/map/pdftex/pdftex.map" 1763370921.06305 339773 a1c68872d3dc0a4bee66a5dedbc28f32 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1734277941.08881 12002472 b582eb731daf2b623c3d30845607ef6c ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1725915917.94285 1004 54797486969f23fa377b128694d548df ""
@@ -182,9 +182,9 @@
   "b_ev_1.png" 1764168944.9768 43449 6b46df4d56443ea45563fabe8699bf98 ""
   "b_tauw_1.png" 1764168953.60623 35915 72d0fb248c93ce89f3ecc04fb1f1d307 ""
   "cv_b_2.png" 1764175490.97352 40968 52bc91d4af65a8a7ae70a037bdc034bb ""
-  "exam_quant_macro.aux" 1764178777.73458 2427 96379a7fe17453c40be3212843332e6f "pdflatex"
-  "exam_quant_macro.out" 1764178777.57881 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "exam_quant_macro.tex" 1764178775.91341 12560 4909cfe2281487e791b444918722591f ""
+  "exam_quant_macro.aux" 1764181963.9921 2427 96379a7fe17453c40be3212843332e6f "pdflatex"
+  "exam_quant_macro.out" 1764181963.85323 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "exam_quant_macro.tex" 1764181962.81843 12674 840c1bc0e3b3775a26478ef7c60edcad ""
   "invariant_distr.png" 1764168927.80936 30774 d611508c2c659621ac02d27928c95fa2 ""
   "tauw_b_2.png" 1764175497.83 38867 321f66a131ffeb21a3452498ae5b62ac ""
   (generated)

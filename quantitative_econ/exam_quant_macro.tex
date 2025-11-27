@@ -153,7 +153,7 @@ Before calibrating it, I set $\beta = 0.96$ and the unemployment benefit to $b =
 
 
 \section*{Q3}
-The value of $\beta$ that makes the capital output ratio is \textbf{0.967}, slighlty higher than 0.96 from the original specification. \\
+The value of $\beta$ that makes the capital output ratio equal to $3.2$ is \textbf{0.967}, slighlty higher than 0.96 from the original specification. \\
 
 Once $b$ increases, there is a smaller need for precautionary savings as the workers face a higher safety net in expectation. Therefore, the only way in which savings are equal in both type of economies is that in the economy with higher unemployment insurance agents are also more patient. 
 \section*{Q4}
@@ -175,9 +175,9 @@ In tables~\ref{fig:ev_b_1} and~\ref{fig:ev_tau_1} I show the results of my simul
 
 
 \paragraph{Interpretation.}
-Figure \ref{fig:ev_tau_1} shows the labor income tax rate $\tau_w(b)$ that balances the government budget for each value of the UI replacement rate $b$. Since higher UI benefits require higher government expenditures, the balanced-budget condition implies an increasing and linear relationship between $b$ and $\tau_w(b)$. \\
+Figure \ref{fig:ev_tau_1} shows the labor income tax rate $\tau_w(b)$ that balances the government budget for each value of $b$. Since higher unemployment benefits require higher government expenditures, the balanced-budget condition implies an increasing and linear relationship between $b$ and $\tau_w(b)$. \\
 
-Figure \ref{fig:ev_b_1} reports the consumption-equivalent variation $\Delta CEV(b)$ relative to the baseline economy with $b=0.35$. By construction, $\Delta CEV(0.35)=0$. For $b>0.35$, welfare decreases monotonically, whereas for $b<0.35$ the CEV is positive. This pattern reflects the fact that unemployment is relatively rare an households can self-insure through savings. As a result, the increase in the distortionary labor tax needed to finance more generous UI reduces welfare during the (more frequent) emplyment spells by more than the additional UI benefits raise welfare during unemployment spells. Consequently, under our exercise, the balanced-budget optimal UI replacement rate lies below the empirical value of $b=0.35$. \\
+Figure \ref{fig:ev_b_1} reports the consumption-equivalent variation $\Delta CEV(b)$ relative to the baseline economy with $b=0.35$. By construction, $\Delta CEV(0.35)=0$. For $b>0.35$, welfare decreases monotonically, whereas for $b<0.35$ the CEV is positive. This pattern reflects the fact that unemployment is relatively rare an households can self-insure through savings. As a result, the increase in the distortionary labor tax needed to finance more generous b reduces welfare during the (more frequent) employment spells by more than the additional unit of b raise welfare during unemployment spells. Consequently, under our exercise, the balanced-budget optimal employment benefit lies below the empirical value of $b=0.35$. \\
 
 
 
@@ -197,7 +197,7 @@ where the job-finding probability is
 \[
 \xi(x) = 1 - \exp(-\kappa x),
 \]
-and we define the value differential
+and we define the value differential, as given above:
 \[
 \Delta V \equiv V(a',s',1) - V(a',s',0).
 \]
@@ -207,7 +207,7 @@ V^0(a',s'|x)
 = - \frac{x^2}{2}
   + \beta \Big[ V(a',s',0) + \xi(x)\,\Delta V \Big].
 \]
-Since $V(a',s',0)$ does not depend on $x$, the problem reduces to
+Since $V(a',s',0)$ does not depend on $x$, the problem reduces to simplh:
 \[
 \max_{x \ge 0} \; 
 -\frac{x^2}{2} + \beta\,\xi(x)\,\Delta V
@@ -216,7 +216,7 @@ Since $V(a',s',0)$ does not depend on $x$, the problem reduces to
 \right\}.
 \]
 
-For an interior solution $x>0$, the first-order condition is
+For an interior solution $x>0$, the first-order condition is:
 \[
 - x + \beta\,\xi'(x)\,\Delta V = 0,
 \qquad
@@ -228,11 +228,11 @@ so
 \quad\Longrightarrow\quad
 x = \beta \kappa \Delta V \,\mathrm{e}^{-\kappa x}.
 \]
-Multiplying both sides by $\kappa$ and rearranging gives
+Multiplying both sides by $\kappa$ and rearranging gives:
 \[
 \kappa x \,\mathrm{e}^{\kappa x} = \beta \kappa^2 \Delta V.
 \]
-Letting $y \equiv \kappa x$, we obtain
+Letting $y \equiv \kappa x$, we obtain the final expression:
 \[
 y \mathrm{e}^{y} = \beta \kappa^2 \Delta V,
 \]
@@ -265,7 +265,7 @@ Table~\ref{tab:baseline_P2}.
 
 
 \section*{Q3}
-I first calibrate $\kappa$ keeping $\beta$ fixed and using the calibrated $\beta$ (i.e $0.967$) as fixed. I find that the values of $\kappa$ that make job finding rate equal to $0.55$ are between $1.20-1.22$. The capital output ratio is very close to the desired range with these two values and with the guessed $\beta$, so avoid guessing this parameter for the fixed optimal $\kappa$. Therefore, for my last exercise, I use the following calibrated parameter: 
+I first calibrate $\kappa$ keeping $\beta$ fixed and using the calibrated $\beta$ (i.e $0.967$) as reference. I find that the values of $\kappa$ that make job finding rate equal to $0.55$ are between $1.20-1.22$. The capital output ratio is very close to the desired range with these two values and with the guessed $\beta$, so I avoid guessing this parameter for the fixed optimal $\kappa$. Therefore, for my last exercise, I use the following calibrated parameter: 
 
 \textbf{$\beta=0.967$, $\kappa=1.21$}
 
@@ -294,10 +294,10 @@ balanced-budget tax $\tau_w(b)$, and welfare decreases
 as $b$ increases. \\
 
 However, in the extended model these relationships become
-clearly non-linear.The reason is that, with endogenous search effort, increasing $b$ changes the unemployment rate. A higher $b$ raises the value of being unemployed, which reduces search effort and t herefore increases unemployment. This both increases spending and reduces the tax base, so the tax $\tau_w$ must rise more that proportionaly at high values of $b$. This explains the convex shape of $\tau_w(b)$. \\
+clearly non-linear (compared to the previous linear relationship).The reason is that, with endogenous search effort, increasing $b$ changes the unemployment rate. A higher $b$ raises the value of being unemployed, which reduces search effort and t herefore increases unemployment. This both increases spending and reduces the tax base, so the tax $\tau_w$ must rise more that proportionaly at high values of $b$. This explains the convex shape of $\tau_w(b)$. \\
 
 The effect on welfare is the same as before-higher taxes distort labor income-
-but now an additional channel amplifies the losses: higher $b$ leads to more
+but now there is an additional channel that amplifies the losses: higher $b$ leads to more
 unemployment and higher search costs. As a result, the welfare curve becomes
 steeper for large $b$.\\
 
