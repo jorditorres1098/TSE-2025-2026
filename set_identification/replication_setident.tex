@@ -1,0 +1,216 @@
+\documentclass{article}
+\usepackage{amsmath} 
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{float}   % for [H]
+\usepackage{graphicx}   % for \includegraphics
+\usepackage{tabularx}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{blindtext}
+\usepackage{hyperref}
+\usepackage{natbib} % <-- NEW: to handle rcan youeferences
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{dcolumn}
+\usepackage{threeparttable}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage{pdflscape} % in your preamble
+\usepackage{tabularray}
+\setcounter{secnumdepth}{2}
+\usepackage{amsthm}
+\newtheorem{definition}{Definition}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\title{Replication Exercise -Set Identification, Mres}
+\author{Jordi Torres}
+\date{\today}
+
+
+\maketitle
+
+\section{Setting}
+
+Let $Y=\{1,0\}$, where $Y=1$ when the individual in my sample has graduated from STEM degree in university and 0 where graduated in non-STEM degree. Let $D=\{1,0\}$ where $D=1$ if the individual chooses a STEM track in high-school and $D=0$ if the individual chooses a non-STEM track in high-school. Let $X$ denote a vector of covariates at the individual level, such as gender, type of high-school attended, minority status\dots. Finally, let $Z$ denote a set of instruments.
+
+We will make the following assumptions: 
+
+\begin{enumerate}
+    \item \textbf{ASSUMPTION} (potential outcomes): $Y=Y_{1}D+ Y_0(1-D)$, where $(Y_{1}, Y_{0})$ is the distribution of the potential outcomes -which we don't observe- and $Y,D$ are what we observe in the data.
+    \item \textbf{ASSUMPTION}(selection): if $Y_{1}>Y_{0} \implies D=1$
+    \item \textbf{ASSUMPTION} (expected outcomes): \(\mathbf{E}(Y_{1}-Y_{0}|\mathcal{I}_{t})>0 \implies D=1\), where $\mathcal{I}_{t}$ denotes the information set that the individual has at time t. 
+    \item \textbf{ASSUMPTION} (SMIV) for any pair $z_{2}\geq z_{1}$ in the support of Z, the conditional distribution of $(Y_{1},Y_{0})$ given $Z=z_{2}$ first order stochastically dominates the distribution of $(Y_{1},Y_{0})$ given $Z=z_{1}$ \footnote{This is very similar to the Manski and Pepper (2000) MIV with the difference that this assumption is stronger. M-P assumed monotonicity of expected potential outcome , i.e $\mathbf{E}(Y_1|Z=z)$, but the assumption that we are doing is in the joint distribution. What we are looking for is instruments that affect both potential outcomes at the same time. In my setting, parental education both affects the probability of being in stem graduation in uni and non-stem graduation, for example.}. 
+\end{enumerate}
+
+Under ASSUMPTIONS 1,3,4 (here I omit the first theorem, should I test for it too?) , we can construct the following bounds on the joint distribution of potential outcomes: 
+
+
+\begin{enumerate}
+    \item \(\mathbf{P}(Y_{0}=1, Y_{1}=0 |Z=z)\leq \mathbf{P}(Y=1, D=0 |Z=z)+ \mathbf{P}(Y=0, D=1 |Z=z)\)
+    \item \(\mathbf{P}(Y_{0}=0, Y_{1}=1 |Z=z)\leq \mathbf{P}(Y=1, D=1 |Z=z)+ \mathbf{P}(Y=0, D=0 |Z=z)\)
+    \item \(\mathbf{P}(Y_{0}=0, Y_{1}=0 |Z=z)\leq \mathbf{P}(Y=0|Z=z)\) \\
+
+
+    And, from the joint distribution, combining 1,2 and 3 we can derive conditions for the marginal distribution of outcomes: \\
+
+    \item  \(\sup_{\tilde{z}\leq z}\mathbf{P}(Y=1, D=0|Z=\tilde{z})\leq \mathbf{E}(Y_{0}| Z=z)\)
+    \item  \(\sup_{\tilde{z}\leq z}\mathbf{P}(Y=1, D=1|Z=\tilde{z}) \leq \mathbf{E}(Y_{1}|Z=z)\)
+    \item \(\max\{\mathbf{E}(Y_{0}|Z=z), \mathbf{E}(Y_{1}|Z=z)\}= \mathbf{E}(y|Z=z)\)
+\end{enumerate}
+
+These six inequalities defined the sharp set for the joint distributions of outcomes, that are consistent with the model derived under the 3 previous assumptions. In the paper they show that we can test the validity of the assumptions by simply testing that the last equality holds (THEOREM 2), which then simply boils down to testing monothonicity of $\mathbf{E}(Y|Z=z)$ in Z. 
+
+With this we are simply testing whether Roy model holds, but we can move forward and measure also the extend to which the behavior of the individuals rejects Roy model. 
+
+If we reject perfect foresight, this measure captures the extend of cost of disinformation. If, instead, we also reject that this is consistent with Roy model with imperfect foresight, that means that there are considerations other than potential outcome maximization that enter into the decision making process.
+
+\begin{definition}
+    \textbf{Efficiency loss.} For each $z$ in the support of $Z$, define
+    \[
+        el(z)
+        := \mathbb{P}(\max\{Y_0,Y_1\}=1 \mid Z=z)
+         - \mathbb{P}(Y=1 \mid Z=z).
+    \]
+\end{definition}
+
+In the binary case $Y_d \in \{0,1\}$, note that $\max\{Y_0,Y_1\}=1$ except when $(Y_0,Y_1)=(0,0)$. Hence
+\[
+    \mathbb{P}(\max\{Y_0,Y_1\}=1 \mid Z=z)
+    = 1 - \mathbb{P}(Y_0=0,Y_1=0 \mid Z=z),
+\]
+and we can equivalently write
+\[
+    el(z)
+    = \mathbb{P}(Y=0 \mid Z=z) - \mathbb{P}(Y_0=0,Y_1=0 \mid Z=z).
+\]
+By construction, $el(z) \ge 0$ for all $z$, since $\max\{Y_0,Y_1\} \ge Y$ almost surely.
+
+\paragraph{Perfect foresight Roy.}
+Under Assumption~2 (perfect foresight Roy selection), individuals always choose the track that yields the highest realization of $Y_d$, so
+\[
+    Y = \max\{Y_0,Y_1\}.
+\]
+It follows that
+\[
+    \mathbb{P}(Y=0 \mid Z=z)
+    = \mathbb{P}(\max\{Y_0,Y_1\}=0 \mid Z=z)
+    = \mathbb{P}(Y_0=0,Y_1=0 \mid Z=z),
+\]
+and therefore
+\[
+    el(z) = 0 \quad \text{for all } z.
+\]
+Thus, any positive efficiency loss is evidence against perfect foresight.
+
+\paragraph{Imperfect foresight Roy.}
+Under Assumption~3 (expected outcome maximization) and Assumption~4 (SMIV), we no longer have $Y=\max\{Y_0,Y_1\}$, but the Roy-type selection rule and stochastic monotonicity still impose nontrivial constraints on the joint distribution of $(Y_0,Y_1)$ given $Z=z$. Let
+\[
+    L_{\mathrm{IF}}(z) \le \mathbb{P}(Y_0=0,Y_1=0 \mid Z=z) \le U_{\mathrm{IF}}(z)
+\]
+denote the sharp bounds on $\mathbb{P}(Y_0=0,Y_1=0 \mid Z=z)$ implied by Assumptions~1, 3 and 4 (Mourifi\'e, Henry and Ruiz provide explicit expressions for $L_{\mathrm{IF}}(z)$ and $U_{\mathrm{IF}}(z)$ in terms of observable probabilities). Substituting these inequalities into the definition of $el(z)$ yields
+\[
+    \mathbb{P}(Y=0 \mid Z=z) - U_{\mathrm{IF}}(z)
+    \;\le\;
+    el(z)
+    \;\le\;
+    \mathbb{P}(Y=0 \mid Z=z) - L_{\mathrm{IF}}(z).
+\]
+Thus, under the Roy model with imperfect foresight, efficiency loss is partially identified and lies in a non-degenerate interval that shrinks to $\{0\}$ when the perfect foresight model holds.
+
+\paragraph{SMIV without Roy selection.}
+If we drop the Roy selection rule altogether and only maintain Assumptions~1 and 4, SMIV alone still imposes stochastic monotonicity restrictions on $(Y_0,Y_1)$ across values of $Z$. These imply a weaker lower bound
+\[
+    L_{\mathrm{SMIV}}(z)
+    := \inf_{\tilde{z} \le z} \mathbb{P}(Y=0 \mid Z=\tilde{z})
+    \;\le\;
+    \mathbb{P}(Y_0=0,Y_1=0 \mid Z=z),
+\]
+together with the trivial upper bound $\mathbb{P}(Y_0=0,Y_1=0 \mid Z=z) \le \mathbb{P}(Y=0 \mid Z=z)$. Consequently,
+\[
+    0 \le el(z)
+    \le \mathbb{P}(Y=0 \mid Z=z) - L_{\mathrm{SMIV}}(z).
+\]
+Compared to the imperfect foresight Roy case, the SMIV-only model yields a larger identified set for $el(z)$, reflecting the weaker behavioral restrictions.
+
+In the empirical analysis, $el(z)$ is thus a functional of $z$ that is only partially identified. We will estimate the bounds on $el(z)$ under the different assumption sets, and use the intersection-bounds inference methods of \citet{chernozhukov2013intersection} to construct confidence bands for these bounds and for scalar summaries such as $\sup_z el(z)$.
+
+
+
+My plan is the following: 
+
+\begin{enumerate}
+    
+    \item restrict the sample for income groups, gender, minority status. 
+    \item For theorems 1, 2 check monothonicity of outcome and argue that we reject or not Roy Model.$\rightarrow$ the idea is to find a test with Y, Z being both discrete variables; read papers. 
+    \item If we reject 1 , build el(z) under the assumption of 1,3,5-->see what is the cost of rejection. If reject imperfect info, build el(z) under the assumption of 1,5
+    \item Generate bounds and inference based on Chernozhukov, Rosen, Lee: "Intersection Bounds: inference and methods" from Econometrica. Generate bounds for this last measure. 
+\end{enumerate}
+
+\paragraph{Test of Monotonicity of $E[Y\mid Z=z]$.}
+Let $Y\in\{0,1\}$ denote the outcome and let the instrument $Z$ take
+five ordered values $z_1 < z_2 < \dots < z_5$.  
+Define
+\[
+p_k := \Pr(Y=1\mid Z=z_k), \qquad k=1,\dots,5.
+\]
+The null hypothesis of monotonicity is
+\[
+H_0:\; p_1 \le p_2 \le \cdots \le p_5.
+\]
+
+For each bin $k$, let $n_k$ be the number of observations with $Z=z_k$ and 
+let $s_k$ be the number of these observations for which $Y=1$.
+The sample proportions are
+\[
+\hat p_k = \frac{s_k}{n_k}.
+\]
+
+Under $H_0$ the adjacent differences must satisfy 
+$\Delta_k := p_{k+1}-p_k \ge 0$.  
+We estimate
+\[
+\hat\Delta_k = \hat p_{k+1} - \hat p_k,
+\]
+with standard error
+\[
+\widehat{\mathrm{se}}(\hat\Delta_k)
+=
+\sqrt{
+\frac{\hat p_k(1-\hat p_k)}{n_k}
++
+\frac{\hat p_{k+1}(1-\hat p_{k+1})}{n_{k+1}}
+}.
+\]
+
+A one-sided $t$-statistic for each monotonicity inequality is
+\[
+T_k = \frac{\hat\Delta_k}{\widehat{\mathrm{se}}(\hat\Delta_k)}.
+\]
+
+We perform a simple multiple-inequality test:  
+at significance level $\alpha$, reject $H_0$ if
+\[
+T_k < z_{\alpha/4}
+\quad\text{for any } k=1,\dots,4,
+\]
+where $z_{\alpha/4}$ is the $(\alpha/4)$ lower quantile of the standard
+normal distribution.
+Otherwise we do not reject monotonicity.
+
+
+\section{Inference: Chernozhukov, Rosen, Lee}
+
+
+\section{Bounds on outcomes}
+
+
+
+\end{document}
