@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1764857691.67103 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/set_identification/replication_setident.tex" "replication_setident.pdf" "replication_setident" 1764857692.37445 0
-  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/set_identification/replication_setident.tex" 1764857690.26447 9766 5429bbfe6c1dfa4d7488861891aed36f ""
+["pdflatex"] 1765213328.88525 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/set_identification/replication_setident.tex" "replication_setident.pdf" "replication_setident" 1765213329.66878 0
+  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/set_identification/replication_setident.tex" 1765213328.2176 8669 f1582a30b330c9c779a139f570536326 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/map/pdftex/pdftex.map" 1763370921.06305 339773 a1c68872d3dc0a4bee66a5dedbc28f32 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1734277941.08881 12002472 b582eb731daf2b623c3d30845607ef6c ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1725915917.94285 1004 54797486969f23fa377b128694d548df ""
@@ -34,7 +34,6 @@
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1725915917.95775 32080 340ef9bf63678554ee606688e7b5339d ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx8.pfb" 1725915917.96241 32166 b0c356b15f19587482a9217ce1d8fa67 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbxti10.pfb" 1725915917.96627 36554 b67dc2cfa451409e100b3fcf5f506509 ""
-  "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1725915917.96975 30251 6afa5cb1d0204815a708a080681d4674 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1725915917.97614 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1725915917.9817 36281 c355509802a035cadc5f15869451dcee ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1725915917.9828 35469 70d41d2b9ea31d5d813066df7c99281c ""
@@ -189,9 +188,9 @@
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/tools/xspace.sty" 1734275015.87431 4545 e3f4de576c914e2000f07f69a891c071 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/url/url.sty" 1725915934.0507 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/xcolor/xcolor.sty" 1734275016.41717 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "replication_setident.aux" 1764857692.24908 1005 bc3280cc411fa9bce02ac0a895c8b87c "pdflatex"
-  "replication_setident.out" 1764857692.24973 444 c444c04a7ebc53524df450c923780a8b "pdflatex"
-  "replication_setident.tex" 1764857690.26447 9766 5429bbfe6c1dfa4d7488861891aed36f ""
+  "replication_setident.aux" 1765213329.50129 980 1765f75db1f8aad21829dc8243d3c5e9 "pdflatex"
+  "replication_setident.out" 1765213329.50169 497 dd8ce315c5bc52d71df451c17b006239 "pdflatex"
+  "replication_setident.tex" 1765213328.2176 8669 f1582a30b330c9c779a139f570536326 ""
   (generated)
   "replication_setident.aux"
   "replication_setident.log"

@@ -66,11 +66,13 @@ Under ASSUMPTIONS 1,3,4 (here I omit the first theorem, should I test for it too
     \item \(\max\{\mathbf{E}(Y_{0}|Z=z), \mathbf{E}(Y_{1}|Z=z)\}= \mathbf{E}(y|Z=z)\)
 \end{enumerate}
 
-These six inequalities defined the sharp set for the joint distributions of outcomes, that are consistent with the model derived under the 3 previous assumptions. In the paper they show that we can test the validity of the assumptions by simply testing that the last equality holds (THEOREM 2), which then simply boils down to testing monothonicity of $\mathbf{E}(Y|Z=z)$ in Z. 
+These six inequalities defined the set for the joint distributions of outcomes, that are consistent with the model derived under the 3 previous assumptions. In the paper they show that we can test the validity of the assumptions by simply testing that the last equality holds (THEOREM 2), which then simply boils down to testing monothonicity of $\mathbf{E}(Y|Z=z)$ in Z. 
 
-With this we are simply testing whether Roy model holds, but we can move forward and measure also the extend to which the behavior of the individuals rejects Roy model. 
 
-If we reject perfect foresight, this measure captures the extend of cost of disinformation. If, instead, we also reject that this is consistent with Roy model with imperfect foresight, that means that there are considerations other than potential outcome maximization that enter into the decision making process.
+We can test monothonicity of $\mathbf{E}(Y|Z=z)$ using the usual methods developed by Chetverikov (2013), Shi et al (2019)
+
+\textbf{Measure of departure from Roy}
+The second contribution of the paper is to generate a measure of rejection of Roy model behavior, which they call efficiency loss. This measures the extend towards which there are other factors influencing Outcomes besides self-selection based on potential outcomes. 
 
 \begin{definition}
     \textbf{Efficiency loss.} For each $z$ in the support of $Z$, define
@@ -140,7 +142,7 @@ together with the trivial upper bound $\mathbb{P}(Y_0=0,Y_1=0 \mid Z=z) \le \mat
 \]
 Compared to the imperfect foresight Roy case, the SMIV-only model yields a larger identified set for $el(z)$, reflecting the weaker behavioral restrictions.
 
-In the empirical analysis, $el(z)$ is thus a functional of $z$ that is only partially identified. We will estimate the bounds on $el(z)$ under the different assumption sets, and use the intersection-bounds inference methods of \citet{chernozhukov2013intersection} to construct confidence bands for these bounds and for scalar summaries such as $\sup_z el(z)$.
+In the empirical analysis, $el(z)$ is thus a functional of $z$ that is only partially identified. I will estimate the bounds on $el(z)$ under the different assumption sets, and use the intersection-bounds inference methods of \citet{chernozhukov2013intersection} to construct confidence bands for these bounds and for scalar summaries such as $\sup_z el(z)$.
 
 
 
@@ -149,68 +151,24 @@ My plan is the following:
 \begin{enumerate}
     
     \item restrict the sample for income groups, gender, minority status. 
-    \item For theorems 1, 2 check monothonicity of outcome and argue that we reject or not Roy Model.$\rightarrow$ the idea is to find a test with Y, Z being both discrete variables; read papers. 
+    \item For theorems 1, 2 check monothonicity of outcome and argue that we reject or not Roy Model.$\rightarrow$ the idea is to find a test with Y, Z being both discrete variables; discrete support of Z, continuous support of Z. 
     \item If we reject 1 , build el(z) under the assumption of 1,3,5-->see what is the cost of rejection. If reject imperfect info, build el(z) under the assumption of 1,5
     \item Generate bounds and inference based on Chernozhukov, Rosen, Lee: "Intersection Bounds: inference and methods" from Econometrica. Generate bounds for this last measure. 
 \end{enumerate}
 
-\paragraph{Test of Monotonicity of $E[Y\mid Z=z]$.}
-Let $Y\in\{0,1\}$ denote the outcome and let the instrument $Z$ take
-five ordered values $z_1 < z_2 < \dots < z_5$.  
-Define
-\[
-p_k := \Pr(Y=1\mid Z=z_k), \qquad k=1,\dots,5.
-\]
-The null hypothesis of monotonicity is
-\[
-H_0:\; p_1 \le p_2 \le \cdots \le p_5.
-\]
-
-For each bin $k$, let $n_k$ be the number of observations with $Z=z_k$ and 
-let $s_k$ be the number of these observations for which $Y=1$.
-The sample proportions are
-\[
-\hat p_k = \frac{s_k}{n_k}.
-\]
-
-Under $H_0$ the adjacent differences must satisfy 
-$\Delta_k := p_{k+1}-p_k \ge 0$.  
-We estimate
-\[
-\hat\Delta_k = \hat p_{k+1} - \hat p_k,
-\]
-with standard error
-\[
-\widehat{\mathrm{se}}(\hat\Delta_k)
-=
-\sqrt{
-\frac{\hat p_k(1-\hat p_k)}{n_k}
-+
-\frac{\hat p_{k+1}(1-\hat p_{k+1})}{n_{k+1}}
-}.
-\]
-
-A one-sided $t$-statistic for each monotonicity inequality is
-\[
-T_k = \frac{\hat\Delta_k}{\widehat{\mathrm{se}}(\hat\Delta_k)}.
-\]
-
-We perform a simple multiple-inequality test:  
-at significance level $\alpha$, reject $H_0$ if
-\[
-T_k < z_{\alpha/4}
-\quad\text{for any } k=1,\dots,4,
-\]
-where $z_{\alpha/4}$ is the $(\alpha/4)$ lower quantile of the standard
-normal distribution.
-Otherwise we do not reject monotonicity.
+\section{Sample}
+First I compute 10 different subsamples of my original dataset. 
 
 
-\section{Inference: Chernozhukov, Rosen, Lee}
+\section{Test of Monothonicity}
+\subsection*{Method}
+
+\subsection*{Results}
 
 
-\section{Bounds on outcomes}
+\section{Bounds on efficiency measure}
+\subsection*{Method}
 
-
+\subsection*{Results}
 
 \end{document}
