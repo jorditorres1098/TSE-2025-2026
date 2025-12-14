@@ -1,0 +1,23 @@
+\begin{thebibliography}{}
+
+\bibitem[Chernozhukov et~al., 2013]{CHK}
+Chernozhukov, V., Lee, S., and Rosen, A.~M. (2013).
+\newblock Intersection bounds: Estimation and inference.
+\newblock {\em Econometrica}, 81(2):667--737.
+
+\bibitem[Chetverikov, 2019]{chetverikov}
+Chetverikov, D. (2019).
+\newblock Testing regression monotonicity in econometric models.
+\newblock {\em Econometric Theory}, 35(4):pp. 729--776.
+
+\bibitem[Hsu et~al., 2019]{Hsu_Liu_Shi_2019}
+Hsu, Y.-C., Liu, C.-A., and Shi, X. (2019).
+\newblock Testing generalized regression monotonicity.
+\newblock {\em Econometric Theory}, 35(6):1146–1200.
+
+\bibitem[Mourifie et~al., 2020]{MHM}
+Mourifie, I., Henry, M., and Meango, R. (2020).
+\newblock Sharp bounds and testability of a roy model of stem major choices.
+\newblock {\em Journal of Political Economy}, 128(8):3220--3283.
+
+\end{thebibliography}
