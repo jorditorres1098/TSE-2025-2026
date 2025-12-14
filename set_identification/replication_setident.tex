@@ -37,11 +37,20 @@
 
 \maketitle
 
+\section{Introduction}
+
+This paper replicates Mourifié, Henry, and Meango (2020, hereafter MHM). In that paper, the authors propose a framework to test the Roy selection model using partial identification techniques. They also show how to construct a measure of departure from the Roy model and use inference methods from Chernozhukov Lee Rosen (2013) on it. MHM apply their methodology to German and Canadian data, focusing on selection into STEM versus non-STEM higher education fields and on how this selection affects labor market outcomes such as wages and job retention. Their approach allows them both to test whether the Roy model is rejected and, when it is, to quantify the magnitude of its failure across regions. \\
+
+In my replication, I apply the same methodology to the Belgian context. Rather than focusing on sorting into STEM fields in higher education, I study selection into STEM versus non-STEM tracks at the high school level, and I  use outcomes in higher education, in particular the probability of graduating, as the relevant outcome. The main goal is to reproduce a table close to Table 5 in MHM (page 3264), which reports estimates of the departure from Roy across values of the instrument. This exercise serves both as a replication of their methodology and as an application to a different institutional setting.\\
+
+The remainder of the document is organized as follows. First, I describe the economic setting, following MHM, and explain how the measure of departure from the Roy model is constructed. Second, I briefly describe the dataset and the instruments I use. Third, I explain how I do inference on this measure based on the methods proposed by CLR. Finally, I present and interpret the empirical results I find.
+
+
 \section{Setting}
 
-Let $Y=\{1,0\}$, where $Y=1$ when the individual in my sample has graduated from STEM degree in university and 0 where graduated in non-STEM degree. Let $D=\{1,0\}$ where $D=1$ if the individual chooses a STEM track in high-school and $D=0$ if the individual chooses a non-STEM track in high-school. Let $X$ denote a vector of covariates at the individual level, such as gender, type of high-school attended, minority status\dots. Finally, let $Z$ denote a set of instruments.
+Let $Y=\{1,0\}$, where $Y=1$ when the individual in my sample has graduated from STEM degree in university and 0 where graduated in non-STEM degree. Let $D=\{1,0\}$ where $D=1$ if the individual chooses a STEM track in high-school and $D=0$ if the individual chooses a non-STEM track in high-school. Let $X$ denote a vector of covariates at the individual level, such as gender, type of high-school attended, minority status\dots etc. Finally, let $Z$ denote a set of instruments.
 
-We will make the following assumptions: 
+We will make the following assumptions, following MHM: 
 
 \begin{enumerate}
     \item \textbf{ASSUMPTION} (potential outcomes): $Y=Y_{1}D+ Y_0(1-D)$, where $(Y_{1}, Y_{0})$ is the distribution of the potential outcomes -which we don't observe- and $Y,D$ are what we observe in the data.
@@ -50,7 +59,7 @@ We will make the following assumptions:
     \item \textbf{ASSUMPTION} (SMIV) for any pair $z_{2}\geq z_{1}$ in the support of Z, the conditional distribution of $(Y_{1},Y_{0})$ given $Z=z_{2}$ first order stochastically dominates the distribution of $(Y_{1},Y_{0})$ given $Z=z_{1}$ \footnote{This is very similar to the Manski and Pepper (2000) MIV with the difference that this assumption is stronger. M-P assumed monotonicity of expected potential outcome , i.e $\mathbf{E}(Y_1|Z=z)$, but the assumption that we are doing is in the joint distribution. What we are looking for is instruments that affect both potential outcomes at the same time. In my setting, parental education both affects the probability of being in stem graduation in uni and non-stem graduation, for example.}. 
 \end{enumerate}
 
-Under ASSUMPTIONS 1,3,4 (here I omit the first theorem, should I test for it too?) , we can construct the following bounds on the joint distribution of potential outcomes: 
+Under ASSUMPTIONS 1,3,4, MHM show that we can construct the following bounds on the joint distribution of potential outcomes: 
 
 
 \begin{enumerate}
@@ -66,16 +75,16 @@ Under ASSUMPTIONS 1,3,4 (here I omit the first theorem, should I test for it too
     \item \(\max\{\mathbf{E}(Y_{0}|Z=z), \mathbf{E}(Y_{1}|Z=z)\}= \mathbf{E}(y|Z=z)\)
 \end{enumerate}
 
-These six inequalities defined the set for the joint distributions of outcomes, that are consistent with the model derived under the 3 previous assumptions. In the paper they show that we can test the validity of the assumptions by simply testing that the last equality holds (THEOREM 2), which then simply boils down to testing monothonicity of $\mathbf{E}(Y|Z=z)$ in Z. 
+These six inequalities defined the set for the joint distributions of outcomes, that are consistent with the model derived under the 3 previous assumptions. In the paper they show that we can test the validity of the assumptions by simply testing that the last equality holds (THEOREM 2), which then simply boils down to testing monothonicity of $\mathbf{E}(Y|Z=z)$ in Z, which can be done by using methods such as Chetverikov (2013), Shi et al (2019). \\
 
+Although in my code I have tried to test for monothonicity too\footnote{For example, I have tried to test for monothonicity of $\mathbf{E}(Y|Z=z)$ with z discrete by simply setting the inequalities and using Andrews and Shi and simulating the critical values by bootstrap. Nevertheless, the test was too restrictive and almost never I rejected that Roy model was consistent with the data.}, the main effort of my exercise has been to try to replicate el(z) measure and do inference based on CLR. This is the next step:
 
-We can test monothonicity of $\mathbf{E}(Y|Z=z)$ using the usual methods developed by Chetverikov (2013), Shi et al (2019)
 
 \textbf{Measure of departure from Roy}
-The second contribution of the paper is to generate a measure of rejection of Roy model behavior, which they call efficiency loss. This measures the extend towards which there are other factors influencing Outcomes besides self-selection based on potential outcomes. 
+The second contribution of the paper is to generate a measure of rejection of Roy model behavior, which they call efficiency loss. This measure measures the extend towards which there are other factors influencing sorting besides potential outcomes. 
 
 \begin{definition}
-    \textbf{Efficiency loss.} For each $z$ in the support of $Z$, define
+    \textbf{Efficiency loss.} For each $z$ in the support of $Z$, they define
     \[
         el(z)
         := \mathbb{P}(\max\{Y_0,Y_1\}=1 \mid Z=z)
@@ -83,12 +92,12 @@ The second contribution of the paper is to generate a measure of rejection of Ro
     \]
 \end{definition}
 
-In the binary case $Y_d \in \{0,1\}$, note that $\max\{Y_0,Y_1\}=1$ except when $(Y_0,Y_1)=(0,0)$. Hence
+In the binary case $Y_d \in \{0,1\}$,then $\max\{Y_0,Y_1\}=1$ except when $(Y_0,Y_1)=(0,0)$. Therefor:
 \[
     \mathbb{P}(\max\{Y_0,Y_1\}=1 \mid Z=z)
     = 1 - \mathbb{P}(Y_0=0,Y_1=0 \mid Z=z),
 \]
-and we can equivalently write
+and we can also write
 \[
     el(z)
     = \mathbb{P}(Y=0 \mid Z=z) - \mathbb{P}(Y_0=0,Y_1=0 \mid Z=z).
@@ -113,7 +122,7 @@ and therefore
 Thus, any positive efficiency loss is evidence against perfect foresight.
 
 \paragraph{Imperfect foresight Roy.}
-Under Assumption~3 (expected outcome maximization) and Assumption~4 (SMIV), we no longer have $Y=\max\{Y_0,Y_1\}$, but the Roy-type selection rule and stochastic monotonicity still impose nontrivial constraints on the joint distribution of $(Y_0,Y_1)$ given $Z=z$. Let
+Under Assumption~3 (expected outcome maximization) and Assumption~4 (SMIV), we no longer have $Y=\max\{Y_0,Y_1\}$, but the Roy-type selection rule and stochastic monotonicity still imposes nontrivial constraints on the joint distribution of $(Y_0,Y_1)$ given $Z=z$. Let
 \[
     L_{\mathrm{IF}}(z) \le \mathbb{P}(Y_0=0,Y_1=0 \mid Z=z) \le U_{\mathrm{IF}}(z)
 \]
@@ -140,35 +149,147 @@ together with the trivial upper bound $\mathbb{P}(Y_0=0,Y_1=0 \mid Z=z) \le \mat
     \mathbb{P}(Y=0 \mid Z=z) - L_{\mathrm{SMIV}}(z) \le el(z)
     .
 \]
-Compared to the imperfect foresight Roy case, the SMIV-only model yields a larger identified set for $el(z)$, reflecting the weaker behavioral restrictions.
+Compared to the imperfect foresight Roy case, the SMIV-only model yields a larger identified set for $el(z)$, reflecting the weaker behavioral restrictions. \\
+
+In my replication exercise I have focused in estimating $el(z)$ under assumptions 1-4 only. 
 
 In the empirical analysis, $el(z)$ is thus a functional of $z$ that is only partially identified. I will estimate the bounds on $el(z)$ under the different assumption sets, and use the intersection-bounds inference methods of \citet{chernozhukov2013intersection} to construct confidence bands for these bounds and for scalar summaries such as $\sup_z el(z)$.
 
 
 
-My plan is the following: 
-
-\begin{enumerate}
-    
-    \item restrict the sample for income groups, gender, minority status. 
-    \item For theorems 1, 2 check monothonicity of outcome and argue that we reject or not Roy Model.$\rightarrow$ the idea is to find a test with Y, Z being both discrete variables; discrete support of Z, continuous support of Z. 
-    \item If we reject 1 , build el(z) under the assumption of 1,3,5-->see what is the cost of rejection. If reject imperfect info, build el(z) under the assumption of 1,5
-    \item Generate bounds and inference based on Chernozhukov, Rosen, Lee: "Intersection Bounds: inference and methods" from Econometrica. Generate bounds for this last measure. 
-\end{enumerate}
-
 \section{Sample}
-First I compute 10 different subsamples of my original dataset. 
 
+The empirical analysis uses a sample of 2,181 belgian students for whom I observe complete high-school trajectory and up to two years in higher-education. For each individual, I observe whether the student chooses a STEM or non-STEM track in the beginning of high school the type of degree the students enroll in. Given that I don't observe the final graduation, I assume that if students are in year 2 in a STEM degree they will eventually graduate and take this as the outcome of interest\footnote{In the Belgian context this is defensible. There are no entry requirements in universities in terms of grades or background. However, because of this, universities impose strong academic requiremenents in year 1 to filter out students with low ability. Having survived year 1 is thus a good predictor of eventual graduation.} In addition, the dataset contains rich background information, including parental income, parental education, IQ measures, gender, and other individual characteristics. 
 
-\section{Test of Monothonicity}
-\subsection*{Method}
+In the analysis, the outcome variable $Y$ is an indicator for graduating from a STEM degree in university, while the treatment variable $D$ indicates whether the student chose a STEM track in high school. The underlying idea is that students who select into STEM tracks early in their educational career are likely to do so based on pre-existing ability and expectations about future outcomes. \\
 
-\subsection*{Results}
+To explore heterogeneity in the measure of departure from Roy, I construct ten subsamples of the original dataset by binning individuals according to gender and 5 family income groups. The objective is to examine how the efficiency loss $el(z)$ varies across these dimensions. \\
+
+I consider two instruments. The first is parental education, measured as a discrete variable with three categories, which is also used as an instrument in MHM. The second is the student’s IQ score, measured as a continuous variable during compulsory schooling. I argue that IQ affects both potential outcomes $Y_1$ and $Y_0$ and therefore satisfies the stochastic monotonicity assumption. Using both a discrete and a continuous instrument allows me to implement the CLR inference procedure in both settings and to assess the sensitivity of the results to the nature of the instrument.
 
 
 \section{Bounds on efficiency measure}
 \subsection*{Method}
 
+I implement the intersection-bounds inference procedure of Chernozhukov, Lee, and Rosen (2013, Section 6.1) using a series estimator, adapted to the present setting. The procedure is applied separately to each subsample.
+
+\begin{enumerate}
+\item \textbf{Series estimation of $\mathbb{P}(Y=0\mid Z=z)$.}  
+I estimate the conditional probability $\theta(z)=\mathbb{P}(Y=0\mid Z=z)$ by a series regression of $\mathbf{1}\{Y=0\}$ on a polynomial basis in $Z$. Let
+\[
+p(Z_i)=(1,Z_i,Z_i^2,\dots,Z_i^{K-1})',
+\]
+and let $P$ be the $n\times K$ matrix stacking $p(Z_i)'$. The coefficient vector is estimated by OLS,
+\[
+\hat\beta_n=(P'P)^{-1}P'Y^{(0)},
+\]
+where $Y^{(0)}=\mathbf{1}\{Y=0\}$. The fitted bounding function is
+\[
+\widehat{\theta}_n(z)=p(z)'\hat\beta_n,
+\]
+which is evaluated on a finite grid of values of $Z$.
+
+\item \textbf{Variance estimation.}  
+I compute a consistent estimator $\hat\Omega_n$ of the asymptotic variance of $\sqrt{n}(\hat\beta_n-\beta_n)$ using a standard sandwich formula, and obtain its symmetric square root $\hat\Omega_n^{1/2}$.
+
+\item \textbf{Moment inequalities.}  
+For each grid point $z_j$, the lower bound
+\[
+\inf_{\tilde z\le z_j}\theta(\tilde z)
+\]
+can be written as a finite collection of inequalities
+\[
+\theta(z_j)-\theta(z_i)\ge 0,\qquad i<j.
+\]
+These inequalities define an index set $V_j=\{1,\dots,j-1\}$. For each $v\in V_j$, I define
+\[
+\hat\theta_n(v)=\widehat{\theta}_n(z_j)-\widehat{\theta}_n(z_v),
+\qquad
+p_n(v)=p(z_j)-p(z_v).
+\]
+
+\item \textbf{Standardized moments.}  
+For each $v\in V_j$, I compute
+\[
+\hat g(v)=p_n(v)'\hat\Omega_n^{1/2},
+\qquad
+s_n(v)=\frac{\|\hat g(v)\|}{\sqrt{n}}.
+\]
+
+\item \textbf{Simulation and first-stage critical value.}  
+I set $\tilde\gamma_n=1-0.1/\log n$ and simulate $R$ draws $Z_r\sim\mathcal{N}(0,I_K)$. The first-stage critical value $\kappa_{n,V_j}(\tilde\gamma_n)$ is computed as the $\tilde\gamma_n$-quantile of
+\[
+\left\{
+\sup_{v\in V_j}\frac{\hat g(v)'Z_r}{\|\hat g(v)\|}
+: r=1,\dots,R
+\right\}.
+\]
+
+\item \textbf{Inequality selection.}  
+Following CLR, I construct the reduced index set $\hat V_{n,j}$ by retaining inequalities that are close to binding.
+
+\item \textbf{Second-stage critical value and lower bound.}  
+Using $\hat V_{n,j}$, I compute a second-stage critical value $\kappa_{n,\hat V_{n,j}}(p)$ and form the one-sided lower confidence bound
+\[
+\hat\theta_{n,0}(p)
+=
+\inf_{v\in \hat V_{n,j}}
+\left[
+\hat\theta_n(v)+\kappa_{n,\hat V_{n,j}}(p)s_n(v)
+\right].
+\]
+Repeating this procedure for each grid point yields a lower confidence band for the bounding function over z.\footnote{When $Z$ is discrete, several steps simplify: $\theta(z)$ is estimated by sample means, and the series and variance estimation steps are no longer required and are much simpler.}
+\end{enumerate}
+
+
+
+
 \subsection*{Results}
+
+Figures \ref{fig:eff_loss_women} and \ref{fig:eff_loss_men} report the 90\% lower confidence bounds on the efficiency loss function $el(z)$ by gender, income group, and values of the instrument $Z$. Dark regions correspond to values of $(z,\text{income})$ for which the data are consistent with Roy selection, while lighter regions indicate statistically significant departures, in the sense that the lower confidence bound on $el(z)$ is strictly positive.
+
+For women, departures from Roy selection are limited and concentrated primarily in middle and higher income groups. Positive lower bounds appear mainly at low values of $z$, and in some cases at higher values of $z$ for intermediate income groups. For women from low-income backgrounds, the Roy model cannot be rejected across most of the support of $Z$. Overall, the magnitude of the departures is small, with lower confidence bounds rarely exceeding 0.02.
+
+For men, violations of Roy selection are more frequent and occur across a broader range of income groups and ability levels. In particular, positive lower bounds are concentrated in middle income groups and appear both at low and high values of $z$. By contrast, the lowest and highest income groups exhibit fewer departures, suggesting that Roy-type self-selection is more consistent with the data in these groups. 
+
+In appendix, tables~\ref{fig:eff_loss_women_dis} and \ref{fig:eff_loss_men_dis} I show the results for the discrete instrument parental education. Here we can see that lower bounds on $el(z)$ are higher, particularly for high income and middle SES students. Efficiency departures are also high for girls with high SES and for boys in middle SES distribution: a possible explanation is that girls may be pushed away because of social rules and boys probably go to STEM when they should not...
+
+Compared to MHM, the qualitative structure of the results is similar, in that departures from Roy selection vary systematically with background characteristics and the instrument. However, the magnitude of the departures is substantially smaller in the Belgian data, indicating more limited deviations from Roy selection than those documented in their application.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{efficiency_loss_women.png}
+    \caption{Efficiency loss (women), 90\% confidence level}
+    \label{fig:eff_loss_women}
+\end{figure}
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{efficiency_loss_men.png}
+    \caption{Efficiency loss (men), 90\% confidence level}
+    \label{fig:eff_loss_men}
+\end{figure}
+
+\section{Appendix}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{efficiency_loss_women_discrete.png}
+    \caption{Efficiency loss (women), 90\% confidence level}
+    \label{fig:eff_loss_women_dis}
+\end{figure}
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{efficiency_loss_men_discrete.png}
+    \caption{Efficiency loss (men), 90\% confidence level}
+    \label{fig:eff_loss_men_dis}
+\end{figure}
+
+
 
 \end{document}

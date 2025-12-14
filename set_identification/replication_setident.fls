@@ -310,10 +310,38 @@ INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/inst
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmbx5.tfm
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmbx8.tfm
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmbx6.tfm
+INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/map/pdftex/pdftex.map
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmti10.tfm
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmbxti10.tfm
-INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/map/pdftex/pdftex.map
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/tfm/public/cm/cmbx12.tfm
+INPUT ./efficiency_loss_women.png
+INPUT ./efficiency_loss_women.png
+INPUT ./efficiency_loss_women.png
+INPUT ./efficiency_loss_women.png
+INPUT ./efficiency_loss_women.png
+INPUT ./efficiency_loss_women.png
+INPUT ./efficiency_loss_women.png
+INPUT ./efficiency_loss_men.png
+INPUT ./efficiency_loss_men.png
+INPUT ./efficiency_loss_men.png
+INPUT ./efficiency_loss_men.png
+INPUT ./efficiency_loss_men.png
+INPUT ./efficiency_loss_men.png
+INPUT ./efficiency_loss_men.png
+INPUT ./efficiency_loss_women_discrete.png
+INPUT ./efficiency_loss_women_discrete.png
+INPUT ./efficiency_loss_women_discrete.png
+INPUT ./efficiency_loss_women_discrete.png
+INPUT ./efficiency_loss_women_discrete.png
+INPUT ./efficiency_loss_women_discrete.png
+INPUT ./efficiency_loss_women_discrete.png
+INPUT ./efficiency_loss_men_discrete.png
+INPUT ./efficiency_loss_men_discrete.png
+INPUT ./efficiency_loss_men_discrete.png
+INPUT ./efficiency_loss_men_discrete.png
+INPUT ./efficiency_loss_men_discrete.png
+INPUT ./efficiency_loss_men_discrete.png
+INPUT ./efficiency_loss_men_discrete.png
 INPUT replication_setident.aux
 INPUT ./replication_setident.out
 INPUT ./replication_setident.out
@@ -325,8 +353,12 @@ INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/inst
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx8.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
+INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb
+INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi5.pfb
+INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi5.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb
 INPUT /Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb
