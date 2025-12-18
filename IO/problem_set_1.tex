@@ -1,0 +1,138 @@
+\documentclass{article}
+\usepackage{amsmath} 
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{float}   % for [H]
+\usepackage{graphicx}   % for \includegraphics
+\usepackage{tabularx}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{blindtext}
+\usepackage{hyperref}
+\usepackage[round]{natbib}
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{dcolumn}
+\usepackage{threeparttable}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage{pdflscape} % in your preamble
+\usepackage{tabularray}
+\setcounter{secnumdepth}{2}
+\usepackage{amsthm}
+\newtheorem{definition}{Definition}
+
+
+
+\setlength\parindent{0pt}
+
+\begin{document}
+
+
+\title{Replication Exercise -Set Identification, Mres}
+\author{Jordi Torres}
+\date{\today}
+
+
+\maketitle
+
+\section*{Exercise 1}
+
+\begin{itemize}
+    \item We can interpret $\beta_{l}$ as the increase in production given an increase in labor, keeping prices fixed. Derivation in section~\ref{ex1.1}
+    \item Now we need to assume that both inputs are flexible and static. This is totally unrealistic for capital, as it is quite unlikely that farmers invest in capital non-dynamically (tools/machines last periods, 1920..old technology, even more) and that can quickly adjust their levels of capital in the short run. I derive results in section~\ref{ex1.1}
+    \item 
+    
+\end{itemize}
+
+
+\section{Appendix}
+
+\subsection*{1}
+\label{ex1.1}
+Under perfect competition and one mobile input only (labor) we have that the firm solves: 
+
+\[
+\begin{aligned}
+\min_{L_{f,t},\,K_{f,t} \ge 0} 
+&\; L_{f,t} W_{f,t} + K_{f,t} R_{f,t} \\
+\text{s.t.} 
+&\; \bar{Q}_{f,t}
+= L_{f,t}^{\beta_l} K_{f,t}^{\beta_k} \Omega_{f,t}
+\end{aligned}
+\]
+
+From the first order condition on labor:
+\[
+W_{f,t}=\lambda \beta_{l} \left(\frac{Q_{f,t}}{L_{f,t}}\right)
+\]
+By definition: $\mu_{f,t}=\frac{p_{f,t}}{\lambda_{f,t}}$
+\[
+W_{f,t}=\frac{p_{f,t}}{\mu_{f,t}} \beta_{l} \left(\frac{Q_{f,t}}{L_{f,t}}\right)
+\]
+
+Under perfect competition $\mu_{f,t}$=1, then rearranging we get:
+\[
+\beta_{l}= \frac{W_{f,t}L_{f,t}}{P_{f,t}Q_{f,t}}
+\]
+
+Which we can estimate with a simple average. 
+
+\textbf{Text B}
+
+From the same problem above, if we take first order conditions with respect to labor and capital we get: 
+
+\(
+W_{f,t}L_{f,t}=\lambda \beta_{l}(Q_{f,t})
+\)
+
+\(
+R_{f,t}K_{f,t}=\lambda \beta_{k}(Q_{f,t})
+\)
+
+If we sum the two expressions: \(
+W_{f,t}L_{f,t}+R_{f,t}K_{f,t}=\lambda \beta_{l}(Q_{f,t}) + \lambda \beta_{k}(Q_{f,t})
+\)
+
+which reduces to:
+
+\(
+W_{f,t}L_{f,t}+R_{f,t}K_{f,t}=\lambda Q_{f,t} 
+\)
+
+Then if we take 1 or 2 and divide by the same in both sides: 
+
+\(
+\frac{W_{f,t}L_{f,t}}{W_{f,t}L_{f,t}+R_{f,t}K_{f,t}}=\frac{\lambda \beta_{l}(Q_{f,t})}{\lambda Q_{f,t}}
+\)
+
+This simplifies: \(
+\frac{W_{f,t}L_{f,t}}{W_{f,t}L_{f,t}+R_{f,t}K_{f,t}}=\beta_{l}
+\)
+
+Same argument for the other. The markup also comes from the expression from above:
+
+\(
+\lambda= \frac{W_{f,t}L_{f,t}}{Q_{f,t}\beta_{l}}
+\)
+If we substitute $\beta_{l}$ into this expression and we rearrange we have: 
+
+\(
+\lambda=\frac{W_{f,t}L_{f,t}+R_{f,t}K_{f,t}}{Q_{f,t}}
+\)
+
+Thus:
+\(
+\mu=\frac{pQ_{f,t}}{W_{f,t}L_{f,t}+R_{f,t}K_{f,t}}
+\)
+
+
+
+\subsection*{2}
+
+
+\end{document}
