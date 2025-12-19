@@ -49,6 +49,47 @@
     
 \end{itemize}
 
+\section*{Exercise 2}
+
+The moment condition are \[
+    \mathbf{E}\left[\nu_{f,t}|\mathcal{I}_{f,t-1}\right]=0
+    \]
+    
+Given the structure of the problem we can use $l_{f,t-1}, l_{f,t-2}\dots$ and $k_{f,t}, k_{f,t-1}\dots$ as instruments. 
+
+Then we know that \(y_{f,t}= \beta_{0} + \beta_{l}l_{f,t}+ \beta_{k}k_{f,t}+\omega_{f,t}\), and we have the moments: 
+
+\[
+    \mathbf{E}\left[\hat{\omega_{f,t}}-\rho \hat{\omega_{f,t-1}}- \beta^{a}A_{f,t-1}|\mathcal{I}_{f,t-1}\right]=0
+\]
+
+Where we $\hat{\omega_{f,t}}=y_{f,t}- \beta_{0} + \beta_{l}l_{f,t}+ \beta_{k}k_{f,t}$
+And we can estimate the following GMM: 
+
+\[
+\mathbf{E}\left[Z_{it-1} \otimes (\hat{\omega_{f,t}}-\rho \hat{\omega_{f,t-1}}- \beta^{a}A_{f,t-1})\right]=0
+\]
+
+where, given the assumptions of the exercise,  \(Z_{it-1}= \begin{pmatrix}
+    1 \\
+    l_{f,t-1} \\
+    l_{f,t-2} \\
+    k_{f,t} \\
+    k_{f,t-1} 
+\end{pmatrix}\)
+
+It is important to include $\beta^{a}A_{f,t-1}$ in the moment function to support that $\mathbf{E}\left[\nu_{f,t}|\mathcal{I}_{f,t-1}\right]=0$. Mergers and acquisitions are not random events: high-productivity firms are more likely to acquire other firms, while low-productivity firms are more likely to be acquired. As a result, $A_{f,t-1}$ is correlated with past productivity and belongs to the firm information set at t-1, thus the previous condition does not hold. 
+
+\textbf{B}
+Estimated in the jupyter notebook. There is a problem of weak identification and GMM collapses to OLS\dots
+
+\textbf{C}
+
+The key assumption that we need to discuss is whether all inputs are substitutable or not. But now cotton clearly is not substitutable with labor or capital and this justifies the parametrization of the problem as a Leontieff model. (i.e cotton is not productive per se without labor or capital). 
+
+
+\textbf{D}
+
 
 \section{Appendix}
 
