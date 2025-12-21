@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2024.12.15)  19 DEC 2025 12:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2024.12.15)  21 DEC 2025 20:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -792,7 +792,9 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/map/pdftex/pdftex.map}]
 
-[2] (problem_set_1.aux)
+[2]
+
+[3] (problem_set_1.aux)
  ***********
 LaTeX2e <2024-11-01>
 L3 programming layer <2024-11-02>
@@ -801,17 +803,17 @@ Package rerunfilecheck Info: File `problem_set_1.out' has not changed.
 (rerunfilecheck)             Checksum: 8AF305D8263DE4F269939CBFC3F9A4B2;83.
  ) 
 Here is how much of TeX's memory you used:
- 24291 strings out of 473682
- 491084 string characters out of 5703553
- 870928 words of memory out of 5000000
+ 24293 strings out of 473682
+ 491100 string characters out of 5703553
+ 868928 words of memory out of 5000000
  46958 multiletter control sequences out of 15000+600000
  566886 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,9n,107p,612b,448s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 94i,9n,107p,792b,441s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi5.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on problem_set_1.pdf (2 pages, 148618 bytes).
+Output written on problem_set_1.pdf (3 pages, 154748 bytes).
 PDF statistics:
- 96 PDF objects out of 1000 (max. 8388607)
- 8 named destinations out of 1000 (max. 500000)
+ 101 PDF objects out of 1000 (max. 8388607)
+ 10 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -81,7 +81,11 @@ where, given the assumptions of the exercise,  \(Z_{it-1}= \begin{pmatrix}
 It is important to include $\beta^{a}A_{f,t-1}$ in the moment function to support that $\mathbf{E}\left[\nu_{f,t}|\mathcal{I}_{f,t-1}\right]=0$. Mergers and acquisitions are not random events: high-productivity firms are more likely to acquire other firms, while low-productivity firms are more likely to be acquired. As a result, $A_{f,t-1}$ is correlated with past productivity and belongs to the firm information set at t-1, thus the previous condition does not hold. 
 
 \textbf{B}
-Estimated in the jupyter notebook. There is a problem of weak identification and GMM collapses to OLS\dots
+Estimated in the jupyter notebook. When using the instruments reported above I get the following results: 
+
+
+
+
 
 \textbf{C}
 
@@ -89,6 +93,34 @@ The key assumption that we need to discuss is whether all inputs are substitutab
 
 
 \textbf{D}
+
+Estimated in the Jupyter Notebook. It is less than the markup computed above, just by definition. 
+
+\section*{Exercise 3}
+
+\textbf{A}
+In the main setup, assuming aquisitions are exogeneous and determined before $\nu$ is realized, the effect of aquisitions is negative ($-65$). This is quite unreasonable as we would expect merged firms to operate with higher productivity after a merger. What this could reflect is that the assumption of exogeneity of the acquisition is wrong. Maybe firms merge with some knowledge of this transient shock $\nu_t$: for example, negatiations between firms may take long and in our dataset merger is defined when it is officially completed but then come months of negotiation, information etc. if the firm expects a negative shock, maybe it accepts the merger and my coefficient is capturing this downward bias. 
+
+First case: 
+
+\[
+\text{cov}(A_{t-1}, \nu)=0
+\]
+Or that $\mathbf{E}(\nu| \mathcal{I}_{t-1})=0$ where $A_{t-1} \in \mathcal{I}_{t-1}$
+
+Second case: 
+
+\[
+\text{cov}(A_{t-1}, \nu)\neq 0
+\]
+And then $\mathbf{E}(\nu| \mathcal{I}_{t-1})\neq 0$ if  $A_{t-1} \in  \mathcal{I}_{t-1}$
+
+
+
+A solution to this is add instruments in $\mathbf{Z}$ that explain variation in $A_{t-1}$ but that are uncorrelated with $\nu_t$. A reasonable instrument can be larger lags of the acquisition dummy: $A_{t-2},A_{t-3}\dots$. 
+
+The isssue is that mergers are very uncommon and it is very hard to identiffy the effects of $\beta^{a}$ in our case. The estimation is extremely unstable to the selected instruments and , once we demean the variables, we can no longer identify $\beta^{a}$.
+
 
 
 \section{Appendix}
