@@ -1,0 +1,110 @@
+\documentclass{article}
+\usepackage{amsmath} 
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{float}   % for [H]
+\usepackage{graphicx}   % for \includegraphics
+\usepackage{tabularx}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{blindtext}
+\usepackage{hyperref}
+\usepackage{natbib} % <-- NEW: to handle references
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{dcolumn}
+\usepackage{threeparttable}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage{pdflscape} % in your preamble
+\usepackage{tabularray}
+\setcounter{secnumdepth}{2}
+\usepackage{amsmath, amsthm}  % for math and theorem environments
+
+
+
+\begin{document}
+
+\title{Referee Report}
+\author{Jordi Torres}
+\date{\today}
+
+
+\maketitle
+
+
+\section*{1}
+In this paper, Larroucau and Ríos develop a structural model to understand how the decisions of the students to drop out or change courses are made during higher education. They focus on the chilean context, where students apply to college to a centralized system and are allowed to change degrees. Main variation outcome: 21\% in the sample switch, 15\% drop out. They highlight two important channels that can explain this phenomenon: 1. initial mismatching: students who are not assigned to their prefered option may go into other non-prefered options and later switch; 2. learning: students who learn about their skills or preferences in college and switch because of this (i.e they were correctly matched but then change their taste). These two channels have different implications for policy: the first one can be solved by penalizing later switches, so that student's are forced to internalize the negatives externalities imposed on the others later on. The second, on the contrary, would mean that more flexibility and ease of switching needs to be implemented. 
+
+Their contribution is a model with which to separate these two channels + add enough heterogeneity to make the model more robust
+
+\section*{2}
+The essential variation that the paper exploits is the almost random variation that occurs around the cutoff of entry grades. In X there is a centralized mechanism to distribute students into college degrees based on their weighted grades from high school. Students above the treshhold are admitted and can accept or reject; students below the threshold are either waitlisted or rejected. They use the variation around the cutoff (comparing students with very similar scores) to argue that there is a causal effect of being shortlisted to the top preference on the probability of switching, dropping out etc. 
+
+Basically, they estimate the following RDD:
+
+\[
+y_{bp}=f_{p}(d_{bp}) + \delta_{p} \cdot Z_{bp}+ \epsilon_{bp}
+\]
+
+Where $y$ is the outcome of interest (dropout, switch after 1 year \dots etc) in bin of distance to cutoff $b$ applying to program $p$. Z is simply the indicator function of above and below the cutoff (ITT) and   $f_{p}$ is a flexible polynomial of the distance.
+
+This variation is essential for the paper because it allows them to later discipline the separation between channel 1 and channel 2 in the main model. While it is not clear what type of missmatch this is capturing —since the reduced-form effect may pull together effort responses, motivation, tastes, or expectations— it is clear that this missmatch is realized before any learning (mechanism 2) based on grades and performance-driven is gained. In this sense, the RD captures the initial mismatch effect on the continuation value of the assigned option (not enrollment!-> in beliefs, options at hand etc.).
+
+
+However, the paper does not do an excellent job justifying the validity and interpretation of this central result. First, they do not explicitly state which RD method they use (it appears to be in the spirit of Cattaneo et al.), and they devote limited attention to robustness with respect to polynomial order, bandwidth choice, or placebo tests. Second, the paper is not fully clear about the sharp versus fuzzy nature of the design. Given the presence of waitlists and the fact that crossing the cutoff does not mechanically imply enrollment in the top choice, the design is not sharp. The authors seem to deliberately focus on the ITT effect of eligibility or priority rather than a LATE of actual enrollment, which makes sense if the problem of who are the compliers wants to be avoided, but some discussion on it would be nice. 
+
+
+\section*{3}
+The essential feature of their model is how learning about abilities and preferences is modelled. Although there are other important elements in the model, such as strategic reporting of preferences in ROL, reapplication process etc, I will mostly focus on the learning part, as it is the crucial contribution (the rest is noise!).
+
+The central assumption is that students enter college with imperfect information about their match-specific abilities and their preferences over major to study: ability goes all by grades and the rest enters the preference dimension.
+
+\textbf{Learning about preferences}
+Ability of student i for major m is defined:
+\[
+\{\alpha_{i,m,t}\}_{m \in M} \sim N(\mu_{i,m}^{a}, \sigma_{i,m}^{a})
+\]
+Student idyiosyncratic preferences evolve according to 
+
+\[
+\alpha_{i, m, t+1}= \alpha_{i,m,t} + \mathbf{1}_{m=m(j)}\cdot \epsilon_{i,m,t}^{a}
+\]
+where the error depends on the variance.
+\textbf{Learning about abilities}
+
+\[
+A_{ij}= \sum_{s\in S} \omega_{j,s}A_{i,s}^{0} +  \sum_{s\in S} \omega_{j,s}A_{i,s}^{p} + A_{i,m(j)}^{p} + \sum_{s\in S} \omega_{j,s}A_{i,s}^{u} + A_{i,m(j)}^{u}
+\]
+
+Where $A_{i,s}^{0}$ is an observable component observed by the researcher and the student, $A_{i,m(j)}^{p}$ is a private measure of ability only observed by the student and $A_{i,m(j)}^{u}$ is the part of ability unknown by the student.
+
+They allow students to have potentially biased initial beliefs on the unknown component of ability. That is, the mean and variance of $A_{i,m(j)}^{u}$ depend on $\tilde{\mu}_{i,k,t}$ and $\tilde{\sigma}_{i,k,t}^{2}$.-->maybe add update rule.
+
+\textbf{How ability enters the model}
+
+Ability on grades enters different elements of the model. It enters the grade function: \(G_{i,j,t}=G(X_{i,j}^{G}, A_{i,j}^{p}, A_{i,j}^{u}, \epsilon_{i,j,t}^{G})\), labor market\dots, dont know if I have the space to do it. 
+-->mechanically in the model, it seems like this will drive a lot fo the results 
+
+While the preferences enter only as random effects in the per period flow utility: \(U_{i,j,t}= U(X_{i,j}^{U}, \alpha_{i, m(jt)}, \epsilon_{i,j,t}^{U})\)
+
+
+\textbf{Identification}
+
+\textbf{Counterfactuals on information provision}
+
+\section*{5}
+
+
+\section*{6}
+Main effort
+
+\section*{7}
+Contrary to Wiswall and Zafar they actually have consistent data on beliefs, they don't find that beliefs or preferences are already stable before entering higher education.
+
+\end{document}
+
