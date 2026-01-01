@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1766344176.62584 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/IO/problem_set_1.tex" "problem_set_1.pdf" "problem_set_1" 1766344177.34264 0
-  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/IO/problem_set_1.tex" 1766344175.69602 6695 584bb84361e9fce243fe7c7a432158a2 ""
+["pdflatex"] 1766949828.95621 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/IO/problem_set_1.tex" "problem_set_1.pdf" "problem_set_1" 1766949829.65256 0
+  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/IO/problem_set_1.tex" 1766949827.29786 6716 37b1de2095ca2897a64ed7f0f8e682e6 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/map/pdftex/pdftex.map" 1763370921.06305 339773 a1c68872d3dc0a4bee66a5dedbc28f32 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1734277980.39253 11548 65e4107434a595602cca075154f9e8e6 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1734277941.08881 12002472 b582eb731daf2b623c3d30845607ef6c ""
@@ -180,9 +180,9 @@
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/tools/xspace.sty" 1734275015.87431 4545 e3f4de576c914e2000f07f69a891c071 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/url/url.sty" 1725915934.0507 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/install/tex/latex/xcolor/xcolor.sty" 1734275016.41717 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "problem_set_1.aux" 1766344177.22211 309 2ae8fe52cd8b772a686d94e1d9ab1fc6 "pdflatex"
-  "problem_set_1.out" 1766344177.22252 83 8af305d8263de4f269939cbfc3f9a4b2 "pdflatex"
-  "problem_set_1.tex" 1766344175.69602 6695 584bb84361e9fce243fe7c7a432158a2 ""
+  "problem_set_1.aux" 1766949829.53834 416 d36f400802ef98468ee4c7d168050cde "pdflatex"
+  "problem_set_1.out" 1766949829.53871 179 9c558d2e838c90f4b133cff76385868c "pdflatex"
+  "problem_set_1.tex" 1766949827.29786 6716 37b1de2095ca2897a64ed7f0f8e682e6 ""
   (generated)
   "problem_set_1.aux"
   "problem_set_1.log"
