@@ -62,7 +62,7 @@ However, the paper does not do an excellent job justifying the validity and inte
 \section*{3}
 The essential feature of their model is how learning about abilities and preferences is modelled. Although there are other important elements in the model, such as strategic reporting of preferences in ROL, reapplication process etc, I will mostly focus on the learning part, as it is the crucial contribution (the rest is noise!).
 
-The central assumption is that students enter college with imperfect information about their match-specific abilities and their preferences over major to study: ability goes all by grades and the rest enters the preference dimension.
+The central assumption is that students enter college with imperfect information about their match-specific abilities in a given major $j$ and their preferences over major to study: ability goes all by grades and the rest enters the preference dimension as a utility shifter. One of the fundamental ideas of the paper is how to separate these two dimensions and why?
 
 \textbf{Learning about preferences}
 Ability of student i for major m is defined:
@@ -74,7 +74,8 @@ Student idyiosyncratic preferences evolve according to
 \[
 \alpha_{i, m, t+1}= \alpha_{i,m,t} + \mathbf{1}_{m=m(j)}\cdot \epsilon_{i,m,t}^{a}
 \]
-where the error depends on the variance.
+where the error depends on the variance. \(\rightarrow\) this explains everything that is not in embedded in ability as signaled by grades.
+
 \textbf{Learning about abilities}
 
 \[
@@ -83,28 +84,135 @@ A_{ij}= \sum_{s\in S} \omega_{j,s}A_{i,s}^{0} +  \sum_{s\in S} \omega_{j,s}A_{i,
 
 Where $A_{i,s}^{0}$ is an observable component observed by the researcher and the student, $A_{i,m(j)}^{p}$ is a private measure of ability only observed by the student and $A_{i,m(j)}^{u}$ is the part of ability unknown by the student.
 
-They allow students to have potentially biased initial beliefs on the unknown component of ability. That is, the mean and variance of $A_{i,m(j)}^{u}$ depend on $\tilde{\mu}_{i,k,t}$ and $\tilde{\sigma}_{i,k,t}^{2}$.-->maybe add update rule.
+They allow students to have potentially biased initial beliefs on the unknown component of ability. That is, the mean and variance of $A_{i,m(j)}^{u}$ depend on $\tilde{\mu}_{i,k,t}$ and $\tilde{\sigma}_{i,k,t}^{2}$ , the expected grades.-->maybe add update rule.
 
 \textbf{How ability enters the model}
 
-Ability on grades enters different elements of the model. It enters the grade function: \(G_{i,j,t}=G(X_{i,j}^{G}, A_{i,j}^{p}, A_{i,j}^{u}, \epsilon_{i,j,t}^{G})\), labor market\dots, dont know if I have the space to do it. 
--->mechanically in the model, it seems like this will drive a lot fo the results 
+Ability on grades enters different elements of the model. It enters the grade function: \(G_{i,j,t}=G(X_{i,j}^{G}, A_{i,j}^{p}, A_{i,j}^{u}, \epsilon_{i,j,t}^{G})\)\footnote{Here they use $\tilde{G_{ijt}}$ as the outcome of interest,as they observe the beliefs of the students about the grades they will achieve in the following year ; so they check \(\mathbf{E}(G_{ijt})\), where the expectation is taken over the uncertain ability and the utility shock.}. 
+
+The labor market function \(V_{i,j,t}= \beta_{m(j)}^{v}+ \beta_{a}^{v}a_{i, m(j), t'} + \beta_{a}^{V}A_{i,j}^{0}+ \beta_{pu}^{V}(A_{i,j}^{p}+A_{i,j}^{u})+ \beta_{w}^{v}\log(\mathbf{E}\left[\sum_{t=t'}^{T} \beta^{t-t'} P_{m(j),t}^{w} W_{i,j,t}\right])\), the expected returns in labor market.
 
 While the preferences enter only as random effects in the per period flow utility: \(U_{i,j,t}= U(X_{i,j}^{U}, \alpha_{i, m(jt)}, \epsilon_{i,j,t}^{U})\)
 
 
+
 \textbf{Identification}
+
+\textbf{Private ability:}
+ Following Arcidiacono (2005), students are assumed to know their ability when ranking their preferences. They also assume that students rank their preferences based on their comparative advantage, which is unobserved by the researcher. The idea is that students rank options $j \in J$, where J is ROL, based on relative utility:
+
+Choose $j>j' \iff U_{ij}>U_{ij'}$, then define utility:
+
+\[
+U_{ij}= \gamma_j + A_{ij}^{p}+ Z_{ij}\phi_{j} + \eta_{ij}
+\]
+Where  $A_{ij}^{p}$ is the private utility and can be modelled by a set of random coefficients. With this they identify \(\phi^{2} \sigma^{2}_{A_{ij}^p}/\sigma^{\nu_{ij}}\) up to scale. The idea is that this first stage can be used then as a control function approach to estimate the grade equation:
+
+\[
+G_{i,j,t}=G(X_{i,j}^{G}, A_{i,j}^{p}, A_{i,j}^{u}, \epsilon_{i,j,t}^{G})
+\]
+
+This equation is biased if we don't control for the fact that students sort based on comparative advantage. The idea is to use the probability of ranking options as a control function approach and do (they also assume linearity): 
+
+\[
+G_{i,j,t}= \beta_{0} + \beta X_{i,j}^{G} + s(Pj) + A_{i,j}^{u} + \epsilon_{i,j,t}^{G}
+\]
+
+where $Pj=P(j=j |X, Z)$ and under the control function restriction $\mathbf{E}(A_{i,j}^{u} + \epsilon_{i,j,t}^{G}| j, X, Z)=s(Pj)$ . Such that now $\mathbf{E}(\epsilon_{i,j,t}^{G}| s)=0$ and if we take the error of this, we get the $A_{i,j}^{u} + \epsilon_{i,j,t}^{G}$ that is used in the next step. 
+
+\textbf{Unknown ability and grade shock:}
+
+Now the idea is how to disentangle the two. With just
+\[
+a_{i,j,t}= A_{i,j}^{u}+ \epsilon_{i,j,t}^{G}
+\]
+we cannot separate unknown ability and grade noise if we only observe the grade signal (grades net of private ability and observed characteristics). They identify the two by using only data from non-switchers, imposing an i.i.d. shock assumption and normality assumptions.
+
+Conditional on staying in the same major in period 1 and 2:
+\[
+V(a_{ij1}\mid j_{i1}= j_{i2}=j)
+=
+V(A_{ij}^{u}\mid j_{i1}= j_{i2}=j)
++
+V(\epsilon_{ij1}^{G}\mid j_{i1}= j_{i2}=j),
+\]
+
+\[
+V(a_{ij2}\mid j_{i1}= j_{i2}=j)
+=
+V(A_{ij}^{u}\mid j_{i1}= j_{i2}=j)
++
+V(\epsilon_{ij2}^{G}\mid j_{i1}= j_{i2}=j).
+\]
+
+Under the i.i.d. shock assumption,
+\[
+V(\epsilon_{ij2}^{G}\mid j_{i1}= j_{i2}=j)
+=
+V(\epsilon_{ij1}^{G}\mid j_{i1}= j_{i2}=j)
+=
+\sigma^{2}_{G}.
+\]
+
+We still have two unknown components. The key additional restriction comes from the fact that in period 1 staying is a decision taken after observing \(a_{ij1}\), which implies self-selection among those who remain in the same major. As a consequence, the distribution of \(a_{ij1}\) conditional on staying is truncated. Under normality,
+\[
+V(a_{ij1}\mid j_{i1}= j_{i2}=j)
+=
+\left( V(A_{ij}^{u})+\sigma^{2}_{G} \right)\cdot \kappa,
+\]
+where \(\kappa\in(0,1)\) is a known function of the truncation point implied by the stay decision. In contrast, the second-period signal \(a_{ij2}\) is realized after the stay decision and is therefore not truncated with respect to its own shock. Therefore,
+\[
+V(a_{ij2}\mid j_{i1}= j_{i2}=j)
+=
+V(A_{ij}^{u})+\sigma^{2}_{G}.
+\]
+
+Taken together, the truncated variance of the first-period signal and the untruncated variance of the second-period signal among non-switchers form a system of two equations in two unknowns, which allows separate identification of the variance of unknown ability \(V(A_{ij}^{u})\) and the variance of the grade shock \(\sigma^{2}_{G}\).
+
+\textbf{prior beliefs} This is easier, they identify the prior on unknown ability $\tilde{\mu_{i,j}}$ by taking the difference between the expected grades and the realized grades in year 1 + measurement error assume to be $N(0,\sigma_{G}^{2})$ and identified above. Variances are identified are identified by exploting a quesiton on probability that their grades fall between certain brackets. 
+
+\textbf{Learning about preferences and ability.}
+
+Learning is identified using the correlation between grade signals and students’ choices after the first period, including switching and dropout decisions.
+
+The key idea is that the responsiveness of choices to observed grades depends on the signal-to-noise ratio. A high signal-to-noise ratio (low grade-noise variance relative to the variance of unknown ability) implies that grades are more informative, so students update their beliefs more strongly and choices respond more sharply to realized grades. This translates into stronger correlations between first-year grades and switching behavior.
+
+Finally, the variance of random taste shocks (or preference shocks) is identified by focusing on students who reapply or change their choices after receiving a non-informative grade signal. Conditional on a signal that is uninformative about ability, changes in choices must be driven by preference shocks rather than learning about ability. Variation in these preference changes across majors identifies the standard deviation of the evolution of
+random coefficients, denoted \(\zeta_{\alpha}\). \footnote{Omitted in this section is all the heterogeneity that they include in the analysis, which is one of the strengths. For simplicity, I did not talk about it}
+
 
 \textbf{Counterfactuals on information provision}
 
+One of the two main goals of the paper is to understand how choices of the students would change if information provision changed. More precisely, at the core of their counterfactuals is to quantify the extend towards which missinformation in preferences or/and ability account for the decision to switch major 
+
+They simulate these two scenarios:
+
+\begin{enumerate}
+    \item Set \(\zeta_{\alpha}=0\). This they interpret as the effect of counseling in high-school: reduce uncertainty of preferences-->really?
+    \item Set \(\tilde{\mu}_{i,j}=0, \tilde{\sigma_{i,j}^{2}=0}\) and move all uncertainty to private ability $\xi^{2}_{i,j} = \hat{\xi_{i,j}}^{2} + \sigma_{i,j}^{2}$ effect of pre-higher education training
+\end{enumerate}
+
+Importantly, the cf are bullshit, but at least the heterogeneity is impressive. Imposing heterogeneity at the model level is essential to understand differential effects (if not, in nonlinear models, we would still find heterogeneity if we condition results by characteristics, but we would not know why\dots)
+
+\section*{4}
+
+Without the RD, it would be extremely difficult to disentangle the effect of initial mismatch from subsequent learning. Also,  in the model, counterfactuals necessarily involve changes in admission cutoffs, which mechanically generate mismatch between students and programs. For this reason, identifying the causal effect of being assigned to a higher-ranked option at the margin is essential to discipline the magnitude of mismatch effects in the model. While the authors somewhat downplay this point, the RD is in fact central: it provides quasi-experimental variation that anchors the effect of initial assignment independently of the learning mechanism.
+
+Without the structural model, on the other hand, the RD would only capture a very local and uninformative treatment effect. The RD estimates the impact of barely crossing an admission cutoff on outcomes such as switching or dropout, but it does not explain why students switch, how beliefs evolve, or how these local effects extrapolate to other margins. On its own, the RD cannot separate preference mismatch from learning about ability, nor can it be used to evaluate counterfactual admission rules.
+
+In short, without the RD the structural model would be weakly identified and rely heavily on functional-form assumptions, while without the structural model the RD would remain a local result with limited economic interpretation and interest. The contribution of the paper lies in the interaction between the two: the reduced-form RD provides credible causal variation, and the structural model uses -maybe not sufficiently explicitly- that variation to understand mechanisms and conduct policy-relevant counterfactuals.
+
+
+
 \section*{5}
+modeling heterogeneity with detail, how they separate initial missmatch with reapplication etc. 
 
 
 \section*{6}
 Main effort
 
 \section*{7}
-Contrary to Wiswall and Zafar they actually have consistent data on beliefs, they don't find that beliefs or preferences are already stable before entering higher education.
+Contrary to Wiswall and Zafar they actually have consistent data on beliefs, they don't find that beliefs or preferences are already stable before entering higher education. But watch out because I think they make an extrapolation that is a big shot-> belief from other generation to this generation!
 
 \end{document}
 
