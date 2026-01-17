@@ -205,14 +205,61 @@ In short, without the RD the structural model would be weakly identified and rel
 
 
 \section*{5}
-modeling heterogeneity with detail, how they separate initial missmatch with reapplication etc. 
+modeling heterogeneity with detail, how they separate initial missmatch with reapplication etc. Initial missmatch and discipline the model thorugh that variation...this helps the second set of CF well. 
 
+\section*{6. Main Concerns}
 
-\section*{6}
-Main effort
+I see five main issues.
+
+\medskip
+
+\noindent
+\textbf{1. Mechanical separation between ability and preferences.}  
+The distinction between learning about ability and learning about preferences is largely mechanical. Ability learning operates through updates to $A_{ij}^u$, driven by grade surprises $G_{ijt}-\mathbb{E}[G_{ijt}]$. However, interpreting this object as ability learning is unclear: grade realizations may also reflect endogenous effort, motivation, disengagement, or strategic behavior, none of which are modeled. Thus, the grade signal conflates multiple mechanisms. For example, a student who anticipates low returns or plans to reapply may optimally reduce effort in period $t$, generating a negative grade surprise that the model interprets as low ability rather than an endogenous response\footnote{Relatedly, the absence of effort or persistent heterogeneity implies that learning dynamics absorb variation that would typically be captured by unobserved types.}.
+
+What the paper calls preference learning is defined residually as any component of utility not explained by grades. The variance of $\gamma_{ijt}$ is identified using individuals who receive “uninformative” grade signals but still switch. This argument is problematic, since a realization equal to the prior mean is still informative in a Bayesian sense (it reduces posterior variance). More importantly, the result that ability learning dominates preference learning is mechanically implied by the model: grade signal affects grades, continuation values, graduation, and wages, while preferences enter only through flow utility (after conditioning on program fixed effects). Hence the relative importance of the two channels is largely built in by the model.
+
+\medskip
+
+\noindent
+\textbf{2. Misinterpretation of bias and weak information counterfactuals.}  
+The paper repeatedly interprets deviations between realized and expected grades as evidence of biased beliefs. This is not correct. Under rational expectations with uncertainty, forecast errors are inevitable. Bias would instead correspond to systematic misperceptions of objective quantities, such as graduation probabilities or wage distributions conditional on completing program $j$.
+
+This distinction matters for the information counterfactuals. In the paper, “counseling” is modeled by shutting down preference uncertainty (setting the variance of $\gamma_{ijt}$ to zero). This counterfactual does not reduce inevitable uncertainty about grades, effort, or fit; it simply removes a residual shock from the model. In practice, counseling would more plausibly affect beliefs about objective outcomes (e.g., labor market returns, risks of dropout) or help students articulate tastes, which are not separately identified here. The counterfactual therefore does not map clearly to a realistic information policy, even though the paper correctly highlights that uncertainty and learning play an important role in switching behavior.\textbf{Add also the other CF on information. Here results of the model are based also on modelling assumptions... and provide no information}->since Arcidiacono(2025) we know information matters...
+
+\medskip
+
+\noindent
+\textbf{3. Policy-invariant strategic behavior.}  
+The second set of counterfactuals relies on a fixed share of strategic applicants, $\rho$. Even if the identification of $\rho$ under the baseline is taken at face value (assumptions is also shaky), assuming that $\rho$ is invariant to policy changes is strong. Application rules plausibly affect incentives to acquire information and behave strategically. Presenting results under alternative values of $\rho$ does not resolve this issue, since all parameters are estimated conditional on a fixed behavioral regime.
+
+\medskip
+
+\noindent
+\textbf{4. Switching outside the initial choice set.}  
+A striking fact is that about $67\%$ of students who switch move to programs outside their initial rank-order list, compared to only $17\%$ who move within the list. This suggests evolving choice sets or option discovery, rather than reordering preferences over a fixed set of alternatives. This pattern complicates the interpretation of initial mismatch and, surprisingly, is not addressed by the model or considered at all.
+
+\medskip
+
+\noindent
+\textbf{5. Stationarity of beliefs across cohorts.}  
+Belief and preference data from cohorts surveyed in 2022--2024 are used to identify parameters for the 2014 cohort under a conditional stationarity assumption. Given large changes in macroeconomic conditions, labor market returns, and information environments over this period, this assumption is strong. Since beliefs play a central role in the model (they enter everywhere), deviations from stationarity could materially affect the estimated learning dynamics and counterfactuals.
+
+\medskip
+
+\noindent
+Overall, the model places substantial structure on learning while abstracting from effort, evolving choice sets, and policy-dependent beliefs. As a result, several counterfactual conclusions appear to be driven more by modeling assumptions than by well-identified economic mechanisms.
+
 
 \section*{7}
+
+Information treatment should either be: 
 Contrary to Wiswall and Zafar they actually have consistent data on beliefs, they don't find that beliefs or preferences are already stable before entering higher education. But watch out because I think they make an extrapolation that is a big shot-> belief from other generation to this generation!
 What is different wrt to Arcidiacono et al. Understand this well. 
+
+Or particularly model how students react to signals...The thing is that there is unresolved uncertainty that can not be avoided... And this paper tries to do too much without gaining anything in return. 
+
+Do a proposal of modelling well information provision treatments well. Considering who gives information, who receives it etc. We know students don't know shit, so let's be serious about it. Cite main examples there. 
+
 \end{document}
 
