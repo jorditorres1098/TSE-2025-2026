@@ -1,0 +1,43 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{2}{c}}
+\hline\hline
+          &\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         \\
+\hline
+xb        &                  &                  \\
+population&    1.780\sym{***}&    1.467\sym{***}\\
+          &  (0.076)         &  (0.076)         \\
+[1em]
+spc       &    1.578\sym{***}&    1.353\sym{***}\\
+          &  (0.120)         &  (0.122)         \\
+[1em]
+urban     &    1.275\sym{***}&    1.034\sym{***}\\
+          &  (0.171)         &  (0.155)         \\
+\hline
+zw        &                  &                  \\
+dbenton   &   -1.048\sym{***}&   -0.964\sym{***}\\
+          &  (0.080)         &  (0.085)         \\
+[1em]
+southern  &    0.649\sym{***}&    0.705\sym{***}\\
+          &  (0.081)         &  (0.078)         \\
+[1em]
+\_cons    &  -12.576\sym{***}&  -10.341\sym{***}\\
+          &  (1.029)         &  (1.003)         \\
+\hline
+zk        &                  &                  \\
+midwest   &    0.337\sym{***}&    0.385\sym{***}\\
+          &  (0.083)         &  (0.087)         \\
+[1em]
+\_cons    &  -19.939\sym{***}&  -17.676\sym{***}\\
+          &  (1.031)         &  (1.085)         \\
+\hline
+comp      &                  &                  \\
+comp      &   -0.936\sym{***}&    0.082         \\
+          &  (0.084)         &  (0.063)         \\
+\hline
+Observations& 2065.000         & 2065.000         \\
+\hline\hline
+\multicolumn{3}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{3}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+}

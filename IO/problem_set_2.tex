@@ -1,0 +1,234 @@
+\documentclass{article}
+\usepackage{amsmath} 
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{float}   % for [H]
+\usepackage{graphicx}   % for \includegraphics
+\usepackage{tabularx}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{blindtext}
+\usepackage{hyperref}
+\usepackage[round]{natbib}
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{dcolumn}
+\usepackage{threeparttable}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usetikzlibrary{decorations.pathreplacing}
+\usepackage{pdflscape} % in your preamble
+\usepackage{tabularray}
+\setcounter{secnumdepth}{2}
+\usepackage{amsthm}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\definecolor{ccqqqq}{rgb}{0.8,0,0}
+\definecolor{ududff}{rgb}{0.30196078431372547,0.30196078431372547,1}
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1}
+\setlength{\parskip}{0.45em}   % space between paragraphs
+\setlength{\parindent}{0pt}    % optional: remove paragraph indentation
+
+\setlength\parindent{0pt}
+
+\begin{document}
+
+
+\title{Part 2 IO problem set}
+\author{Carlos Àlvarez, Jordi Torres}
+\date{\today}
+
+\maketitle
+
+
+\section*{1.1}
+\begin{itemize}
+    \item $(0,0)$ \(\rightarrow \Pi_{im}^{M} \leq 0 \iff \hat{\Pi_{im}} + \epsilon_{im}\leq 0 \iff \epsilon_{im} \leq -\hat{\Pi}_{im}  \forall i \in \{1,2\}\)
+    \item $(1,1)$ \(\rightarrow  \hat{\Pi}^{D}_{im} + \epsilon_{im} \geq 0 \iff \epsilon_{im}\geq \hat{\Pi}_{im}^{D} \forall i \in \{1,2\}\)
+    \item Unique entry for firm $j$ will happen in the cases where: \begin{enumerate}
+        \item \(\hat{\Pi}_{jm}^{M}+ \epsilon_{jm}\geq 0 \cap \hat{\Pi}_{j_{-1}m}^{M}+ \epsilon_{j_{-1}m}\leq 0\) 
+        \item \(\hat{\Pi}_{jm}^{M}+ \epsilon_{jm}\geq 0 \cap \hat{\Pi}_{j_{-1}m}^{M}+ \epsilon_{j_{-1}m}\geq 0 \cap \hat{\Pi}_{j_{-1}m}^{D}+ \epsilon_{j_{-1}m} \leq 0 \)
+        \end{enumerate}
+    \item Note however the that there is the following area of multiplicity: \(- \Pi_{1j}^{D}\geq \epsilon_{1j}\geq - \Pi_{1j}^{M} \cap - \Pi_{2j}^{D}\geq \epsilon_{2j}\geq - \Pi_{2j}^{M} \) corresponding to region 5 in the graph. 
+\end{itemize}
+
+
+\textbf{\textcolor{blue}{pending to add the picture here or use Tikz or another package}}
+
+\section*{1.2}
+We can write the remaining probabilities in the following manner:
+
+\( \mathbf{P}\left(D_{1}=0, D_{2}=0\right)= \int_{0}^{-\pi_{1}^{M}}\int_{0}^{-\pi_{2}^{M}} \phi_{2}(u_{1}, u_{2}, \rho) du_{1} du_{2} \)
+
+Which we can express using the bivariate normal distribution as \( \mathbf{P}\left(D_{1}=0, D_{2}=0\right)= \Phi_{2}(-\pi_{1}^{M}, -\pi_{2}^{M}, \rho)\)
+
+Now, given that firm 1 enters first, we solve the problem of multiplicity, as the region 4 in graph \textbf{\textcolor{blue}{ADD!}} is now belongs to $(1,0)$. We can thus now write:
+
+\(\mathbf{P}(1,0)= \int_{-\pi_{1}^{M}}^{-\pi_{1}^{D}} \int_{0}^{-\pi_{2}^{D}}\phi_{2}(u_{1}, u_{2}, \rho) du_{1} du_{2}\). And we can use the normal to define the region as \(\Phi_{2}(\infty, -\pi_{2}^{D}, \rho) - \Phi_{2}(-\pi_{1}^{M}, -\pi_{2}^{D}, \rho)\). 
+
+And $\mathbf{P}(0,1)$ is implied by the other three. 
+
+\textbf{\textcolor{blue}{make sure notation, hats, pi etc are consistent with what is given in the exercise}}
+
+
+\section*{1.3}
+In table~\ref{tab:reg1} of the appendix we can see the two tables for $\rho$ positive and negative. The value of the loglikelihood is smaller in the case of positive shocks (this means the other is not fitting a global minimum?). The coefficients are also much different. Notably, once we assume negative correlation of the unobserved shocks, the competition effect is no longer significant: this is reasonable, as negative correlation structure implies that these firms are dissimilar - without assuming similar shock structure, competition effect can not be estimated (whatever departs from this same shocks).
+
+In table~\ref{tab:reg2} I show the estimated value of $\rho$ and indeed we find an almost.$0.3$ coefficient. In this table we also show the results of the same model when we change the assumption on the identity of the firm that enters first.  Notably, again, the main changes are with respect to the competition effect coefficient. When we assume firm 1 (Walmart) enters first, the effect of competition is smaller on profits.  The intuition behind this result is that in this model $\delta$ is rationalizing differences in entering decision (also the $\rho$): in this case the model finds more dissimilar firms and less impact of entry; while when we assume a smaller firm enters first, model gives more similar shocks and higher impact of competition of the non-entry first firm on the other. \textcolor{blue}{revise}
+
+The intuition given above is confirmed in table~\ref{tab:reg3}. $\rho$ remains close to the one we had assuming firm 2 entry first. But then we get a larger coefficient for the effect of competition of Walmart on Kmart (bigger company). This is reasonable, and was captured in part before. 
+
+
+\section*{1.4}
+In table~\ref{tab:reg4} we have the results of the model when we assume $\rho$ is 0.5 and 1. When the firms have the same shocks, the model generates higher compeition effect to explain the difference in entry decisions; when firms have less equal shocks, these in part explain entry (and so competition effect decreases). The second converges more quickly and has slighlty lower loglikelihood (more concave? less flat likelihood so easier to fit competition coefficients? competition explains variation unaccounted by unobserve shocks -the two are interconnected in these models. )
+
+
+In table~\ref{tab:reg5} I show the results of the same model as above estimating $\rho$. In this model we can not separately identify the competition effect from $\rho$. The intuition is very simple. In this simplified model, the only thing that is different across firms are the shocks. These are the only that rationalize the number of entrants , as the rest of variables are constant across firms. If we let the model find the $\rho$ it will be of 1: this rationalizes perfectly $n=2$ and $n=0$ $n=1$ too.
+
+This is also the reason why we can not identify effect of $Z_m$ in this model. $Z_m$ help separate $(0,1)$ from $(1,0)$ but in this model the two are pulled together in $n=1$, so there is no variation in probs that help identify these parameters (the likelihood is flat on these) \textbf{Provide a more accurate definition of why identification fails ehere.}
+
+\textcolor{blue}{\textbf{Revise}}
+
+In table~\ref{tab:reg6} we have a model of identical firms. This is the same coefficients as in part 1 of this problem set when we assume $\rho=1$. This is because $\rho=1$ in normal bivariate implies that the shocks are the same.
+
+Finally, in table~\ref{tab:reg7} we show the results of the ordered logit. Here the results should be the same as above. By default firms are the same and the thing that rationalizes observed probabilities are the cutoffs of the latent variable (it should capture the competition effect?). It is slighly different because now instead of compt we have the two cutoffs (on the prob of number of entrants per market) this should capture competition of the market, desirability... 
+
+\section*{2}
+
+ \subsection*{2.1}
+ The game can be summarized in 2 equalities and 4 inequalities (or 8 inequalities). Let's start with the equalities: 
+
+ \begin{enumerate}
+    \item (1,1)  \(\rightarrow \mathbf{P}(\epsilon_{1}\geq -\pi_{1}^{D},\epsilon_{2}\geq -\pi_{2}^{D}, \rho )= \hat{P_{1,1}} \rightarrow M_1= \hat{P_{1,1}} -\mathbf{P}(\epsilon_{1}\geq -\pi_{1}^{D},\epsilon_{2}\geq -\pi_{2}^{D}, \rho )=0\)
+    \item (0,0) \(\mathbf{P}(\epsilon_{1}\leq -\pi_{1}^{M},\epsilon_{2}\leq -\pi_{2}^{M}, \rho )= \hat{P_{0,0}} \rightarrow M_2= \hat{P_{0,0}}- \mathbf{P}(\epsilon_{1}\leq -\pi_{1}^{M},\epsilon_{2}\leq -\pi_{2}^{M}, \rho )=0\)
+
+    
+
+Now let's consider the problematic cases (1,0), (0,1). For these, we have already shown that $P_{0,1}$ or $P_{1,0}$ can not be point identified in the data -unless we make assumptions on who moves first etc (as done above) because there is a region of multiplicity where multiple equilibria can rationalize the data. 
+
+However, these probabilities are not devoid of empirical content. Let's take (1,0). We know that the probability we estimate in the data $\hat{P_{0,1}}$ will be bounded between: 
+
+$P_{0,1}^{l} \leq \hat{P_{0,1}} \leq P_{0,1}^{u}  $, where the lower bound is just the region where 0,1 is equilibrium not in multiplicity. The upper bound is the opposite: the region when we assume the selection function of the multiplicity area always selects this outcome. This gives us two inequalities: 
+
+\item  $P_{0,1}^{l} \leq \hat{P_{0,1}} \rightarrow M_3= \hat{P_{0,1}}- P_{0,1}^{l} \geq 0 $
+\item $\hat{P_{0,1}} \leq P_{0,1}^{u} \rightarrow M_4= P_{0,1}^{u} - \hat{P_{0,1}}  \geq 0$
+
+Same exercise we can do with $P_{1,0}$. This leads with 8 moments, 2 equalities (4 inequalities) and 4 inequalities:
+
+\item  $P_{1,0}^{l} \leq \hat{P_{1,0}} \rightarrow M_3= \hat{P_{1,0}}- P_{1,0}^{l} \geq 0 $
+\item $\hat{P_{1,0}} \leq P_{1,0}^{u} \rightarrow M_4= P_{1,0}^{u} - \hat{P_{1,0}}  \geq 0$
+
+\subsection*{2.2}
+First, \(\hat{P_{1,1}},\hat{P_{0,0}} , \hat{P_{1,0}}, \hat{P_{0,1}}, \), can be directly estimated with the data. This can be done with nonparametric methods. (\textcolor{blue}{do we need to condition on X?}).
+
+Second, we will estimate the rest using model implied probabilities - recycling some results from above, actually. Let's go by parts: 
+
+\begin{enumerate}
+    \item \( p_{00}= \Phi_{2}(-\pi_{1}^{M}, -\pi_{2}^{M}, \rho)\)
+    \item \( p_{11}= 1- \Phi_{2}(-\pi_{1}^{d}, 100, \rho)- \Phi_{2}(-\pi_{1}^{d}, -\pi_{2}^{d}, \rho)- \Phi_{2}(100, -\pi_{2}^{d}, \rho) \)  
+    \item For either $(1,0)$ or $(0,1)$ we have: \begin{itemize}
+        \item \(P_{1,0}^{l}= \Phi_{2}(100, - \pi_{2}^{d}, \rho)-\Phi_{2}(- \pi_{1}^{m}, - \pi_{2}^{d}, \rho) \)
+        \item  \(P_{1,0}^{u}= 1- \Phi_{2}(-\pi_{1}^{m}, -\pi_{2}^{d}, \rho)- p_{11} - p_{00}\) 
+        \item By symmetry $(0,1)$ is just the same reversed. 
+    \end{itemize} 
+\end{enumerate}
+ Where in this case \(\pi_{i}^{m}, \pi_{i}^{d}\) are profits under monopoly or duopoly as specified in the beginning for firm $i \in \{1,2\}$. 
+
+ \subsection*{2.3}
+
+ We can define the following objective function:
+
+ \[
+ Q(\theta)= \sum_{j}(M_{j}(\theta))_{+}
+ \]
+
+ Where $j$ are the amount of moment inequalities we have and where $M$ designates the moment, which are functions of $\theta$.
+
+ The inequalities are written in a positive way. In this sense, we want to penalize deviations for the implied inequalities in the model, so we will construct $Q(\theta)$ so that we only count deviations from our model. This resembles ... 
+
+
+
+\end{enumerate}
+
+
+
+
+ \subsection*{2.2}
+
+
+\section*{Appendix}
+
+\begin{table}[htbp]
+\centering
+\caption{Regression Results}
+\label{tab:reg1}
+
+\input{1_3.tex}
+
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Regression Results}
+\label{tab:reg2}
+
+\input{1_3_2.tex}
+
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Regression Results}
+\label{tab:reg3}
+
+\input{1_3_3.tex}
+
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Regression Results}
+\label{tab:reg4}
+
+\input{1.4_1.tex}
+
+\end{table}
+
+
+\begin{table}[htbp]
+\centering
+\caption{Regression Results}
+\label{tab:reg5}
+
+\input{1.4_2.tex}
+
+\end{table}
+
+
+\begin{table}[htbp]
+\centering
+\caption{Regression Results}
+\label{tab:reg6}
+
+\input{1.4_3.tex}
+
+\end{table}
+
+
+\begin{table}[htbp]
+\centering
+\caption{Regression Results}
+\label{tab:reg7}
+
+\input{1.4_4.tex}
+
+\end{table}
+
+
+
+\end{document}

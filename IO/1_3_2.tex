@@ -1,0 +1,47 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{2}{c}}
+\hline\hline
+          &\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         \\
+\hline
+xb        &                  &                  \\
+population&    1.756\sym{***}&    1.851\sym{***}\\
+          &  (0.075)         &  (0.079)         \\
+[1em]
+spc       &    1.572\sym{***}&    1.649\sym{***}\\
+          &  (0.119)         &  (0.124)         \\
+[1em]
+urban     &    1.255\sym{***}&    1.345\sym{***}\\
+          &  (0.169)         &  (0.180)         \\
+\hline
+zw        &                  &                  \\
+dbenton   &   -1.068\sym{***}&   -1.013\sym{***}\\
+          &  (0.084)         &  (0.085)         \\
+[1em]
+southern  &    0.684\sym{***}&    0.580\sym{***}\\
+          &  (0.082)         &  (0.089)         \\
+[1em]
+\_cons    &  -12.347\sym{***}&  -13.470\sym{***}\\
+          &  (1.012)         &  (1.050)         \\
+\hline
+zk        &                  &                  \\
+midwest   &    0.350\sym{***}&    0.312\sym{***}\\
+          &  (0.085)         &  (0.081)         \\
+[1em]
+\_cons    &  -19.982\sym{***}&  -20.932\sym{***}\\
+          &  (1.034)         &  (1.085)         \\
+\hline
+comp      &                  &                  \\
+comp      &   -0.737\sym{***}&   -0.953\sym{***}\\
+          &  (0.102)         &  (0.103)         \\
+\hline
+rho       &                  &                  \\
+\_cons    &    0.330\sym{***}&    0.633\sym{***}\\
+          &  (0.080)         &  (0.088)         \\
+\hline
+Observations& 2065.000         & 2065.000         \\
+\hline\hline
+\multicolumn{3}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{3}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\end{tabular}
+}
