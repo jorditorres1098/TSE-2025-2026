@@ -126,7 +126,7 @@ Same exercise we can do with $P_{1,0}$. This leads with 8 moments, 2 equalities 
 \subsection*{2.2}
 First, \(\hat{P_{1,1}},\hat{P_{0,0}} , \hat{P_{1,0}}, \hat{P_{0,1}}, \), can be directly estimated with the data. This can be done with nonparametric methods. (\textcolor{blue}{do we need to condition on X?}).
 
-Second, we will estimate the rest using model implied probabilities - recycling some results from above, actually. Let's go by parts: 
+Second, we will estimate the rest using model implied probabilities - recycling some results from above, actually -all conditional to X. Let's go by parts: 
 
 \begin{enumerate}
     \item \( p_{00}= \Phi_{2}(-\pi_{1}^{M}, -\pi_{2}^{M}, \rho)\)
@@ -144,12 +144,14 @@ Second, we will estimate the rest using model implied probabilities - recycling 
  We can define the following objective function:
 
  \[
- Q(\theta)= \sum_{j}(M_{j}(\theta))_{+}
+ Q(\theta)= \int h(M_{j}(\theta))_{+} dFx
  \]
 
  Where $j$ are the amount of moment inequalities we have and where $M$ designates the moment, which are functions of $\theta$.
 
  The inequalities are written in a positive way. In this sense, we want to penalize deviations for the implied inequalities in the model, so we will construct $Q(\theta)$ so that we only count deviations from our model. This resembles ... 
+
+
 
 
 

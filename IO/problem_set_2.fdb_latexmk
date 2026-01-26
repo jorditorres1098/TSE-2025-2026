@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1769276411.30124 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/IO/problem_set_2.tex" "problem_set_2.pdf" "problem_set_2" 1769276412.23003 0
-  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/IO/problem_set_2.tex" 1769276410.68679 11625 93b5b2ad5df42f76ab41fc0486608661 ""
+["pdflatex"] 1769440165.93076 "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/IO/problem_set_2.tex" "problem_set_2.pdf" "problem_set_2" 1769440166.85074 0
+  "/Users/jorditorresvallverdu/Documents/GitHub/TSE-2025-2026/IO/problem_set_2.tex" 1769440165.0011 11651 c09863f34e8ddfa485cadf70ee58e6bb ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/map/pdftex/pdftex.map" 1769265523.44459 339773 a1c68872d3dc0a4bee66a5dedbc28f32 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1734277980.39253 11548 65e4107434a595602cca075154f9e8e6 ""
   "/Users/jorditorresvallverdu/Library/Application Support/MiKTeX/texmfs/data/fonts/tfm/public/rsfs/rsfs10.tfm" 1769265524.47994 688 37338d6ab346c2f1466b29e195316aa4 ""
@@ -240,9 +240,9 @@
   "1_3.tex" 1769271079.35097 1597 a5ae2c828db20c0db073a839aedeb1aa ""
   "1_3_2.tex" 1769271086.40315 1757 a955531b128ced9bb296436b40bea65e ""
   "1_3_3.tex" 1769271091.54443 1335 a03d4907550198b875b42f60931dcd0c ""
-  "problem_set_2.aux" 1769276412.09134 1464 fec1afce309a4d75e385699d66f56353 "pdflatex"
-  "problem_set_2.out" 1769276412.04249 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "problem_set_2.tex" 1769276410.68679 11625 93b5b2ad5df42f76ab41fc0486608661 ""
+  "problem_set_2.aux" 1769440166.71534 1464 fec1afce309a4d75e385699d66f56353 "pdflatex"
+  "problem_set_2.out" 1769440166.66408 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "problem_set_2.tex" 1769440165.0011 11651 c09863f34e8ddfa485cadf70ee58e6bb ""
   (generated)
   "problem_set_2.aux"
   "problem_set_2.log"
