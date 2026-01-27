@@ -47,56 +47,162 @@
 
 
 \section*{1.1}
+
 \begin{itemize}
-    \item $(0,0)$ \(\rightarrow \Pi_{im}^{M} \leq 0 \iff \hat{\Pi_{im}} + \epsilon_{im}\leq 0 \iff \epsilon_{im} \leq -\hat{\Pi}_{im}  \forall i \in \{1,2\}\)
-    \item $(1,1)$ \(\rightarrow  \hat{\Pi}^{D}_{im} + \epsilon_{im} \geq 0 \iff \epsilon_{im}\geq \hat{\Pi}_{im}^{D} \forall i \in \{1,2\}\)
-    \item Unique entry for firm $j$ will happen in the cases where: \begin{enumerate}
-        \item \(\hat{\Pi}_{jm}^{M}+ \epsilon_{jm}\geq 0 \cap \hat{\Pi}_{j_{-1}m}^{M}+ \epsilon_{j_{-1}m}\leq 0\) 
-        \item \(\hat{\Pi}_{jm}^{M}+ \epsilon_{jm}\geq 0 \cap \hat{\Pi}_{j_{-1}m}^{M}+ \epsilon_{j_{-1}m}\geq 0 \cap \hat{\Pi}_{j_{-1}m}^{D}+ \epsilon_{j_{-1}m} \leq 0 \)
-        \end{enumerate}
-    \item Note however the that there is the following area of multiplicity: \(- \Pi_{1j}^{D}\geq \epsilon_{1j}\geq - \Pi_{1j}^{M} \cap - \Pi_{2j}^{D}\geq \epsilon_{2j}\geq - \Pi_{2j}^{M} \) corresponding to region 5 in the graph. 
+
+\item $(0,0)$
+\[
+\Pi_{im}^M \le 0
+\iff
+\hat\Pi_{im}^M + \epsilon_{im} \le 0
+\iff
+\epsilon_{im} \le -\hat\Pi_{im}^M,
+\qquad \forall i\in\{1,2\}.
+\]
+
+\item $(1,1)$
+\[
+\hat\Pi_{im}^D + \epsilon_{im} \ge 0
+\iff
+\epsilon_{im} \ge -\hat\Pi_{im}^D,
+\qquad \forall i\in\{1,2\}.
+\]
+
+\item Unique entry by firm $j$ occurs when:
+\begin{enumerate}
+    \item
+    \[
+    \hat\Pi_{jm}^M + \epsilon_{jm} \ge 0
+    \;\cap\;
+    \hat\Pi_{-jm}^M + \epsilon_{-jm} \le 0;
+    \]
+    \item
+    \[
+    \hat\Pi_{jm}^M + \epsilon_{jm} \ge 0
+    \;\cap\;
+    \hat\Pi_{-jm}^M + \epsilon_{-jm} \ge 0
+    \;\cap\;
+    \hat\Pi_{-jm}^D + \epsilon_{-jm} \le 0.
+    \]
+\end{enumerate}
+
+\item The region of multiplicity is given by
+\[
+-\hat\Pi_{1m}^D \le \epsilon_{1m} \le -\hat\Pi_{1m}^M
+\;\cap\;
+-\hat\Pi_{2m}^D \le \epsilon_{2m} \le -\hat\Pi_{2m}^M,
+\]
+corresponding to Region~5 in Figure~\ref{fig:equilibrium_regions}.
+
 \end{itemize}
 
-
-\textbf{\textcolor{blue}{pending to add the picture here or use Tikz or another package}}
+Figure~\ref{fig:equilibrium_regions} illustrates the partition of the
+$(\epsilon_1,\epsilon_2)$ space into the nine regions described above.
 
 \section*{1.2}
-We can write the remaining probabilities in the following manner:
 
-\( \mathbf{P}\left(D_{1}=0, D_{2}=0\right)= \int_{0}^{-\pi_{1}^{M}}\int_{0}^{-\pi_{2}^{M}} \phi_{2}(u_{1}, u_{2}, \rho) du_{1} du_{2} \)
+The remaining probabilities can be written as follows.
 
-Which we can express using the bivariate normal distribution as \( \mathbf{P}\left(D_{1}=0, D_{2}=0\right)= \Phi_{2}(-\pi_{1}^{M}, -\pi_{2}^{M}, \rho)\)
+The probability of no entry is
+\[
+\mathbf{P}(D_1=0,D_2=0)
+=
+\int_{-\infty}^{-\pi_1^M}
+\int_{-\infty}^{-\pi_2^M}
+\phi_2(u_1,u_2;\rho)\,du_1\,du_2
+=
+\Phi_2(-\pi_1^M,-\pi_2^M;\rho).
+\]
 
-Now, given that firm 1 enters first, we solve the problem of multiplicity, as the region 4 in graph \textbf{\textcolor{blue}{ADD!}} is now belongs to $(1,0)$. We can thus now write:
+Assume now that firm~1 moves first, so that equilibrium multiplicity is resolved
+in favor of outcome $(1,0)$ (Region~4 in Figure~\ref{fig:equilibrium_regions}).
+Then
+\[
+\mathbf{P}(1,0)
+=
+\int_{-\pi_1^M}^{-\pi_1^D}
+\int_{-\infty}^{-\pi_2^D}
+\phi_2(u_1,u_2;\rho)\,du_2\,du_1
+=
+\Phi_2(\infty,-\pi_2^D;\rho)
+-
+\Phi_2(-\pi_1^M,-\pi_2^D;\rho).
+\]
 
-\(\mathbf{P}(1,0)= \int_{-\pi_{1}^{M}}^{-\pi_{1}^{D}} \int_{0}^{-\pi_{2}^{D}}\phi_{2}(u_{1}, u_{2}, \rho) du_{1} du_{2}\). And we can use the normal to define the region as \(\Phi_{2}(\infty, -\pi_{2}^{D}, \rho) - \Phi_{2}(-\pi_{1}^{M}, -\pi_{2}^{D}, \rho)\). 
-
-And $\mathbf{P}(0,1)$ is implied by the other three. 
-
-\textbf{\textcolor{blue}{make sure notation, hats, pi etc are consistent with what is given in the exercise}}
-
+Finally, $\mathbf{P}(0,1)$ is implied by the remaining probabilities.
 
 \section*{1.3}
-In table~\ref{tab:reg1} of the appendix we can see the two tables for $\rho$ positive and negative. The value of the loglikelihood is smaller in the case of positive shocks (this means the other is not fitting a global minimum?). The coefficients are also much different. Notably, once we assume negative correlation of the unobserved shocks, the competition effect is no longer significant: this is reasonable, as negative correlation structure implies that these firms are dissimilar - without assuming similar shock structure, competition effect can not be estimated (whatever departs from this same shocks).
 
-In table~\ref{tab:reg2} I show the estimated value of $\rho$ and indeed we find an almost.$0.3$ coefficient. In this table we also show the results of the same model when we change the assumption on the identity of the firm that enters first.  Notably, again, the main changes are with respect to the competition effect coefficient. When we assume firm 1 (Walmart) enters first, the effect of competition is smaller on profits.  The intuition behind this result is that in this model $\delta$ is rationalizing differences in entering decision (also the $\rho$): in this case the model finds more dissimilar firms and less impact of entry; while when we assume a smaller firm enters first, model gives more similar shocks and higher impact of competition of the non-entry first firm on the other. \textcolor{blue}{revise}
+Table~\ref{tab:reg1} in the Appendix reports estimation results obtained under
+alternative sign restrictions on the correlation parameter $\rho$. The
+log-likelihood is lower when $\rho$ is restricted to be positive, indicating a
+worse fit relative to the specification with negative correlation. Coefficient
+estimates also differ substantially across the two cases. In particular, when
+$\rho<0$, the estimated competition effect becomes statistically insignificant.
+This is consistent with the interpretation that negative correlation in
+unobserved shocks reflects greater heterogeneity between firms, reducing the
+ability of the model to separately identify competitive effects from
+idiosyncratic profitability differences.
 
-The intuition given above is confirmed in table~\ref{tab:reg3}. $\rho$ remains close to the one we had assuming firm 2 entry first. But then we get a larger coefficient for the effect of competition of Walmart on Kmart (bigger company). This is reasonable, and was captured in part before. 
+Table~\ref{tab:reg2} reports estimates of $\rho$ when it is freely estimated. The
+estimated value is approximately $0.3$, suggesting a moderate positive
+correlation in unobserved shocks. The table also reports results obtained under
+alternative assumptions about the identity of the firm that moves first. The
+main differences across specifications arise in the estimated competition
+effect. When firm~1 (Walmart) is assumed to enter first, the estimated impact of
+competition on profits is smaller.
+
+This pattern reflects the role of $\delta$ and $\rho$ in rationalizing observed
+entry decisions. When Walmart is assumed to move first, the model attributes a
+larger share of entry asymmetries to differences in unobserved profitability,
+implying weaker competitive effects. Conversely, when the smaller firm is
+assumed to move first, the model requires stronger competitive effects and more
+similar shocks to rationalize observed outcomes.
+
+Table~\ref{tab:reg3} confirms this interpretation. The estimated value of $\rho$
+remains close to that obtained under the assumption that firm~2 moves first,
+while the estimated effect of Walmart's entry on Kmart's profits increases. This
+is consistent with Walmart being the larger firm, whose entry plausibly exerts a
+stronger competitive pressure on Kmart.
 
 
 \section*{1.4}
-In table~\ref{tab:reg4} we have the results of the model when we assume $\rho$ is 0.5 and 1. When the firms have the same shocks, the model generates higher compeition effect to explain the difference in entry decisions; when firms have less equal shocks, these in part explain entry (and so competition effect decreases). The second converges more quickly and has slighlty lower loglikelihood (more concave? less flat likelihood so easier to fit competition coefficients? competition explains variation unaccounted by unobserve shocks -the two are interconnected in these models. )
 
+Table~\ref{tab:reg4} reports estimation results under fixed values of the
+correlation parameter $\rho$ equal to $0.5$ and $1$. When shocks are highly
+correlated, the model attributes a larger share of the observed variation in
+entry outcomes to strategic interaction, leading to a higher estimated
+competition effect. Conversely, when shocks are less correlated, heterogeneity
+in unobserved profitability accounts for a greater fraction of entry decisions,
+and the estimated competition effect decreases. The specification with
+$\rho=1$ converges more quickly and attains a slightly lower log-likelihood,
+reflecting the tighter structure imposed by perfectly correlated shocks.
 
-In table~\ref{tab:reg5} I show the results of the same model as above estimating $\rho$. In this model we can not separately identify the competition effect from $\rho$. The intuition is very simple. In this simplified model, the only thing that is different across firms are the shocks. These are the only that rationalize the number of entrants , as the rest of variables are constant across firms. If we let the model find the $\rho$ it will be of 1: this rationalizes perfectly $n=2$ and $n=0$ $n=1$ too.
+Table~\ref{tab:reg5} reports results for the same model when $\rho$ is estimated
+freely. In this specification, the competition effect and the correlation
+parameter are not separately identified. The reason is that, in this simplified
+setting, firms are symmetric in observables, and the only source of
+cross-firm variation is the unobserved shock. Allowing $\rho$ to approach one
+enables the model to rationalize the observed distribution of the number of
+entrants across markets without requiring a distinct competition effect,
+resulting in a flat likelihood in the $(\delta,\rho)$ direction.
 
-This is also the reason why we can not identify effect of $Z_m$ in this model. $Z_m$ help separate $(0,1)$ from $(1,0)$ but in this model the two are pulled together in $n=1$, so there is no variation in probs that help identify these parameters (the likelihood is flat on these) \textbf{Provide a more accurate definition of why identification fails ehere.}
+This lack of identification also explains why the effects of $Z_m$ cannot be
+estimated in this model. Since outcomes $(1,0)$ and $(0,1)$ are aggregated into
+the same category $n=1$, there is no variation in the data that distinguishes
+between the identities of entering firms. As a result, parameters that shift
+relative profitability across firms are not identified.
 
-\textcolor{blue}{\textbf{Revise}}
+Table~\ref{tab:reg6} presents results for a model with identical firms. This
+specification is equivalent to the model in Part 1 under the restriction
+$\rho=1$, since perfect correlation in a bivariate normal distribution implies
+identical payoff shocks.
 
-In table~\ref{tab:reg6} we have a model of identical firms. This is the same coefficients as in part 1 of this problem set when we assume $\rho=1$. This is because $\rho=1$ in normal bivariate implies that the shocks are the same.
-
-Finally, in table~\ref{tab:reg7} we show the results of the ordered logit. Here the results should be the same as above. By default firms are the same and the thing that rationalizes observed probabilities are the cutoffs of the latent variable (it should capture the competition effect?). It is slighly different because now instead of compt we have the two cutoffs (on the prob of number of entrants per market) this should capture competition of the market, desirability... 
+Finally, Table~\ref{tab:reg7} reports results from an ordered logit model for the number of entrants. This specification yields qualitatively similar results. By construction, firms are symmetric, and the ordered logit rationalizes observed
+entry frequencies through threshold parameters of a latent profitability index.
+These cutoffs capture market-level profitability and competitive pressures in a
+reduced-form manner, analogous to the role played by the competition effect in
+the structural model.
 
 \section*{2}
 
@@ -118,7 +224,7 @@ $P_{0,1}^{l} \leq \hat{P_{0,1}} \leq P_{0,1}^{u}  $, where the lower bound is ju
 \item  $P_{0,1}^{l} \leq \hat{P_{0,1}} \rightarrow M_3= \hat{P_{0,1}}- P_{0,1}^{l} \geq 0 $
 \item $\hat{P_{0,1}} \leq P_{0,1}^{u} \rightarrow M_4= P_{0,1}^{u} - \hat{P_{0,1}}  \geq 0$
 
-Same exercise we can do with $P_{1,0}$. This leads with 8 moments, 2 equalities (4 inequalities) and 4 inequalities:
+Same exercise can be done with $P_{1,0}$. This leads with 8 moments, 2 equalities (4 inequalities) and 4 inequalities:
 
 \item  $P_{1,0}^{l} \leq \hat{P_{1,0}} \rightarrow M_3= \hat{P_{1,0}}- P_{1,0}^{l} \geq 0 $
 \item $\hat{P_{1,0}} \leq P_{1,0}^{u} \rightarrow M_4= P_{1,0}^{u} - \hat{P_{1,0}}  \geq 0$
@@ -130,9 +236,9 @@ Second, we will estimate the rest using model implied probabilities - recycling 
 
 \begin{enumerate}
     \item \( p_{00}= \Phi_{2}(-\pi_{1}^{M}, -\pi_{2}^{M}, \rho)\)
-    \item \( p_{11}= 1- \Phi_{2}(-\pi_{1}^{d}, 100, \rho)- \Phi_{2}(-\pi_{1}^{d}, -\pi_{2}^{d}, \rho)- \Phi_{2}(100, -\pi_{2}^{d}, \rho) \)  
+    \item \( p_{11}= 1- \Phi_{2}(-\pi_{1}^{d}, \infty, \rho)- \Phi_{2}(-\pi_{1}^{d}, -\pi_{2}^{d}, \rho)- \Phi_{2}(\infty, -\pi_{2}^{d}, \rho) \)  
     \item For either $(1,0)$ or $(0,1)$ we have: \begin{itemize}
-        \item \(P_{1,0}^{l}= \Phi_{2}(100, - \pi_{2}^{d}, \rho)-\Phi_{2}(- \pi_{1}^{m}, - \pi_{2}^{d}, \rho) \)
+        \item \(P_{1,0}^{l}= \Phi_{2}(\infty, - \pi_{2}^{d}, \rho)-\Phi_{2}(- \pi_{1}^{m}, - \pi_{2}^{d}, \rho) \)
         \item  \(P_{1,0}^{u}= 1- \Phi_{2}(-\pi_{1}^{m}, -\pi_{2}^{d}, \rho)- p_{11} - p_{00}\) 
         \item By symmetry $(0,1)$ is just the same reversed. 
     \end{itemize} 
@@ -149,9 +255,94 @@ Second, we will estimate the rest using model implied probabilities - recycling 
 
  Where $j$ are the amount of moment inequalities we have and where $M$ designates the moment, which are functions of $\theta$.
 
- The inequalities are written in a positive way. In this sense, we want to penalize deviations for the implied inequalities in the model, so we will construct $Q(\theta)$ so that we only count deviations from our model. This resembles ... 
+ The inequalities are written in a positive way. In this sense, we want to penalize deviations for the implied inequalities in the model, so we will construct $Q(\theta)$ so that we only count deviations from our model\footnote{We could also write the two equalities as 4 inequalities and add them all up.}.
+
+\end{enumerate}
 
 
+ \subsection*{2.4}
+
+\subsection*{2.4 Estimation of the identified set}
+
+To estimate the identified set of structural parameters, we follow the
+moment-inequality approach of \textbf{Ciliberto and Tamer (2009)} and
+\textbf{Chernozhukov, Hong, and Tamer (2007)}. The procedure consists of the
+following steps.
+
+\begin{enumerate}
+
+\item \textbf{Discretization of market characteristics.}  
+Let $X^{c}$ denote the vector of continuous market characteristics.
+We discretize the support of $X^{c}$ into two bins for each continuous variable
+(dbenton, spc, population, urban). Within each bin, we replace the continuous
+variable by its sample mean. This discretization induces a finite support for
+$(X,Z)$ and allows for nonparametric estimation of conditional choice
+probabilities.
+
+\item \textbf{Nonparametric estimation of conditional probabilities.}  
+For each combination $(x,z)$ in the discretized support of $(X,Z)$, we estimate
+the conditional distribution of market outcomes nonparametrically:
+\[
+\hat P_n(Y = y \mid X = x, Z = z)
+=
+\frac{\sum_{i=1}^{n} \mathbf{1}\{Y_i = y, X_i = x, Z_i = z\}}
+     {\sum_{i=1}^{n} \mathbf{1}\{X_i = x, Z_i = z\}},
+\qquad y \in \{(1,1),(1,0),(0,1),(0,0)\}.
+\]
+Each distinct realization of $(x,z)$ defines a market type in the estimation
+sample. For each market type, we therefore obtain four empirical conditional
+probabilities $(\hat p_{11}, \hat p_{10}, \hat p_{01}, \hat p_{00})$.
+
+\item \textbf{Construction of model-implied moments.}  
+Let $\theta$ denote the vector of structural parameters, which includes
+coefficients on market characteristics, firm-specific intercepts, the common
+competition effect, and the correlation parameter of the payoff shocks.\footnote{
+Specifically, $\theta$ includes coefficients on population, spc, urban, and
+dbenton; regional indicators; a common competition parameter; firm-specific
+intercepts; and the correlation parameter $\rho$.
+}
+For a given $\theta$:
+
+\begin{enumerate}
+
+\item We compute monopoly and duopoly profit indices,
+$\pi_i^M(x,z;\theta)$ and $\pi_i^D(x,z;\theta)$, using the specified linear
+profit functions.
+
+\item Assuming jointly normal payoff shocks, we compute the model-implied
+probabilities for each market type:
+\[
+p_{11}(\theta), \quad p_{00}(\theta), \quad
+p_{10}^L(\theta), \quad p_{10}^U(\theta), \quad
+p_{01}^L(\theta), \quad p_{01}^U(\theta),
+\]
+where $p_{10}^L(\theta)$ and $p_{01}^L(\theta)$ denote the lower bounds implied by
+regions of unique equilibrium, and $p_{10}^U(\theta)$ and $p_{01}^U(\theta)$ denote
+the corresponding upper bounds implied by equilibrium multiplicity.
+
+\item We construct a vector of moment conditions $m(\theta \mid x,z)$ that
+enforces equality restrictions for outcomes $(1,1)$ and $(0,0)$ and inequality
+restrictions for outcomes $(1,0)$ and $(0,1)$.
+
+\end{enumerate}
+
+\item \textbf{Criterion function.}  
+We define the sample criterion function as
+\[
+Q_n(\theta)
+=
+\int H\!\left(m(\theta \mid x,z)\right)_+ \, d\hat F_{X,Z}(x,z),
+\]
+where $H(\cdot)_+$ denotes a nonnegative loss function that penalizes violations
+of the moment inequalities, and $\hat F_{X,Z}$ is the empirical distribution of
+$(X,Z)$. The identified set is approximated by the collection of parameter values
+$\theta$ for which $Q_n(\theta)$ is close to zero.
+
+Given the size \(\theta\) we define the grid of parameters using a Uniform distribution for each parameter. We take previous models as reference, and define bounds on the uniform to include them. We run $2000$ simulations of $\theta$. In table \ref{fig:qtheta_hist} we can see the distribution of $Q(\theta)$. 
+
+\textbf{Inference}
+\textcolor{blue}{this I would leave if there is time left...It can be done, but it is more prioritary to finish the rest.}
+We will use CHT to make inference\dots
 
 
 
@@ -159,13 +350,20 @@ Second, we will estimate the rest using model implied probabilities - recycling 
 
 
 
-
- \subsection*{2.2}
-
-
 \section*{Appendix}
 
-\begin{table}[htbp]
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{graph_areas.png}
+\caption{Equilibrium regions.}
+\label{fig:equilibrium_regions}
+\end{figure}
+
+
+
+\begin{table}[H]
 \centering
 \caption{Regression Results}
 \label{tab:reg1}
@@ -174,7 +372,7 @@ Second, we will estimate the rest using model implied probabilities - recycling 
 
 \end{table}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{Regression Results}
 \label{tab:reg2}
@@ -183,7 +381,7 @@ Second, we will estimate the rest using model implied probabilities - recycling 
 
 \end{table}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{Regression Results}
 \label{tab:reg3}
@@ -192,7 +390,7 @@ Second, we will estimate the rest using model implied probabilities - recycling 
 
 \end{table}
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{Regression Results}
 \label{tab:reg4}
@@ -202,7 +400,7 @@ Second, we will estimate the rest using model implied probabilities - recycling 
 \end{table}
 
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{Regression Results}
 \label{tab:reg5}
@@ -212,7 +410,7 @@ Second, we will estimate the rest using model implied probabilities - recycling 
 \end{table}
 
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{Regression Results}
 \label{tab:reg6}
@@ -222,7 +420,7 @@ Second, we will estimate the rest using model implied probabilities - recycling 
 \end{table}
 
 
-\begin{table}[htbp]
+\begin{table}[H]
 \centering
 \caption{Regression Results}
 \label{tab:reg7}
@@ -230,6 +428,14 @@ Second, we will estimate the rest using model implied probabilities - recycling 
 \input{1.4_4.tex}
 
 \end{table}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{distribution_Q.png}
+\caption{Distribution of the criterion function $Q(\theta)$.}
+\label{fig:qtheta_hist}
+\end{figure}
 
 
 
