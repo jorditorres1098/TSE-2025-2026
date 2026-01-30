@@ -35,6 +35,7 @@
 {0.5em}    % space after section
 
 
+
 \begin{document}
 
 \title{Referee Report: Welfare effects of Buyer and Seller Power (Demirer, Rubens)}
@@ -44,28 +45,75 @@
 
 \maketitle
 
+
 \section*{1. Introduction}
+This paper studies how changes in buyer power affect welfare in vertical relationships when the type of vertical conduct is not observed \citep{DemirerRubens2025}. The welfare effects of buyer power depend on whether the market operates under monopsonistic or monopolistic conduct, but in many applications this distinction is not directly observable, which complicates policy analysis.
 
-In this paper, Demirer and Rubens provide the theoretical and empirical foundations to analyze the welfare effects of changes in buyer power in vertical structures when the type of vertical relation is unobserved by the econometrician or the policy maker. Welfare consequences of changes in buyer power crucially depend on the structure of the market: in a monopsonistic setting, increasing buyer market power can further distort the market, while under monopolistic vertical conduct increased buyer power may mitigate double marginalization. Given that in many markets the type of vertical conduct is not directly observed, the proposed framework is relevant for policy analysis.
+The authors propose a unified model in which both monopsonistic and monopolistic conduct are feasible given increasing upstream marginal costs and downward-sloping downstream demand. Unlike much of the IO and labor literature, vertical conduct is not imposed ex ante but selected endogenously through participation-based rules.
 
-The starting point is a model with increasing marginal costs upstream and downward-sloping demand downstream, under which equilibria exist under both monopsonistic and monopolistic vertical conduct. Most IO models rule out one of these conduct regimes by assumption in order to make conduct known. A key contribution of the paper is not to impose a specific type of vertical conduct, but to endogenize it within a unified framework by means of conduct-selection rules based on participation constraints.
+The main result is the existence of a unique efficient level of buyer power, $\beta^{*}$, that depends only on demand and cost elasticities. Comparing actual buyer power $\beta$ to this benchmark determines the implied conduct: monopsonistic when $\beta > \beta^{*}$ and monopolistic when $\beta < \beta^{*}$. The framework is applied to several empirical settings, including coal procurement in Texas, where the authors decompose observed distortions into monopoly and monopsony components.
 
-The authors show that there exists an efficient level of buyer power at which the monopsonistic and monopolistic equilibria coincide with the efficient bargaining outcome. Crucially, this efficient level depends only on the relative elasticities of upstream costs and downstream demand and can therefore be recovered from these primitives. This efficient level acts as a threshold determining vertical conduct: under the proposed conduct-selection rules, comparing actual buyer power, $\beta$, to the efficient level, $\beta^{*}$, is sufficient to characterize the implied market structure. When $\beta > \beta^{*}$, the model predicts monopsonistic conduct; when $\beta < \beta^{*}$, monopolistic conduct prevails.
+\section*{2. Model -- Main Results}
 
-Finally, the authors apply the framework to several empirical settings. In some applications, actual buyer power cannot be estimated, but the efficient level $\beta^{*}$ can be inferred from elasticities, allowing the authors to assess whether buyer power is likely to be countervailing or distortionary. In their main empirical application to coal procurement in Texas, both $\beta$ and $\beta^{*}$ are estimated, which allows the authors to decompose observed welfare distortions into components attributable to buyer and seller power.
+Let $D$ denote the downstream firm and $U$ the upstream firm. The firms engage in bilateral Nash bargaining over a linear input price. The upstream firm faces increasing marginal costs, while the downstream firm faces a downward-sloping inverse demand function. Bargaining is static, and both simultaneous and sequential timing are allowed. Under these assumptions, both monopsonistic and monopolistic vertical conduct may arise in equilibrium.
 
-\section*{2. Model-Main results}
+Formally, the equilibrium is characterized by the solution to
+\[
+\begin{cases}
+\displaystyle \max_{q}\ \pi_i(w,q), 
+& (1) \\[8pt]
+\displaystyle 
+\max_{w}\ 
+\Big[ \pi_i(w,q) \Big]^{\beta}
+\Big[ \pi_{i-1}(w,q) \Big]^{1-\beta}
+\quad \text{s.t. } 
+\pi_i \ge 0,\ \pi_{i-1} \ge 0,
+& (2)
+\end{cases}
+\quad i \in \{\text{upstream},\ \text{downstream}\}.
+\]
+
+The contribution of the paper lies in characterizing vertical conduct in settings where it is not known ex-ante which party effectively controls quantities and where both monopzsonistic and monopolistic conduct are feasible given the primitives of demand and costs. The key object governing this selection is the bargaining parameter $\beta$, interpreted as buyer power.
+
+First, the authors show that there exists a unique interior level of buyer power, $\beta^{*} \in (0,1)$, such that equilibrium output is maximized and coincides with the efficient bargaining outcome. This efficient level is given by
+\[
+\beta^{*} = \frac{-p'(q^{*})}{c'(q^{*}) - p'(q^{*})},
+\]
+and depends only on the relative elasticities of upstream marginal costs and downstream demand. The intuition is similar to a Hosios\footnote{\citet{Hosios1990}} condition in labor search literature: higher curvature of upstream costs requires greater seller power $(1-\beta)$ to offset monopsony distortions, while less elastic downstream demand requires greater buyer power $\beta$ to offset monopoly distortions.
+
+The main theoretical result of the paper is given by Theorems 1 and 2. Under two alternative participation-based conduct-selection rules, for any bargaining parameter $\beta \neq \beta^{*}$ there exists a unique equilibrium with trade in which exactly one type of vertical conduct arises. Specifically, if $\beta > \beta^{*}$, the equilibrium exhibits monopsonistic conduct, while if $\beta < \beta^{*}$, the equilibrium exhibits monopolistic conduct. Both conduct regimes cannot arise simultaneously, and when $\beta = \beta^{*}$ the equilibrium coincides with efficient bargaining.
 
 
-\section*{3. Limitation}
+\textbf{Limitation}
+The main limitation of the framework is that its policy implications are partial equilibrium. Policy interventions are modeled as shifts in bargaining power $\beta$, while the efficient benchmark $\beta^{*}$—which depends on demand and cost elasticities—is held fixed, even though both are equilibrium objects likely to change following mergers.
+
+More crucially, the conduct-selection result relies on participation and incentive-compatibility constraints that are imposed rather than derived from a richer contracting environment. These assumptions rule out efficient bargaining and do a lot of work in determining whether monopsonistic or monopolistic conduct arises. As a result, the endogeneity of conduct is conditional on institutional frictions such as linear pricing and lack of commitment, which limits the external validity of the results to settings where such frictions are not that empirically relevant.
 
 
-\section*{4. Conclusion}
+\section*{4. Empirical application}
+The main empirical result of the paper is the application of Theorems 1 and 2 to decompose the source of vertical distortions using estimated primitives,  cost and demand, in a setting where vertical conduct is not directly observed. In the Texas coal market, the authors find that 74.9\% of the observed distortion is due to double marginalization arising from monopoly power of coal mining firms, while the remaining share is attributed to monopsony power of electricity producers. Based on this decomposition, they conclude that in this market increases in buyer power are likely to be countervailing, while increases in seller power may be further distortionary.
+
+The coal industry is a natural setting for their framework. Contracts are mostly linear, upstream costs are increasing, downstream demand is downward sloping, and sufficient data are available to estimate the relevant primitives. This makes the empirical application consistent with the assumptions of the model.
+
+An important limitation to the policy interpretation of these results, acknowledged by the authors, is that the efficient bargaining benchmark $\beta^{*}$ is itself an equilibrium object that depends on demand and cost elasticities. Policy interventions such as mergers are therefore likely to affect both the actual bargaining parameter $\beta$ and the efficient level $\beta^{*}$. As a result, conclusions based on changes in $\beta$ holding $\beta^{*}$ fixed should be interpreted as partial equilibrium. Studying specific policies would require jointly modeling how both $\beta$ and $\beta^{*}$ respond to changes in market structure.
+
+A related limitation is that the empirical conclusions rely on a sharp threshold comparison between $\beta$ and $\beta^{*}$. Both objects are estimated with error, but uncertainty is not explicitly incorporated into the conduct classification or the distortion decomposition. Small measurement error in demand elasticities or bargaining parameters could lead to different conclusions about the source of distortions, especially when $\beta$ is close to $\beta^{*}$. This highlights the model dependence of the empirical exercise and raises concerns about robustness -also to functional forms of demand, costs- and external validity in other settings.
 
 
- 
 
+\section*{5. Conclusion and further research}
 
+This paper contributes to the literature on vertical relations under monopsony and monopoly power by providing a unified framework in which both sources of market power can arise. Most of the existing literature imposes assumptions on cost or demand that effectively rule out one of these regimes ex ante, thereby fixing vertical conduct \citet{lamadon_mogstad, ho_kate,rubens_1,AlviarezEtAl2025,AzkarateAskasuaZerecero2025,CaldwellHaegeleHeining2025}. In contrast, this paper allows both monopsonistic and monopolistic conduct to be feasible given the primitives of the market.
+
+The key theoretical contribution is to show that vertical distortions can be decomposed into monopsony and monopoly components using only demand and cost primitives. Under economically plausible participation constraints, the authors characterize a unique efficient level of buyer power, $\beta^{*}$, at which output is maximized. Comparing actual bargaining power $\beta$ to this benchmark allows the researcher to infer the type of vertical conduct and the source of inefficiency when conduct is not directly observed. The empirical application to the Texas coal industry illustrates how this decomposition can be implemented in practice.
+
+Overall, the framework is best interpreted as a diagnostic tool to decompose observed vertical distortions, rather than as a full policy evaluation framework for mergers or other interventions. A natural direction for future research would be to extend the model to allow for richer policy counterfactuals, for example by endogenizing market primitives, incorporating dynamics, or embedding the framework within a full merger simulation. Another extension would be to connect this approach more closely to the broader empirical literature on bargaining and vertical contracting in settings with nonlinear pricing or dynamic interactions.
+
+\textbf{Add a citation of maybe some possible continuation of this in the future, integrating the merger analysis with some idea of the simulation strategy.}
+
+\bibliographystyle{apalike}
+
+\bibliography{bibliography}
 
 
 \end{document}
